@@ -1,0 +1,74 @@
+
+                shared_ptr
+                ==========
+	
+Important thing here, shared pointer keeps count of how mny shared pointers
+point to an object.  If shared pointer goes out of scope,
+all shared pointers in scope are deleted and constructor is called on internal object.
+
+shared_ptr does NOT have release function -- unlike unique_ptr
+
+// Shared pointer is a template
+shared_ptr<MyClass> shPcl;
+
+// Create shared pointer is a template
+shPcl = make_shared<MyClass>(arg1,arg2,...);
+
+shared_ptr<double> spd;                   //good
+shared_ptr<double> spd(new double(35) );  //good
+shared_ptr<double> spd = new double(35);  //BAD
+
+shared pointer knows how many shared pointers point to
+memory. When count goes to zero, shared pointer releases memory.
+
+sharedPointer.(=dot)     points to member functions of shared pointer
+sharedPointer->(arrow)   points to member functions of class MyClass
+
+shared_ptr.use_count();              //how many share pointers point to allocated memory
+shared_ptr.swap(another_shared_ptr); //swaps these shared pointers
+somePointer = shared_ptr.get();       //returns original pointer. should not be used.
+
+
+spi.reset();//pointed to object becomes empty - as if default constructed - if this is the last SP pointing to the object
+            // destructor is called  - if this is the last SP pointing to the object
+            //gives up ownership -- use_count() returns 0 - if this is the last SP pointing to the object
+spi.reset(new Class() );//   pointed to object becomes empty - as if default constructed - if this is the last SP pointing to the object
+                         //  destructor is called  - if this is the last SP pointing to the object
+                         //  gives up ownership of old object
+                       //    acquires ownership of new object
+
+Example:
+~~~~~~~~
+
+In *.h file:
+------------
+
+class Cl{
+    public:
+        Cl(){
+            cout<<"Calling constructor"<<endl;
+        }
+
+        virtual ~Cl(){
+            cout<<"Calling destructor"<<endl;
+        }
+};
+
+
+
+In *.cpp file:
+-------------
+
+void testPtrB(){
+    shared_ptr<Cl> shPcl;
+    for(int ix=0;ix<2;++ix){
+        shPcl=make_shared<Cl>();
+        cout<<shPcl.use_count()<<endl;
+        cout<<"------------------------"<<endl;
+}
+
+// No memory leak here
+
+
+You can check:  valgrind --leak-check=full  ./myPgm
+   

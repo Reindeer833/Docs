@@ -1,0 +1,38 @@
+                               
+                       EL IMPLICIT OBJECTS
+                       ===================
+
+These are maps!
+---------------
+pageScope
+requestScope
+sessionScope
+applicationScope
+(prsa)
+
+param
+paramValues
+(pi-pi)
+
+header
+headerValues
+(ha-ha)
+
+cookie
+initParam
+(ci)
+
+
+This is NOT map!
+----------------
+pageContext
+
+pageContext is a real reference to pageContext, kind of bean
+
+
+----------------------------------------------------------------
+
+Notice: request is NOT on the list!!
+
+Always use:  ${requestScope[..]   }  NEVER:  ${request[...] }
+-----------  ..................

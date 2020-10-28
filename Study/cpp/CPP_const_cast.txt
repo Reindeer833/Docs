@@ -1,0 +1,34 @@
+
+                const_cast
+                ==========
+
+  target_type=const_cast<target_type>(source_type);
+ 
+
+Suppose we have a const pointer or const reference to an object and we need
+to modify the object anyway.  Then we use const_cast.
+Const cast will remove constantness of reference or pointer.
+If pointer or reference point to a const object, result of modification is undefined.
+
+Example:
+--------
+
+    string sT="Hello World!";
+    const string&  rsT=sT;
+    string&  nrSt=const_cast<string&>(rsT);
+    nrSt="Hello C++";
+    cout<<sT<<endl; //Will print:  Hello C++
+    
+    
+    
+    ............................................
+    
+    string inP="Hello World!";
+    testCastsD(inP);
+    cout<<inP<<endl; // Will print:  Hello C++!
+    
+    
+void testCastsD(const string& rAs){
+    string& abcR=const_cast<string&>(rAs);
+    abcR="Hello C++!";
+}

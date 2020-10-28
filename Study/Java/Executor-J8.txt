@@ -1,0 +1,24 @@
+
+
+
+                            Executor
+                            ========
+
+Executor:   Interface in java.util.concurrent.
+---------   interface   Executor
+   
+Subinterfaces:
+--------------
+ExecutorService, ScheduledExecutorService
+
+Implementing classes:
+---------------------
+ThreadPoolExecutor,ScheduledThreadPoolExecutor,
+
+
+Methods
+-------
+void execute( Runnable r) throws RejectedExecutionException;
+
+Thisinterface provides a way of decoupling task submission from themechanics of how each task will be run, 
+including details of threaduse, scheduling, etc.

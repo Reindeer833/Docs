@@ -1,0 +1,23 @@
+
+
+			ServletContext Dispatcher	
+			==========================
+
+
+------------------------------------------------------------
+
+RequestDispatcher getRequestDispatcher(String path);
+
+Path MUST begin with / and is relative to the current context root
+
+------------------------------------------------------------
+
+
+RequestDispatcher getNamedDispatcher(name);
+
+Name of Request dispatcher is given:
+
+   1.  By server administration 
+   2.  In a web application deployment descriptor(web.xml)
+
+------------------------------------------------------------

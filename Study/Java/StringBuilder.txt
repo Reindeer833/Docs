@@ -1,0 +1,30 @@
+
+
+
+                            StringBuilder
+                            =============
+
+
+
+StringBuilder
+-------------
+
+StringBuilder is a mutable sequence of chars
+
+StringBuilder();
+StringBuilder(char_sequence);
+
+
+
+
+Methods
+-------
+
+StringBuilder.append(everything);
+StringBuilder.delete(int start,int end);
+StringBuilder.deleteCharAt(int xPos);
+
+StringBuilder.insert(int offset,everything);
+int StringBuilder.startsWith(string);  // -1 if no match
+
+

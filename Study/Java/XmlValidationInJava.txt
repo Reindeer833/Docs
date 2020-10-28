@@ -1,0 +1,56 @@
+
+
+                       Xml Validation In Java
+                       ======================
+
+
+1.  Read in Xml file as a File
+
+2.  Create Source object = new StreamSource(XmlFile)
+
+3.  Read in Xsd file as a File
+
+4.  Create SchemaFactory instance using constant: XMLConstants.W3C_XML_SCHEMA_NS_URI
+
+5.  Get Schema object from SchemaFactory using Xsd file as an input
+
+6.  From Schema object get Validator object
+
+7.  Use validator object to validate using Source object as input
+
+
+
+-------------------Code Example------------------
+
+public void validateXmlAgainstXsd(){
+	Source        xmlSourceFile = new StreamSource(inputXmlFile);
+	SchemaFactory schemaFact    = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+	Schema xsdSchema = null;			
+	try{
+		xsdSchema = schemaFact.newSchema(inputXsdFile);
+	}catch(SAXException se){
+		errorMssg=String.format("\nSAXException when creating new Schema: %s ", se.getMessage());
+		recordException(se);
+		return;
+	}
+	Validator xsdVld = xsdSchema.newValidator();
+	try{
+		xsdVld.validate(xmlSourceFile);
+	}catch(SAXException se){
+		errorMssg=String.format("%nSAXException when validating XML source type file: %s%n ", se.getMessage());
+		recordException(se);
+	}catch(IOException ie){			
+		errorMssg=String.format("%nIOException when validating XML source type file: %s%n  XML input file: %s%n", ie.getMessage(),inputXmlPath);
+		recordException(ie);
+	} 
+}	
+
+
+-------------------Imports------------------
+
+import java.io.*;
+import javax.xml.XMLConstants;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.*;
+import org.xml.sax.SAXException;

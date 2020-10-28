@@ -1,0 +1,188 @@
+
+
+                           STD::SHARED POINTER
+			   ===================
+						   
+Templated Class
+---------------
+
+shared_ptr<T>
+~~~~~~~~~~~~~
+
+Shared pointer is templated by type but initialized
+by pointer to this type.
+
+
+~~~~~~~~~~~~~~~~
+Member Functions
+~~~~~~~~~~~~~~~~					   
+
+Constructors
+------------
+// Shared pointers can be initialized by regular pointers
+// but memory MUST dynamically allocated
+
+int* pI= new int(11);
+shared_ptr<int> spI(pI); //Good
+
+int xxx(10);
+shared_ptr<int> spI(&xxx); // Bad
+                           // free() will fail at runtime
+
+
+
+I can also use delete as a second parameter
+-------------------------------------------
+ shared_ptr<string> csPtr(new string("Hello C++!"),
+        [](string* ppp){  // lambda here
+            delete ppp;
+        }
+    );
+
+
+
+I can use make_shared<T>(a,b,c...) but I have to supply arguments for at least 
+one constructor:
+
+Constructor:   SomeClass(int, int, char*);
+shared_ptr<SomeClass> sptSc = make_shared(10,20,new char[128]);
+
+
+Remember:  make_shared<T> takes template!!!
+
+Remember:  Template is <T>   NOT  <*T>
+
+shared_ptr<AAA> spAaa = make_shared<AAA>(10);
+
+Allocate arrays
+---------------
+
+In *.cpp file:
+~~~~~~~~~~~~~~
+ shared_ptr<int[]>      spi(new int[4]);
+ shared_ptr<string []>  sps(new string[16]);
+
+Using make_shared:
+    auto msP=make_shared<int []> (5); //not int [5]
+    for(int ix=0;ix<5;++ix){
+        *(msP.get()+ix)=(ix+1)*(ix+2);
+    }
+    for(int ix=0;ix<5;++ix){
+        cout<<*(msP.get()+ix)<<endl;
+    }
+
+In class/struct:
+~~~~~~~~~~~~~~~~
+   shared_ptr<int[]>      spi = shared_ptr<int[]>(new int(4));
+   shared_ptr<string []>  sps = shared_ptr<string[]>(new string[16]);
+
+
+ for(int ix=0;ix<4;++ix){
+     spi.get()[ix]=ix;
+ }
+//    spi.get()+ 3 = new int(7); //Bad - address has been already assigned
+
+
+Functions
+---------
+
+int use_count();      // How many pointers points to an object
+element_type* get();  // Returns the stored pointer which was used to create this pointer
+
+
+  int* ptr = new int (10);
+  std::shared_ptr<int> sp (p);
+
+  if (sp.get()==ptr)
+    std::cout << "ptr and sp point to the same location\n";
+
+  cout<<*sp<<end; //The same as:  cout<<*sp.get()<<endl;
+
+int unique(); // returns true if the only SM PTR pointing to an object
+void reset(); //Releases the ownership of the managed object, and deletes managed object
+void reset(new Y() );//  // deletes managed object, acquires new pointer
+                // Y must be  convertible to T.
+
+
+Comment:   If we have a pointer ptr then
+           ptr  contains address of object to which pointer points
+           *ptr contains value of object to which pointer points
+           &ptr contains address of ptr
+            
+
+    shared_ptr<int> aG;  //Global definition
+// In a function
+    shared_ptr<int> spi(new int(10) );  //Local definition   
+    auto xxc(spi);
+    auto yyy(spi);
+//  use_count()  yields 3    
+    aG = spi;
+//  use_count()  yields 4    
+//  in this function
+//  Leaving function
+//  use_count()  yields 1
+//  All local pointers are destroyed 
+
+
+Shared pointer to integer array having 4 integer
+------------------------------------------------
+
+shared_ptr<int[]> spi(new int[4]);
+
+
+spi.get() // will get pointer to the beginning of the array
+
+shared_ptr<int[]> spi(new int[4]);
+
+I can dereference in 2 ways:
+
+ *(spi.get()+ 3) =7; //Last element is 7
+spi.get()[2] = 10; // Third element is now 10
+
+
+
+
+[ix]  dereferences pointer
+*(abc) derefrences  pointer
+
+
+
+
+
+EXAMPLE
+~~~~~~~
+
+*.h
+---
+
+typedef struct Bbb{
+
+    Bbb(){
+        cout<<"Calling constructor of Bbb."<<endl;
+    }
+    shared_ptr<Bbb[]> spBbb;
+    ~Bbb(){
+        cout<<"Calling destructor of Bbb."<<endl;
+    }
+
+} BBB;
+
+*.cpp
+-----
+
+BBB bbb;
+bbb.spBbb= shared_ptr<Bbb[]>(new Bbb[4]);
+
+
+Output:
+-------
+
+5 x times:  Calling constructor of Bbb.
+5 x times:  Calling destructor of Bbb.
+
+new Bbb[4] assigned array of 4 Bbb structures. Each array element contains pointer 
+to Bbb. 
+ bbb.spBbb.get() ... this gets address of first array element - rvalue only
+
+
+

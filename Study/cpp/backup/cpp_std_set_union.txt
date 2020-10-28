@@ -1,0 +1,50 @@
+
+			set_union
+			---------
+
+
+set_union:
+----------
+std::set_union(containerA.begin(),containerA.end(),containerB.begin(),containerB.end(),containerResult.inputIter);
+
+container result will contain elements from containerA 
+                      and elements from containerB which are NOT in containerA
+
+set_union constructs a sorted range beginning in the location pointed by result with the set union of the two sorted ranges [first1,last1) and [first2,last2).
+
+BOTH CONTAINERS MUST BE SORTED!!!
+
+This is applied to any container, not only to sets
+
+The difference between symetric difference and union is, result of union can contain elements fro containerA even if they appear in CoontainerB.
+
+
+#include <iostream>
+#include <algorithm> // THIS ONE!!
+#include <vector>
+#include <random>
+#include <iterator>
+
+
+Examples
+--------
+
+     vector<int> vA={5,5,5};
+    vector<int> vB={5,7,8};
+    stable_sort(vA.begin(),vA.end());
+    stable_sort(vB.begin(),vB.end());
+
+    vector<int> vDiff;
+
+    set_union(vA.begin(),vA.end(),vB.begin(),vB.end(),inserter(vDiff,vDiff.begin()));
+
+    printVector(vA);
+    printVector(vB);
+    printVector(vDiff);
+
+
+ContainerA:   5 5 5
+ContainerB:   5 7 8
+
+Union:        5 5 5 7 8
+

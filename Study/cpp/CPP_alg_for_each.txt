@@ -1,0 +1,63 @@
+
+
+
+                           ALGORITHMS:   for_each
+                           ======================
+						   
+
+Header:  
+-------
+#include <algorithm>
+#include <functional>						   
+
+for_ach(InputIterator first,InputIterator last,Function fn or lambda);
+
+vector<double> vcd(10);
+.
+.
+.
+
+for_each(vcd.begin(),vcd.last(),
+	[](double xx){cout<<xx<<" ";}
+  );
+
+Here I specified >double xx< as input parameter because this is
+what is being output by iterations from vcd.begin() to vcd.last()
+
+
+Example:
+--------
+
+
+*.h
+---
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include <functional>
+
+using namespace std;
+
+random_device                 rde;
+mt19937                       rndMt(rde());
+uniform_int_distribution<int> unD(1,15);
+
+auto rnd=bind(unD,rndMt);
+
+
+
+*.cpp
+-----
+
+    int intArr[aLimit];
+    vector<int> vit;
+    for(int ix=0;ix<aLimit;++ix){
+        intArr[ix]=rnd();
+    }
+    for_each(begin(intArr),end(intArr),
+        [&vit](int xx){
+            if(xx > 5)vit.push_back(xx);
+        }
+    );

@@ -1,0 +1,20 @@
+
+			ArrayBlockingQueue<E>
+			---------------------
+			
+Class
+
+In: java.util.concurrent
+
+Extends: BlockingQueue<E> 
+
+This queue implements methods which wait for available space when no available
+before storing
+or become non-empty before removal.
+
+Implementations throw NullPointerException on attempts to add, put or offer a null
+
+Constructors:
+
+ArrayBlockingQueue(int capacity)
+ArrayBlockingQueue(int capacity, boolean fifoOrNot)

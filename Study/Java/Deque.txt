@@ -1,0 +1,44 @@
+
+
+
+                            Deque
+                            =====
+
+
+
+interface Deque<E>
+-------------------
+
+java.util Interface Deque<E>
+
+A linear collection that supports element insertion and removal at both ends. 
+
+
+Constructors of LinkedList
+--------------------------
+For LinkedList
+LinkedList()
+LinkedList(Collection<? extends E>()
+
+
+
+Methods
+-------
+
+void addFirst(E e)
+void addLast(E e)
+Iterator<E> iterator()
+E peekFirst()
+E peekLast()
+E pollFirst()
+E pollLast()
+E removeFirst()
+E removeLast()
+
+
+boolean remove(Object o)
+boolean contains(Object o)
+
+The iterators returned by this class's iterator and listIterator methods are fail-fast: if the list is structurally modified 
+at any time after the iterator is created, in any way except through the Iterator's own remove or add methods, 
+the iterator will throw a ConcurrentModificationException

@@ -1,0 +1,33 @@
+
+
+
+                            SET B
+                            =====
+
+
+
+class Canine{};
+class Dog extends Canine{};
+
+Set<? extends Canine> stt   = new HashSet<Canine>();
+----------------------------------------------------
+This works but I >>>cannot add<<< anything to stt.
+stt.add(new Dog());  ---> Wrong
+stt.add(new Canine());  ---> Wrong
+
+
+Set<? super Dog> stt   = new HashSet<Canine>();
+----------------------------------------------------
+This works.
+stt.add(new Dog());  ---> Good
+stt.add(new Canine());  ---> Good
+
+
+
+Set<Canine> stt   = new HashSet<Dog>();  BAD!!!!
+------------------------------------------------
+
+Set<? extends Canine> stt   = new HashSet<Dog>();  BAD!!!!
+-------------------------------------------------------
+(Templates MUST be the same)
+

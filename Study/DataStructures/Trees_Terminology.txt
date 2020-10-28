@@ -1,0 +1,15 @@
+
+
+		TREES - TERMINOLOGY
+		===================
+		
+Tree is set of nodes originating from a unique starting node:  root.
+
+Nodes pointing to another nodes are called parents.
+Nodes being pointed to are called children.
+Node with no children is called leaf.
+
+All children of a node are called descendants.
+
+Each node is the root of subtree. The subtree is defined by this node 
+and its descendants.

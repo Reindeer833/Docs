@@ -1,0 +1,61 @@
+
+
+		<C:SET
+		======
+
+
+A:  var
+-------
+
+This version is setting attribute variables
+...........................................
+
+<c:set var="salary"  value="${2000*2}"   scope="session" />
+<c:out value="${salary}"/>   <%-- will output:  4000 --%>
+
+Notice that salary is just a variable, no expression language here
+value ... does NOT need to be String
+
+<c:set var="Fluffy" value="${animals.dogs.MyDog}"  />
+Here Fluffy evaluates to MyDog, it means Fluffy points to an object!!!
+
+<c:set var="long_text"  scope="request" > abc ... z </c:set> 
+<%-- c:set can have body as value  --%>
+
+If var does not exist, it is created in scope:  page
+
+
+
+
+B: target
+---------
+
+This version is setting attribute variables or map value
+........................................................
+
+Notice: Always ${ab...c}
+
+
+Map:
+....
+
+<c:set target="${SomeMap}" property="name_32" value="Rexx" />
+
+Target must NOT be null!
+name_32 ... in case of a Map this will be key
+Rexx will be added to map under key:  name_32
+
+
+
+Bean:
+.....
+
+<c:set target="${SomeBean}" property="lastName" value="Maloney" />
+
+Target must NOT be null!
+Target must evaluate to object!!!
+
+lastName ... propert of a bean
+lastName will be set to Maloney
+
+

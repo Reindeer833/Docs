@@ -1,0 +1,36 @@
+
+		JSP EXAMPLE
+		===========
+
+Jsp calling servlet:
+--------------------
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <form name="form" action="entry" method="PUT" >
+        <body>
+            <h1>Hello For Each World!</h1>
+            <h2>Submit:<input type="submit" /></h2>
+        </body>
+    </form>
+</html>
+
+
+
+
+Servlet in web.xml:
+-------------------
+
+  <servlet>
+        <servlet-name>entry</servlet-name>
+        <servlet-class>servlets.Entry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>entry</servlet-name>
+        <url-pattern>/entry</url-pattern>
+    </servlet-mapping>

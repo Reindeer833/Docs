@@ -1,0 +1,49 @@
+           JSP Scripting
+           =============
+
+
+Three Types of Scripting Expressions
+------------------------------------
+
+
+Declaration:
+------------
+
+<%!   scripting-language-declaration   %>
+
+Declarations are valid for the whole page.
+
+We can declare variables or methods:
+
+<%!
+	private int X = 1;
+	public void jspInit() {    
+		X=2;
+	}
+	public void jspDestroy() {
+    		X=2;
+	}
+%>
+
+
+
+Scriptlets
+----------
+
+<%
+    java-language-statements
+%>
+
+Scriptlets code is method local to _jspService() method
+
+
+
+
+Expressions
+-----------
+
+<%=  statement-returning-value   %>
+
+Expressions must NOT have terminating semicolon!!!
+Expressions return String.  Always.
+

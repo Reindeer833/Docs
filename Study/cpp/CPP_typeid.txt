@@ -1,0 +1,51 @@
+
+                CPP TYPEID
+                ===========
+						   
+#include <typeinfo>
+
+const char * typeid(object).name()
+const char * typeid(type_name).name()
+
+operator  ==  is overloaded for typeid
+operator  !=  is overloaded for typeid
+
+double xxx=1.;
+typeid(double) == typeid(xxx);//return 1
+typeid(int) == typeid(xxx);   //return 0
+
+If we use typeid for e dereferenced pointer, the result depends on
+clss being polymorphic or not.
+
+If we have Base and Derived class and pointer of Base class
+points to Derived
+
+A) If classes ARE polymorphic then typeid(*pointer).name returns:  Derived (class type)
+B) If classes are NOT polymorphic then typeid(*pointer).name returns:  Base (pointer type)
+
+class Base{ virtual void foo(){} }
+
+class Derived: public Base{ virtual void foo(){} }
+
+Derived derObject;
+
+Base* basePtr = &derObject;
+
+then: typeid(*basePtr) == typeid(derivedObject)//  returns true;
+// Because class is polymorphic
+// For a non-polymorpic class it would return false
+
+cout<<"Object type: "<<typeid(derObject).name()<<endl;
+
+
+typeid can be used for templates too.
+-------------------------------------
+
+        Xxx<int> xint;
+        Xxx<double> xdble;
+        
+        typeid(xint) == typeid(Xxx<int> )//this will retun true
+        typeid(xint) == typeid(xdble )   //this will retun false (different templates)
+        
+
+

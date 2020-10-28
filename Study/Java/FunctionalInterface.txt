@@ -1,0 +1,19 @@
+
+
+
+                            Functional Interface
+                            ====================
+
+
+
+Functional interface can contain one and only one abstract function
+
+
+@FunctionalInterface 
+interface Fit{
+
+	int fitMeth(int inb, string str);
+}
+
+Functional interaces are used in lambdas
+

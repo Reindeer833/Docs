@@ -1,0 +1,25 @@
+
+			ThreadPoolExecutor
+			------------------
+			
+Class ThreadPoolExecutor
+
+In: java.util.concurrent
+
+Implements:  Executor, ExecutorService
+
+Subclassed:  ScheduledThreadPoolExecutor
+
+Provides:
+
+Some basic statistics
+Executes each task using pooled threads
+Provides bounding resources
+
+Constructors:
+
+ThreadPoolExecutor(int threadsInPool, int maxThreadsInPool, int maxLifetimeOfThreads,TimeUnit.,
+                   BlockingQueue<E>,RejectedExcecutionHandler,ThreadFactory)
+
+
+ThreadFactory thFr = Executors.defaultThreadFactory();   (static)

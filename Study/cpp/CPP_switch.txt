@@ -1,0 +1,69 @@
+
+               CPP switch
+               ==========
+						   
+switch(abc){
+          case a1:  .....
+            break;
+
+         case a2:  ....
+            break;
+
+         default: cout<<"No such case"<<endl;
+            break;
+
+}
+  abc      ...  integral expression, enum, object of class with conversion function
+  a1, a2   ...  constants intgral type or enum
+(we cannot switch on std::string or pointer)
+(We can switch on long)
+
+
+
+Example
+~~~~~~~
+
+
+    class Cc{
+    public:
+        Cc(long x){
+            mX=x;
+        }
+        operator long () const{
+            return mX;
+        }
+    private:
+        long mX;
+};
+
+
+    Cc c1(10);
+    Cc c2(20);
+    list<Cc> lC={c1,c2};
+
+    auto xxx=c1;
+
+    for(Cc cc : lC){
+         switch(cc){
+            case 10:  cout<<10<<endl;
+            break;
+
+         case 20:  cout<<20<<endl;
+            break;
+
+         default: cout<<"No such case"<<endl;
+            break;
+
+         }
+    }
+
+
+    enum color {RED, GREEN, BLUE};
+    switch(RED) {
+        case RED:   std::cout << "red\n"; break;
+        case GREEN: std::cout << "green\n"; break;
+        case BLUE:  std::cout << "blue\n"; break;
+         default: cout<<"No such color"<<endl;break;
+    }
+    
+    

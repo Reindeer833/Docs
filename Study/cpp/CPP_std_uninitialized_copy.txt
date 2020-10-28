@@ -1,0 +1,23 @@
+
+
+                           STD::uninitialized_copy
+			   =======================
+						   
+#include <memory>
+
+auto somePtr = uninitialized_copy(iter_begin,iter_end,iter_begin_2);
+
+uninitialized_copy constructs from range <begin, end) to begin_2
+begin_2 must point to memory big enough to contain (iter_end - iter_begin) elements
+Returned pointer somePtr points  past last used memory chunk
+
+
+
+Example:
+~~~~~~~~
+
+    vector<string> vS={"Hello","World!"};
+    auto mA=vS.get_allocator();
+    auto pU = mA.allocate(vS.size());
+    auto qP = uninitialized_copy(vS.begin(),vS.end(),pU);
+    mA.deallocate(pU,vS.size());

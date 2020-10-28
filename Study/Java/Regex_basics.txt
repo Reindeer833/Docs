@@ -1,0 +1,48 @@
+
+
+
+                            regex - basics
+                            ==============
+
+Classes Pattern and Matcher are in:  java.util.regex.*
+
+
+Pattern is the class which accepts regular expression.
+
+Matcher is the class which accepts String to be matched by regex.
+
+
+Getting Pattern instance:  Pattern pttr=Pattern.compile("a.*b");
+
+Getting Matcher instance:  Matcher mtr = Pattern.matcher("alphabeta");
+
+Did we match:   if(mtr.find()){ ... }
+
+
+First position of match:          int   mtr.start();
+Past last  position of match:     int   mtr.end();
+Match expression:               String  mtr.group();
+These expressions are for the whole matching sequence, from a  to  b  for this regex.
+
+
+
+Matching first group = first left parentheses:
+
+First position of match:          int   mtr.start(1);
+Past last  position of match:     int   mtr.end(1);
+Match expression:               String  mtr.group(1);
+These expressions are for the first group.
+
+We can restart search by giving argument position fo function find:
+
+Did we match:   if(mtr.find(int newStartPosition)){ ... }
+
+
+
+
+
+
+
+
+
+             

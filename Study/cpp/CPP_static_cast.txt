@@ -1,0 +1,15 @@
+
+                static_cast
+                ===========
+
+  target_type=static_cast<target_type>(source_type);
+ 
+
+Non-polymorphic standard conversion. Replaces original cast.
+
+Example:
+--------
+
+    float fL=35.35;
+    int iK=static_cast<int>(fL);
+    cout<<iK<<endl; //Will print:  35

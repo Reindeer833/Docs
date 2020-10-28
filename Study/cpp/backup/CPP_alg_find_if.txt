@@ -1,0 +1,50 @@
+
+
+
+                 ALGORITHMS:  find_if
+                 ====================
+						   
+
+Header:  
+-------
+#include <algorithm>
+#include <functional>						   
+
+InputIterator find_if(InputIterator first,InputIterator last,UnaryPredicate pred);
+If element not found, this algorithm returns InputIterator last.
+
+****so this algorithm return iterator!!! *************
+
+vector<double> vcd(10);
+.
+.
+.
+Here I will go through vector vcd and look for number which is greater than 10. and lower than 20.
+Function which compares must take three parameters but UnaryPredicate can take only only
+so I will use function binding.
+
+Header file:
+------------
+
+using namespace std::placeholders;
+
+bool findInInterval(double lower_lim,double upper_lim,double number){
+	return number > lower_lim && number < upper_lim;
+}
+
+auto findInIntervalB = bind(findInInterval,10.,20.,_1);
+  Notice that parameters in bind are: A) function B) function is followed by values or placeholders
+  NOT:    function(args)
+
+  
+  
+CPP file:
+---------
+
+auto aItr = find_if(vcd.begin(),vcd.end(),
+		[](double xx)->bool{return findInIntervalB(xx);}
+	);
+
+if(aItr != vcd.end() )
+	cout<<"Found: "<<*aItr<<endl;	
+

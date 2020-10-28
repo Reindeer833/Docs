@@ -1,0 +1,20 @@
+
+
+
+                           INTERFACE
+                           =========
+						   
+
+
+In *.cpp interface is realized as abstract class
+
+A class is made abstract by declaring at least one of its functions as pure virtual function (PVF). 
+A pure virtual function is specified by placing "= 0"
+
+// pure virtual function
+      virtual double getVolume() = 0;
+
+Reason for PVF is to provide an appropriate base class from which other classes can inherit. 
+Interfaces can NOT be instantiated.
+
+Classes which can be instantiated are called concrete classes.

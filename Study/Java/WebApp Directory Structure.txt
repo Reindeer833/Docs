@@ -1,0 +1,31 @@
+
+		WebApp Directory Structure
+		==========================
+
+
+MyWebApplication
+	index.html
+	index.jsp
+	images/
+		pic1.jpg
+		pic2.jpg
+	jsps/
+		myjspA.jsp
+		myjspB.jsp
+	WEB-INF/
+		web.xml
+		classes/
+			com/src/servlets/LoginServlet.class
+			com/src/servlets/ConversionServlet.class
+		lib
+			xerxes.jar
+			xalan.jar
+
+
+
+WEB-INF is private, Clients can NOT see its content.
+
+classes contains what I developed
+
+lib contains imported jars
+			

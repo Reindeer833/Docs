@@ -1,0 +1,45 @@
+
+
+
+                            SET A
+                            =====
+
+
+
+Interface Set<E>
+----------------
+
+Set is Interface Set is Interface Set is Interface Set is Interface Set is Interface !!!!
+!!!No constructors!!!
+
+Contains at most one null and no two elements E e1,e2 satisfying:  true=e1.equals(e2);
+
+
+HashSet        ... unordered, unsorted
+LinkedHashSet  ... ordered in insertion order
+TreeSet        ... sorted set
+
+boolean add(E e);
+
+boolean addAll(Collection<? extends E> );//union
+
+void clear();
+
+boolean remove(Object o);  // NOT: E e
+
+
+boolean isEmpty();
+
+boolean contains(Object o);
+
+Iterator<E>   Iterator();
+
+
+boolean removeAll(Collection<? extends E> cl);//asymetric difference
+
+boolean retainAll(Collection<? extends E> cl);//intersection
+
+
+Object [] toArray();
+
+E [] toArray( E [] arr);// aSet.toArray(new E[0]);

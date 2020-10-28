@@ -1,0 +1,21 @@
+
+
+
+                            Executors
+                            =========
+
+Executor:   Class in java.util.concurrent.
+---------   interface   Executor
+ 
+All methods are static. 
+
+Methods
+-------
+
+ThreadFactory    defaultThreadFactory();
+ExecutorService  newSingleThreadExecutor();
+ExecutorService  newSingleThreadExecutor(ThreadFactory tr);
+
+
+This class provides factory and utility methods for Executor, ExecutorService, 
+ScheduledExecutorService, ThreadFactory, and Callable classes 

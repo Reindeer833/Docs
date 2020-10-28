@@ -1,0 +1,39 @@
+
+                CPP const_cast
+                ==============
+						   
+const_cast<target>(expr)  performs a cast of pointer or references 
+                          which is declared as pointing referencing const obj
+                          but this object must not be constant.
+
+const_cast is used to remove the const-ness from references and pointers that ultimately refer to something that is not const.
+                  
+
+    int xxx=10;
+    const int* ptr=&xxx;
+    cout<<"Before cast: "<<xxx<<endl;
+    int* pXxx=const_cast<int*>(ptr);
+    *pXxx=100;
+    cout<<"After cast: "<<xxx<< endl << endl;
+
+/*
+Before cast: 10
+After  cast: 100
+
+*/
+
+
+
+    int yyy=20;
+    const int& ryyy=yyy;
+    cout<<"Before cast: "<<yyy<<endl;
+    int& rzzz = const_cast<int&>(ryyy);
+    rzzz=200;
+    cout<<"After cast: "<<yyy<<endl;
+
+
+/*
+Before cast: 20
+After cast:  200
+
+*/

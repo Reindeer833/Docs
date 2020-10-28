@@ -1,0 +1,16 @@
+
+
+
+                 Array Iterator
+                 ==============
+						   
+
+ int arR[] = {1,2,3,4,5,6,7,8,9,20,30,40};
+ 
+ ***std::begin(arR);****
+ ***std::end(arR);******
+ 
+ auto anIterr = find_if(std::begin(arR),std::end(arR),---algorithm--);
+ 
+ if(anIterr != std::end(arR))
+    .......

@@ -1,0 +1,16 @@
+
+			RejectedExecutionHandler
+			------------------------
+			
+Interface
+
+java.util.concurrent
+
+@Override
+void rejectedExecution(Runnable ,ThreadPoolExecutor tpe)
+
+This method may be called by ThreadPoolExecutor when no more thread slots are available
+becuase their bounds would be exceeded. Or when ThreadPoolExecutor is
+being shutdown.
+
+May throw RejectedExecutionException

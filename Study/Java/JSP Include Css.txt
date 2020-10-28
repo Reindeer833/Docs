@@ -1,0 +1,21 @@
+
+			JSP Include Css
+			===============
+
+My app: zlig
+-------
+
+css file in:  /zlig/css/cszl.css
+
+
+<head>
+     <link rel="stylesheet" href="/zlig/css/cszl.css"  type="text/css" />
+</head>
+
+
+or:
+---
+
+<head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cszl.css" type="text/css" />
+</head>

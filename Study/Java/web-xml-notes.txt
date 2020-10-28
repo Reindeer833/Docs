@@ -1,0 +1,33 @@
+			WEB XML NOTES
+			=============
+
+
+
+
+-----------------------------------------------------------------------------------------
+
+Jsp file mapping
+----------------
+
+
+<servlet>
+        <servlet-name>final</servlet-name>
+        <jsp-file>/final.jsp</jsp-file>
+</servlet>
+    
+
+    
+<servlet-mapping>
+        <servlet-name>final</servlet-name>
+<url-pattern>/do.final</url-pattern>
+
+
+
+This file final.jsp is in root directory of web application so it MUST have slash:
+	<jsp-file>/final.jsp</jsp-file>
+Some servers will tolerate if slash is not there, some not.  Always put it there.
+
+
+   
+
+-----------------------------------------------------------------------------------------

@@ -1,0 +1,35 @@
+
+Tomcat Applications Directory Config
+====================================
+
+In file: ..\apache-tomcat-6.0.37\conf\server.xml
+--------
+
+
+
+CATALINA_HOME:  Directory where Tomcat is installed.  Contains bin,conf directories 
+
+CATALINA_BASE:  Normally the same as CATALINA_HOME
+
+JAVA_HOME:      Must be defined in startup.bat and shutdown.bat files.  
+                Say:  set "JAVA_HOME=C:\Users\dks0285721\DevelopmentTools\jdk 1.7.0_75\jdk1.7.0_75"
+
+
+
+server.xml:     In dir %CATALINA_HOME%\conf\server.xml
+                 
+                Original appBase:  
+                -----------------
+                <Host name="localhost"  appBase="webapps"  unpackWARs="true" autoDeploy="true">
+
+               New appBase – Notice that directory starts with slash:  
+               ------------------------------------------------------
+                <Host name="localhost"  
+                            appBase="/C:/Users/dks0285721/Development/ApacheWeb/webApplications"
+                            unpackWARs="true" autoDeploy="true">
+
+
+
+
+
+JDBC Driver's jar goes into $CATALINA_HOME/lib.

@@ -1,0 +1,15 @@
+
+                PROPERTIES
+                ==========
+				
+java.util.Properties
+--------------------				
+
+Constructor:
+------------
+public Properties()
+
+public void load(Reader reader)        throws IOException
+public void load(InputStream inStream) throws IOException
+public String getProperty(String key)
+public void list(PrintStream out)

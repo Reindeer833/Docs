@@ -1,0 +1,54 @@
+
+                           TEMPLATES WITH CLASSES
+                           ======================
+						   
+In *.h file - declaration:
+--------------------------
+template <class T>
+class TestTempls{
+    public:
+        TestTempls(const T t);
+        T tabs();
+
+    private:
+        T mT;
+};
+
+A)   template <class T>       ... precedes declaration
+B)   class TestTempls         ... declaration but no <T>
+C)   TestTempls(const T t);   ... constructor declaration
+D)   T tabs();                ... member function declaration
+E)   T  mT;                   ... member variable declaration
+
+
+
+
+In *.cpp file - definition:
+---------------------------
+template <class T>
+TestTempls<T>::TestTempls(const T t){
+    mT=t;
+}
+
+template <class T>
+T TestTempls<T>::tabs(){
+    return mT>=0? mT : -mT;
+}
+
+A)   template <class T>                       ... precedes constructor definition
+B)   TestTempls<T>::TestTempls(const T t)     ... definition and in class name: <T>
+
+A)   template <class T>                       ... precedes function definition  
+B)   T TestTempls<T>::tabs()                  ... definition and in class name: <T>
+
+
+
+In *.cpp file - usage:
+----------------------
+    TestTempls<int> ti(-10); //Real type in constructor:  <int>
+    cout<<ti.tabs()<<endl;
+    
+    TestTempls<float> tf(-10.111);  //Real type in constructor:  <float>
+    cout<<tf.tabs()<<endl;
+
+

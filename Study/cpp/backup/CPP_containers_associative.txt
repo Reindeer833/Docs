@@ -1,0 +1,30 @@
+
+
+
+                      Associative Containers
+                      ======================
+						   
+
+Two types of associative containers:
+------------------------------------
+
+    AssociativeContainer, which represents an ordered container utilizing key-based lookup
+    UnorderedAssociativeContainer, which utilizes hashing for key-based lookup
+
+
+The ordered associative containers are:
+---------------------------------------
+
+    std::set, which implements a collection of unique keys, sorted by keys
+    std::map, which implements a collection of key-value pairs, sorted by unique keys
+    std::multiset, which implements a set that allows multiple entries each key
+    std::multimap, which implements a map that allows multiple entries for each key
+
+
+The unordered associative containers are:
+-----------------------------------------
+
+    std::unordered_set: Collection of unique keys, hashed by key
+    std::unordered_map: Collection of key-value pairs, hashed by unique keys
+    std::unordered_multiset: Unordered set that allows multiple entries for each key
+    std::unordered_multimap: Unordered map that allows multiple entries for each key

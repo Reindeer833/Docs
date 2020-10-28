@@ -1,0 +1,118 @@
+
+		PYTHON LIST
+		===========
+
+Iterable collection
+Order matters. Two lists with the same elements in different order
+are different
+		
+
+Constructors
+************	
+ abc=list()
+ abc=[]
+ abc=[True]*10
+ listA=[random()]*10 
+ listA will contain 10 the same 
+   real numbers in (0,1) - first call to random()
+
+List elements can be accessed by index: 0,1, ... len(list)-1
+If I am accessing by negative value:  list[-1] last element
+                                      list[-2] second element from back
+
+
+
+Member functions
+****************
+
+
+list.sort([optional_sort_func])
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This method does not return any value but it changes from the original list.
+
+list.insert(index,object)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Inserts object at given index
+
+
+list.remove(obj)
+~~~~~~~~~~~~~~~~
+Removes first object obj from list
+
+list.reverse()
+~~~~~~~~~~~~~~
+Reverses objects of list in place
+
+list.append(obj)
+~~~~~~~~~~~~~~~~
+Appends object obj to list
+
+list.count(obj)
+~~~~~~~~~~~~~~~
+Returns count of how many times obj occurs in list
+
+list.extend(seq)
+~~~~~~~~~~~~~~~~
+Appends the contents of seq to list
+
+list.index(obj)
+~~~~~~~~~~~~~~
+Returns index of object or exception
+
+
+Checking if element in the list:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if (object in aList):
+
+
+
+Operations on lists
+*******************
+
+sum(aList)
+~~~~~~~~~~
+Returns total of elements
+
+cmp(list1, list2)
+~~~~~~~~~~~~~~~~~
+Compares elements of both lists.
+
+len(list)
+~~~~~~~~~
+Gives the total length of the list.
+
+max(list)
+~~~~~~~~~
+Returns item from the list with max value.
+
+min(list)
+~~~~~~~~~
+Returns item from the list with min value.
+
+
+del list1[2];
+~~~~~~~~~~~~~
+Deletes element with index 2 from the list
+
+list(seq)
+~~~~~~~~~
+Converts a tuple into list.
+
+initalize list
+~~~~~~~~~~~~~~
+listA = [0]*100
+
+
+sort
+~~~~
+aList.sort( )
+aList.sort(reverse=False)
+aList.sort(reverse=True)
+
+
+product
+~~~~~~~
+from numpy import product
+aProduct=product(some_list)
+
+

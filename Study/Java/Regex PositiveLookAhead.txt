@@ -1,0 +1,32 @@
+
+
+
+                            positive lookahead 
+                            ==================
+
+
+
+(?=X) X, via zero-width positive lookahead 
+
+Example:  xdot(?=xdot)
+          This will match any xdot immediatelly follwed by xdot
+
+Important:   positive lookahead must immdiatelly match from whatever we are looking ahead
+             If there are any other searches/conditions, we have to put them in 
+             lookahead parentheses.
+
+
+
+Example:   String str="yellow.yellow------yellowblue--yellow????yellow>>yellow";
+           Pattern ptr=Pattern.compile("(yellow)(?=.*yellow)");
+           Matcher mtr = ptr.matcher(str);
+
+           This will match yellow followed by any characters followed by yellow
+
+
+
+
+
+
+
+                            

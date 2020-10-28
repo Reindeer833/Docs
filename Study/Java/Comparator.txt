@@ -1,0 +1,74 @@
+
+
+
+                           COMPARATOR
+                           ==========
+
+
+java.util interface Comparator<T>
+---------------------------------
+
+( T MUST be a class, not a primitive)
+public int compare(T t1,T t2);
+// This is the function to override
+// Comparator<T> is a functional interface
+
+compare MUST return int and NOT bool !!!!
+
+Rules:  sgn(compare(x,y) )  = -  sgn(compare(y,x) ) ;
+        compare(x,y) > 0  &&  sgn(compare(y,z) ) > 0  ===>   sgn(compare(x,z) ) > 0
+        compare(x,y) == 0  ===>   sgn(compare(x,z) )  ==     sgn(compare(y,z) )
+		
+
+Relation to equals
+------------------		
+Comparator<E> c;
+E e1,e2;
+		
+c.compare(e1, e2)==0 has the same boolean value as e1.equals(e2) for every e1 and e2 in S.		
+		
+		
+Comparator can be passed to Collections.sort or Arrays.sort	
+-----------------------------------------------------------	
+
+Collections.sort(myList, new Comparator<SomeClass>() {
+	@Override
+	public int compare(SomeClass a, SomeClass b) {
+		return some_integer;
+	}
+});
+		
+
+Comparator can be passed to some collections in constructor:
+------------------------------------------------------------
+TreeSet<E> tst = new TreeSet<>(new Comparator<E> ce);			
+
+
+With Lambdas
+------------		
+List<Integer> myList = new ArrayList<>(); 		
+Collections.sort(myList,(a,b)->a-b);
+
+
+Alternatively:
+-------------
+Comparator<Integer>  aComp=(a,b)->a-b;  // Name is: aComp
+Collections.sort(lit,aComp);
+
+	
+Example with a vector
+---------------------
+
+
+    Vector<Integer> vit = new Vector<>();
+.....
+    Collections.sort(vit,
+    (Integer xx,Integer yy)->{     
+        /*
+        if(xx< yy)     return -1;
+        else if(xx>yy) return  1;
+        else           return  0;
+        */
+        return xx-yy;
+    }     
+  );

@@ -1,0 +1,23 @@
+
+
+                           STD::uninitialized_fill_n
+			   =========================
+						   
+#include <memory>
+
+void uninitialized_fill_n(iter_begin,N,value_not_iterator);
+
+uninitialized_fill_n copies N elements value_not_iterator to iter_begin
+iter_begin must point to memory big enough to contain N elements: value_not_iterator
+Returned value:  void
+
+
+
+Example:
+~~~~~~~~
+
+    Uu uu;  //Uu class declared in header file
+    std::allocator<Uu> mA;
+    auto mP=mA.allocate(3);
+    uninitialized_fill_n(mP,3,uu);
+    mA.deallocate(mP,3);

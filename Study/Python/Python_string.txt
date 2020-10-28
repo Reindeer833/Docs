@@ -1,0 +1,53 @@
+
+		PYTHON STRING
+		=============
+
+Iterable collection
+Sutring is immutable 
+
+
+my_str='Hello World!'
+my_str[[0]='x' # Wrong - string is immutable
+
+
+
+Non-member functions
+--------------------
+
+len(my_str)
+int(my_str) # Converts string  to integer
+str(123)    # Converts  integer to string
+
+Number to char:
+---------------
+chr(122) # result is: 'z'
+
+String to number:
+---------------
+int('55') # result is: 55
+
+Number to string:
+---------------
+str(120) # result is: '120'
+
+
+Member functions
+----------------
+my_string.strip(' \t;')  #stripts leading and trailing chars: spaces, tabs,semicolons
+                         # default is spaces and newline
+
+aList=my_string.split('delimiters')
+
+aString = 'glues'.join(aList);
+
+aString.isupper()
+aString.islower()
+aString.isalpha()
+aString.isnumeric()
+
+bString = aString.upper() # converts to upper
+bString = aString.lower() # converts to lower
+
+
+
+

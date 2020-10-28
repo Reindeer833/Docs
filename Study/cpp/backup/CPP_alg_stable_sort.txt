@@ -1,0 +1,43 @@
+
+
+
+                           ALGORITHMS:  stable_sort
+			   =========================
+
+stable_sort(const_iter_start,const_iter_end,bool_predictor); //bool_predictor takes one arg
+
+
+*.h file
+--------
+#include <algorithm>
+#include <numeric>
+#include <random>
+#include <functional>
+#include <vector>
+
+
+
+*.cpp file
+----------
+const int lim=15;
+    int arrA[lim];
+    for(int ix=0;ix<15;++ix){
+        arrA[ix]=rnd();
+    }
+    stable_sort(begin(arrA),end(arrA),compInt);
+    for_each(cbegin(arrA),cend(arrA),
+        [](int xxx){
+            cout<<xxx<<" ";
+        }
+    );
+
+
+
+bool compInt(int a,int b){
+
+    if( a< b){
+        return true;
+    }else{
+        return false;
+    }
+}

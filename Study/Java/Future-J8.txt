@@ -1,0 +1,20 @@
+
+
+
+                            Future
+                            ======
+
+Future:  Interface in java.util.concurrent.
+   interface Future<V>
+   
+Subinterfaces:
+Response<V>, RunnableFuture<V>
+
+Methods
+-------
+
+boolean cancel(boolean mayInterrupt);  //attempts to cancel
+V get(); Can wait and then retrieves result
+V get(long timeout,TimeUnti unit)
+boolean isCancelled();
+boolean isDone(),  //returns true if the task completed

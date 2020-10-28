@@ -1,0 +1,28 @@
+
+                CPP TYPEID
+                ===========
+						   
+#include <typeid.h>
+
+const char * typeid(object).name()
+const char * typeid(type_name).name()
+
+operator  ==  is overloaded for typeid
+
+double xxx=1.;
+typeid(double) == typeid(xxx);//return 1
+typeid(int) == typeid(xxx);   //return 0
+
+class Base{ virtual void foo(){} }
+
+class Derived: public Base{ virtual void foo(){} }
+
+Derived derObject;
+
+Base* basePtr = &derObject;
+
+then: typeid(*basePtr) == typeid(derivedObject)//  returns true;
+// Because class is polymorphic
+// For a non-polymorpic class it would return false
+
+cout<<"Object type: "<<typeid(derObject).name()<<endl;

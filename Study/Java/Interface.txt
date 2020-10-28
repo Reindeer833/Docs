@@ -1,0 +1,55 @@
+
+
+
+                            INERFACE
+
+                            ========
+
+
+
+Interface Iterator<E>
+---------------------
+
+
+Default methods:  Methods which interface is allowed to implement
+---------------   They are marked default for backward compatibility.
+
+
+Example:
+--------
+interface Vehicle {
+
+   default void print() {
+      System.out.println("I am a vehicle!");
+   }
+	
+   static void blowHorn() {
+      System.out.println("Blowing horn!!!");
+   }
+
+   public abstract void doIt();
+
+
+}
+
+Interface cannot be final
+
+
+Interfaces can contain:
+----------------------
+All methods MUST be public
+abstract methods
+default  methods - implemented
+static methods - implemented
+
+public static final variables only
+
+
+Interface can extend interface
+Class can implement interface
+class can implement  a few interfaces
+
+
+If class inherits 2 the same default methods, then it does not compile
+
+

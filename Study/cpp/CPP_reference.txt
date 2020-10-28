@@ -1,0 +1,40 @@
+
+
+
+                     reference
+                     =========
+                     
+reference is another name, alias for an object.
+reference is not an object.
+reference declared with &  is lvalue: int &  aRef =...;
+reference declared with && is rvalue: int && aRef =25;
+
+int xx=10;
+int & yy = xx;
+
+I can now access xx using yy: yy=25;
+Now xx is 25
+
+Reference cannot be reassigned
+Reference must be initialized when it is declared.
+Because reference is not an object, we cannot create reference to reference.
+
+Nonconstant reference can be assigned to left-value only:
+int z=15,&ref_z=z;   //correct
+int &aa = 23; //error, assignment to right value.
+
+Constant reference can be assigned to right-value:
+const int& abc=25;   //this is correct
+
+This is allowed:
+
+int& foo(){
+
+ return xx;
+}
+
+foo() = 25; //correct
+
+						   
+
+

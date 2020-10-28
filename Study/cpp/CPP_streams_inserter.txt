@@ -1,0 +1,41 @@
+
+                CPP inserter
+                ============
+
+// inserter pushes chars into stream
+
+Inserter:
+
+returns &ostream
+takes   &ostream
+takes   &to_class
+
+//  *.h file
+
+class Aa{
+    friend ostream& operator<<(ostream&,Aa&); // friend 
+    friend istream& operator>>(istream&,Aa&); // friend 
+    int age;
+    string name;
+
+    public:
+        Aa(int,string);
+
+};
+
+*.cpp file
+----------
+
+Aa::Aa(int age,string name){
+    this->age=age;
+    this->name=name;
+}
+
+ostream& operator <<(ostream& oS,Aa& aa){
+
+    oS<<aa.age;
+    oS<<"  ";
+    oS<<aa.name;
+    return oS;
+}
+

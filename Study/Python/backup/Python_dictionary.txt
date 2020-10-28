@@ -1,0 +1,55 @@
+
+		PYTHON DICTIONARIES
+		===================
+		
+
+Constructor:
+------------
+myDt={1:'aaa',2:'bbb',3:'ccc',4:'ddd'}    # Using curlies
+myDt = dict()     # explicit constructor
+
+
+Check if key in dict
+--------------------
+
+    if(chaR in myDt.keys()):                     
+        name_size[chaR] += 1
+    else:
+        name_size[chaR] = 1
+
+OR:
+
+    someValue = myDt[aKey]
+    if(Null == someVal):
+      .......
+
+Updating:
+---------
+myDt[aKey]=aValue
+
+Iterating through keys:
+-----------------------
+
+for aKey in aDt.keys():
+	print(aKey,'  ',aDt[aKey])
+
+Iterating through value:
+-------------------------
+
+for aV in sorted(name_size.values()):
+        print(aV)
+
+Methods
+~~~~~~~
+clear # removes all elements
+----
+myDt.clear();
+
+
+Converting to list
+------------------
+myDt={'a':1,'b':2,'c':3}
+print(myDt.items())   #  myDt([('a', 1), ('b', 2), ('c', 3)])
+
+
+

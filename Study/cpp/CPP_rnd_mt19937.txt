@@ -1,0 +1,50 @@
+
+
+
+                           Random Number Generator mt19937
+			   ===============================
+						   
+
+
+Header:  
+-------
+#include <random>
+
+The construct goes:  RMU
+
+Three main objects to have:
+---------------------------
+R:   std::random_device:                    random_device rde; 
+M:   std::mt19937                           mtt(rde(());      //Notice: function rde()
+U:   std::uniform_int_distribution<int>     udi(10,50);       //specify range
+      or
+     std::uniform_real_distribution<double> udd(1.0,5.0);      //specify range
+
+Then call:   int      ix=udi(mtt);
+       or:   double   rr=udd(mtt);
+	   
+	   
+	   
+Example:
+--------
+	   
+void testGen(){
+    random_device rde;
+    mt19937                       mtw(rde());
+    uniform_int_distribution<int> distr(0,10);
+    uniform_real_distribution<double> urd(0.,1.);
+
+//  I could:  auto rnd = std::bind(urd,mtw);
+//            ------------------------------
+
+    double sum=0.;
+    int iters=1000000;
+    double avg=0;
+
+    for(int jx=0;jx<iters;++jx){
+        sum += urd(mtw);
+    }
+    avg = sum/iters;
+    cout<<"Average:  "<<avg<<endl;  //  0.5000147
+
+}	   

@@ -1,0 +1,99 @@
+
+		PYTHON SET
+		==========
+		
+
+Constructor:
+------------
+mySet={1,2,3,4}   # Using curlies
+mySet = set()     # explicit constructor
+
+
+Check if element in set
+-----------------------
+
+if( someElement in mySet):
+	...code
+
+Example:
+--------
+thisset = {"apple", "banana", "cherry"}
+
+thisset.add("orange")
+
+print(thisset)
+print("orange" in thisset)
+
+Output:
+-------
+{'orange', 'banana', 'apple', 'cherry'}
+True
+
+
+
+Methods
+-------
+
+add
+~~~
+aSet.add(element)
+
+intersection
+~~~~~~~~~~~~
+setC=setaA.intersection(setB)
+
+
+discard
+~~~~~~~
+remove
+~~~~~~
+Both methods remove an element from calling set
+
+fruits = {"apple", "banana", "cherry"}
+fruits.remove("banana") 
+print(fruits)
+
+
+difference
+~~~~~~~~~~
+setC=setA.difference(setB)
+Return setC that contains the items that only exist in setA, and not in setB
+
+
+
+subset
+~~~~~~
+aBoolean = setA.issubset(setB) 
+
+aBoolean is True if setA is subset of setB
+
+
+
+symmetric_difference
+~~~~~~~~~~~~~~~~~~~~
+setC = setA.symmetric_difference(setB) 
+setC contains elements which are in only one set:  setA or setB
+
+
+
+union
+~~~~~
+setC = setA.union(setB) 
+Return a setC that contains all items from both sets aetA and setB, duplicate items only once
+
+
+superset
+~~~~~~~~
+booleanX = setA.issuperset(setB) 
+BooleanX is True if setA is superset of setB
+
+
+
+Non-member functions
+--------------------
+sorted
+~~~~~~
+aList=sorted(an_iterrable)
+
+
+an_iterrable can be list, set, ...

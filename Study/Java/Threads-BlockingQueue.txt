@@ -1,0 +1,18 @@
+
+			BlockingQueue<E>
+			----------------
+			
+Interface
+
+java.util.concurrent
+
+Implemented by
+ArrayBlockingQueue<E>   LinkedBlockingQueue<E>
+
+Extends:  java.util.Collections.Queue<E>
+
+This queue implements methods which wait for available space when no available
+before storing
+or become non-empty before removal.
+
+Implementations throw NullPointerException on attempts to add, put or offer a null

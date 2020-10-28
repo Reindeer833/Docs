@@ -1,0 +1,18 @@
+
+                reinterpret_cast
+                ================
+	
+target = reinterpret_cast<target>(expression)
+
+reinterpret_cast is used for casting between fundamentally different types.
+
+    string aS="Hello";
+    long lN = 0;  
+    lN=reinterpret_cast<long>(&aS);
+    cout<< *(string*)lN <<endl;  //will output Hello
+    cout<< *reinterpret_cast<string*>(lN)<<endl;   //will output Hello
+    
+    
+   I cannot use: long lN =&aS;
+   Compiler would complain.
+   I could use: long lN =(long)&aS;
