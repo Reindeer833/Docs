@@ -1,0 +1,33 @@
+
+			COPY
+			------
+template <class InputIterator, class OutputIterator>
+  OutputIterator copy (InputIterator first, InputIterator last, OutputIterator result);
+
+Copies the elements in the range [first,last) into the range beginning at result.
+
+The function returns an iterator to the end of the destination range (which points to the element following the last element copied).
+
+
+#include <iostream>
+#include <algorithm> // THIS ONE!!
+#include <vector>
+#include <string>
+
+using namespace std;
+
+    vector<string> vst;
+    vst.push_back("k");
+    vst.push_back("u");
+    vst.push_back("1");
+    vst.push_back("k");
+    vst.push_back("k");
+    vst.push_back("K");
+
+    vector<string> another;
+    auto bins = back_inserter(another);
+    copy(vst.begin(),vst.end(),bins);   
+I could also:
+     copy(vst.begin(),vst.end(),another.begin() );   
+
+

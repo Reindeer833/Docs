@@ -1,0 +1,46 @@
+
+
+
+                            SWITCH
+                            ======
+
+
+
+Switch Statement
+----------------
+
+
+Intger ii(10);
+
+switch(ii){
+
+
+	case 1:
+        break;
+
+
+
+        case 10:
+        break:
+
+        default:
+        break;
+}
+
+
+Switch variables
+----------------
+
+int  Integer
+byte Byte
+char Character
+short
+string
+enum values
+
+No: long, double ...
+
+variables after case  MUST be compile time constants
+
+
+

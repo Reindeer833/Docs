@@ -1,0 +1,65 @@
+
+
+
+                           ALGORITHMS:   binary_search
+                           ===========================
+						   
+
+Header:  
+-------
+#include <algorithm>
+#include <functional>						   
+
+bool  binary_search(InputIterator first,InputIterator last,element_to_search_for aaa);
+
+bool  binary_search(InputIterator first,InputIterator last,element_to_search_for aaa, Function fn or lambda);
+
+This >Function fn or lambda< should be the same used for sort of the container, if not naturally sorted.
+
+
+
+
+*.h
+---
+
+#include <iostream>
+#include <random>
+#include <algorithm>
+#include <functional>
+#include <vector>
+
+      vector<int> vI;
+
+    random_device rde;
+    mt19937 mt9(rde());
+    uniform_int_distribution<int>  distR(1,12);
+
+    auto rnd = bind(distR,mt9);
+
+
+
+
+
+
+*.cpp
+-----
+
+ for(int ix=0;ix<15;++ix){
+        vI.push_back(rnd());
+    }
+    displVector();
+    stable_sort(vI.begin(),vI.end(),
+        [](int aa,int bb)->bool{
+               return aa > bb;
+            }
+          );
+    int tT=6;
+     displVector();
+     auto iT=binary_search(vI.begin(),vI.end(),tT,
+        [](int aa,int bb)->bool{
+               return aa > bb;
+            }
+          );
+     if(iT ){
+        cout<<"Found: "<<tT<<endl;
+     }

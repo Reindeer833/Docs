@@ -1,0 +1,25 @@
+
+		PYTHON SORTED
+		=============
+
+Operates on iterables
+
+sorted(anIterable,key=function,reverse=False|True)
+
+Example:
+~~~~~~~~
+
+List of tuples:
+
+
+def useValue(aTp):
+    return aTp[1]   
+
+............
+
+myTupleLst=[(1,'z'),(2,'r'),(3,'a')]
+print(sorted(myTupleLst,key=useValue))# do NOT forget: key=
+
+#Result:
+
+[(3, 'a'), (2, 'r'), (1, 'z')]

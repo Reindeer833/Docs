@@ -1,0 +1,20 @@
+
+                DELETE KEYWORD
+                ==============
+	
+To declare a function as a deleted function we append the =delete
+ specifier to the end of that function **declaration.**
+ The compiler disables the usage of a deleted function. 
+ 
+ class CL{
+ 	public:
+ 		CL() = delete;                      //preventing default constructor
+ 		CL(const CL&) = delete;             //preventing copying
+ 		CL& operator=(const CL&) = delete;  //preventing assignment
+ 
+ 
+ 
+ };
+ 
+
+

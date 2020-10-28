@@ -1,0 +1,15 @@
+
+
+
+                            ITERATOR
+                            ========
+
+
+
+Interface Iterator<E>
+---------------------
+
+boolean  hasnext();
+E next();
+
+void remove();  //This method is useful to safely remove during iteration

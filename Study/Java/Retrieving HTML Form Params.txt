@@ -1,0 +1,16 @@
+             Retrieving HTML Form Params
+             ===========================
+
+
+javax.servlet.ServletRequest: This object is responsible for passing all info coming 
+from HTML to a servlet through a service() method.  
+
+ServletRequest is created by the container
+
+Methods of ServletRequest
+-------------------------
+
+String getParameter(String param);
+Enumeration getParameterNames();
+String [] getParameterValues(String param);
+Map<String,String[]> getParameterMap();

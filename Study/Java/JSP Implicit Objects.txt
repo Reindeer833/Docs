@@ -1,0 +1,31 @@
+		JSP Implicit Objects
+		====================
+
+They can be directly used in scriptlets
+
+pageContext   (instance of PageContext, kind of environment info supply.  
+               It is used for accessing page, request, application and session attributes.)
+
+request       The main purpose of request implicit object is to get the data on a JSP page 
+              which has been entered by user on the previous JSP page. 
+              While dealing with login and signup forms in JSP 
+              we often prompts user to fill in those details, 
+              this object is then used to get those entered details on an another JSP page (action page) 
+              for validation and other purposes.
+
+response      It is basically used for modifying or delaing with the response 
+              which is being sent to the client(browser) after processing the request
+
+session      (instance of HttpSession)
+application  (instance of ServletContext)
+
+
+config     (instance of ServletConfig: javax.servlet.ServletConfig)
+out        (instance of JspWriter)
+page       (this reference to current jsp page: java.lang.Object)
+
+PRRSA  COP
+
+
+
+Also:   exception    only available to the JSP pages, which have isErrorPage set to true

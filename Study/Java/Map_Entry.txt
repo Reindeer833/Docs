@@ -1,0 +1,30 @@
+
+
+
+                           MAP ENTRY
+                           =========
+
+
+Example:
+--------
+
+        Map<String,String> mpa = new HashMap<String,String>();
+        mpa.put("1", "John");
+        mpa.put("2", "Joe");
+        mpa.put("3", "Jim");
+        Set<Map.Entry<String,String>> es = mpa.entrySet();
+        for(Map.Entry me : es ){
+            out.format("%-10s\t\t\t%-10s%n",me.getValue(),me.getKey());
+        }
+
+
+Notice:     Set<Map.Entry<String,String>> es = mpa.entrySet();
+-------     This is a templated statement
+
+
+
+Notice:     for(Map.Entry me : es )
+-------     NO templates are allowed here!
+
+
+Map.Entry<K,V> has only 2 interesting methods:   getKey()    getValue()

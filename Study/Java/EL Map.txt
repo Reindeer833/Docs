@@ -1,0 +1,44 @@
+                               
+                       EL Map
+                       ======
+
+In Servlet:
+-----------
+
+                Map<String,String> nameId = new HashMap<String,String>();
+		request.getSession().setAttribute("nameId",nameId);
+		nameId.put("1","John Doe");
+		nameId.put("2","Jane Smith");
+                nameId.put("3","Jim Bean");
+
+
+
+Retrieving in Jsp
+-----------------
+
+As a single value:
+..................
+
+${sessionScope.nameId['2'] }
+   Here [] MUST be used because 2 is NOT a valid Java identifier
+   This would NOT work: ${sessionScope.nameId.2}
+
+
+Iteration:
+..........
+
+<table>
+	 <c:forEach var="entry" items="${nameId}">
+		 <tr>
+		 	<td>${entry.value}</td>
+		 	<td>${entry.key}</td>
+		 </tr> 
+	 </c:forEach>
+ </table>
+
+
+Notice: 
+.......
+         Map enters as EL expression:  items="${nameId}"
+         var="entry" is of type:  Map.Entry
+         I am getting key and value as:  ${entry.key}   ${entry.value}

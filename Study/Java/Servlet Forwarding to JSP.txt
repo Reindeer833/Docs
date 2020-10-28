@@ -1,0 +1,42 @@
+
+			Servlet Forwarding to JSP
+			=========================
+
+
+In web.xml
+----------
+
+<servlet>
+    <servlet-name>processed</servlet-name>  
+//       This logical name is in named dispatcher call
+    <jsp-file>/jsps/processed.jsp</jsp-file>  
+//             full path here - used in request dispatcher
+</servlet>
+
+
+
+<servlet-mapping>
+    <servlet-name>processed</servlet-name>
+    <url-pattern>/do.process</url-pattern>
+</servlet-mapping>
+
+
+Notice that slash it url-pattern.  It must be there.
+
+
+In servlet using named dispatcher:
+----------------------------------
+
+getServletContext().getNamedDispatcher("processed").forward(request, response);
+//                           Logical name here
+
+
+
+In servlet using request dispatcher:
+------------------------------------
+ getServletContext().getRequestDispatcher("/jsps/processed.jsp").forward(request, response);
+//                           Full path here
+
+
+
+

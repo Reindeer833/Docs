@@ -1,0 +1,61 @@
+
+		PYTHON REGEX REPLACE
+		====================
+
+aResult = sub(some_pattern,replacing_pattern,string_in_which_replacements_are _to_be made)
+		
+1.   import re   # for regex
+     import sys  # for main
+     import os   # to open file
+
+
+2.  Compile a pattern for efficient processing:
+    -------------------------------------------
+    aP = re.compile('\\w*a\\w*a\\w*',re.IGNORECASE)
+    This pattern will find all words containing two leters a
+    regardless of case
+
+
+3.  Perform substitution:
+    ---------------------
+    aResult = re.sub(aP,'XXX','In Alexandria there is remarkable place called Lamplighter.')
+    aResult:   In XXX there is XXX place called XXX.
+
+
+Back references to goups are made using:  \1  \2  \3
+
+
+Example
+-------
+
+#  In this example all words containing two a's 
+#  are replaced by XXX		
+import sys
+import os
+import re
+#
+aP=re.compile('\\w*a\\w*a\\w*',re.IGNORECASE)
+
+def readFile(aPath):
+    with open(aPath,'r') as fH:
+        while(True):
+            aLine=fH.readline()
+            if(not aLine):
+                break
+            aLine=aLine.strip()
+            processLine(aLine)
+            
+def processLine(aLine):   
+    aRes=re.sub(aP,'XXX',aLine)
+    print(aRes)
+            
+#            
+def main(args):
+    aPath='/home/petr/Development/tmp/input.txt.2'
+    readFile(aPath)
+#    
+if __name__ == '__main__':
+    main(sys.argv[1:])
+
+
+

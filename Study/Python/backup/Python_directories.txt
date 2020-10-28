@@ -1,0 +1,69 @@
+
+		PYTHON DIRECTORIES
+		==================
+		
+		
+		
+1.  import os # I need os for for:   fD in os.listdir(dirPth) :
+#   listdir does NOT return full path.  Only entry in current dir
+#   fullPath currDir + '/' + returnTypeFrom_listdir      
+2.  from os import path # for :      path.isfile("abc.txt") 
+
+2. import sys # I need sys for:   if(__name__=='__main__'):
+                                     main(sys.argv)
+
+2.  os.chdir(fullPath)         # will change to a new working dir
+    os.getcwd()                # gets current working dir
+    os.listdir(fullPath)       # provides list of files in dir
+	os.path.isfile("abc.txt")  # Does abc.txt exist?  Is it a file, or a directory?
+           path.isfile("abc.txt")  # Does abc.txt exist?  Is it a file, or a directory?
+        os.path.isdir("/aa/bb/cc") # Does /aa/bb/cc exist? Is /aa/bb/cc dir?
+           path.isdir("/aa/bb/cc") # Does /aa/bb/cc exist? Is /aa/bb/cc dir?
+	os.path.exists('/aa/bb/')  # Does /aa/bb exist?
+           path.exists('/aa/bb/')  # Does /aa/bb exist?
+	os.path.islink('/abcd')    # Is /abcd a link?
+           path.islink('/abcd')    # Is /abcd a link?
+	os.path.join(aDir,aFile)   # Joins the entries into a full path
+           path.join(aDir,aFile)   # Joins the entries into a full path
+	accessRight=0o777
+	os.mkdir('/aa/bb/cc',accessRight)   #Create one(=1) level of dir
+	
+	
+	
+	for anEntry in os.listdir(fullPath):       # provides list of entries in fullPath
+		
+		
+		
+   try:
+        # Change the current working Directory    
+        os.chdir("/home/abc/temp")
+        print("Directory changed")
+    except OSError:
+        print("Can't change the Current Working Directory")        
+ 
+    print("Current Working Directory " , os.getcwd())
+    
+		
+EXAMPLE
+-------
+
+import sys
+from sys import argv
+import os
+from os import path 
+#
+
+def listAllFilesInDirs(dirPth):
+    for fD in os.listdir(dirPth) :
+        if(path.isdir(dirPth+'/'+fD)):
+            print('Directory:',dirPth+'/'+fD)
+            listAllFilesInDirs(dirPth+'/'+fD)
+        else:
+            print('File:',fD)
+#  
+def main(args):
+     dirName=args[0]
+    listAllFilesInDirs(dirName)
+#
+if(__name__=='__main__'):
+    main(sys.argv)

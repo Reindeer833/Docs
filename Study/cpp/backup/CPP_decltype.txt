@@ -1,0 +1,40 @@
+
+
+
+                           decltype
+                           ========
+						   
+We want to use type of variable deduced from expression or another variable
+
+    int xxx;
+    decltype(xxx) ppp; //ppp is now integer
+
+
+
+    
+string foo(int xxx){
+    return string("");
+}
+...
+
+decltype(foo(25)) aaStr;// aaStr now a string
+
+
+
+
+    string aStr=" hello c++ world here! ";
+
+    decltype(begin(aStr)) itEnd,itBeg;
+// itEnd, itBeg are now forward iterators
+
+
+    
+     int x=1,&y=x,z=35;
+//   decltype(y) yy; //wrong yy should be a reference but it is not initialized
+     decltype(y) yy=z; //good
+     
+     string abc;
+     decltype((abc)) ...;//double parentheses always mean reference
+                         // in decltype
+
+

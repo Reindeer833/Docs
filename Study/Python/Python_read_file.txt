@@ -1,0 +1,101 @@
+
+		PYTHON READ FILE
+		================
+		
+		
+		
+1.  fh=open(aPath,accessMode)
+    accessMode:  r  w  a  rb  wb  
+	             w+  # writing + reading
+                 ab  # append binary
+				 a+  # append + reading
+         				 
+
+2.  Four ways to read text file
+    aString=fh.read()      # The whole conent in a string
+	oneLine=fh.readline()  # line by line.  aLine contains newline
+	aList = fh.readlines() # list of strings
+	aChar = fh.readline(1) # read 1 char
+	                       # I have to check:  if( not aChar ):
+	
+	readline() ... returns string so do NOT iterate over it
+	If empty line returned, break out of loop
+	
+	while True:
+		aLine=fh.readline()
+		if not aLine:
+			break;
+			
+	aLine.strip(); # Removes all leading and trailing spaces
+	aLine = aLine[0:len(aLine)-1] #strip trailing newline
+	
+	
+	with open('myfile.txt') as fh:
+     read_data = f.read()
+
+   # We can check that the file has been automatically closed.
+   f.closed()  # returns True
+   
+   It is recommended to use the >with< keyword when opening files. 
+   File is properly closed EVEN if an exception is raised at some point. 
+   Using with is also much shorter than writing equivalent try-finally blocks.
+   
+
+Example
+-------   
+   def inputAndReadFile(fullPath):
+    aChar=''
+    doit=True
+    with open(fullPath,'r') as fh:
+        while(doit):
+                aChar = fh.read(1)
+                if(not aChar):
+                    print("---> ",aChar)
+                    doit=False
+                print(aChar,end="" ) 
+				
+# print(aChar,end="") suppresses final end-of-line	
+
+With exception processing:
+--------------------------
+def inputAndReadFile(fullPath):
+    doit=True
+    try:
+        with open(fullPath,'r') as fh:
+            while(doit):
+                    aChar = fh.read(1)
+                    if(not aChar):
+                        doit=False
+                    print(aChar,end="" ) 
+    except IOError as ex:
+        print("IOerror:  {0} -> {1}".format(ex.errno,ex.strerror) )
+
+# Notice: Lowercase e for except
+#
+
+#For special encoding:
+----------------------Strakonice
+with open(fullPath,'r',encoding='utf-16') as fh:
+	pass
+
+
+Example - old way:
+------------------
+
+def openFile(aPath):
+    try:
+        fH=open(aPath,'r')
+        readFile(fH)
+    except IOError:
+        print('Exception:  ',aPath,'did not open for input')
+    else:
+        fH.close()
+        return
+#    
+def readFile(fH):
+    while( True):
+        line = fH.readline() 
+        if(not line):
+            break
+        line=line.strip()
+        print(line)    

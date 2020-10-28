@@ -1,0 +1,44 @@
+
+JSTL How To
+===========
+
+(Apache Tomcat doesn't ship with JSTL, but Oracle Glassfish does.)
+
+Install jstl from:  
+------------------
+http://search.maven.org/remotecontent?filepath=org/glassfish/web/javax.servlet.jsp.jstl/1.2.1/javax.servlet.jsp.jstl-1.2.1.jar
+http://search.maven.org/remotecontent?filepath=javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.jar
+
+
+Install:
+--------
+jstl-1.2.jar   (about 405kb)
+
+
+Where to put jar in project:
+----------------------------
+Drop the JAR file(s) straight in Webapp/WEB-INF/lib folder 
+(which is covered by the default webapp's classpath, so in a bit smart IDE 
+you don't need to do anything else). 
+For starters, do not fiddle around in IDE project's Build Path setting. This is Wrong.
+
+If you put the jars to buildpath you have to put both jars: 
+   javax.servlet.jsp.jstl-1.2.1.jar, javax.servlet.jsp.jstl-api-1.2.1.jar
+To: ../install_tomcat_dir/lib/
+
+
+
+Use taglib directive with uri:
+------------------------------
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+If you have to config web.xml
+-----------------------------
+<web-app 
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    version="2.5">
+.....
+

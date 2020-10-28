@@ -1,0 +1,47 @@
+
+			Standard Actions
+			================
+
+--------------------------------------------------------------------------
+<jsp:setParam name="abc"  value="xyz"  />
+
+We can get value of the param in servlet:  request.getParam("abc");
+We can get value of the param in JSP:      ${param.abc}
+
+
+
+--------------------------------------------------------------------------
+<jsp:include page="relative_url"   flash="true|false"   />
+
+It is executed at request time
+
+--------------------------------------------------------------------------
+
+
+
+
+Working with Beans
+------------------
+
+
+--------------------------------------------------------------------------
+
+<jsp:useBean id="name" class="package.classes.Bean" type="package.classes.SuperBean" scope="session" />
+ 
+Default scope is page
+
+type:  How I will refer to the bean.
+
+
+--------------------------------------------------------------------------
+<jsp:setProperty name="myName" property="someProperty" value="${requestScope.someAttr}"/>
+
+name here  <---- id in useBean
+
+
+--------------------------------------------------------------------------
+
+<jsp:getProperty name="id_from_use_bean_name" property="name_on_a_bean" />
+
+
+--------------------------------------------------------------------------

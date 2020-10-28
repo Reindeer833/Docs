@@ -1,0 +1,26 @@
+
+                CPP delete
+                ==========
+
+void foo()  delete;
+
+A deleted function is the one which is declared but may not be used.
+
+We can declare copy constructor as deleted to prevent copies.
+We can declare copy assignment operator = as deleted to prevent copies.
+
+		
+
+Class with private constructor still can be constructed if there is a static function calling this constructor.
+Class with deleted constructor can NOT be constructed.
+
+
+Cannot be copied
+----------------
+struct noncopyable
+{
+  noncopyable() =default;
+  noncopyable(const noncopyable&) =delete;
+  noncopyable& operator=(const noncopyable&) =delete;
+};
+

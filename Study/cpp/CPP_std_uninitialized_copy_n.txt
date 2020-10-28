@@ -1,0 +1,30 @@
+
+
+                           STD::uninitialized_copy_n
+			   =========================
+						   
+#include <memory>
+
+auto somePtr = uninitialized_copy_n(iter_begin,N,iter_begin_2);
+
+uninitialized_copy_n copies from range begin, begin+N to begin_2
+begin_2 must point to memory big enough to contain (iter_end - iter_begin) elements
+Returned pointer somePtr points  past last copied memory chunk
+
+
+
+Example:
+~~~~~~~~
+
+    vector<string> vS={"Hello","World!"};
+    auto mA=vS.get_allocator();
+    auto pU = mA.allocate(vS.size());// memory for 2 strings, vector size is 2
+    auto qP = uninitialized_copy_n(vS.begin(),2,pU);// first  element gets copied to pU
+                                                    // second element gets copied to pU+1
+                                                    // pointer qP points past pU+1
+
+    for(int ix=0;ix<2;++ix){
+        cout<<pU[ix]<<" ";
+    }
+    cout<<endl;
+    mA.deallocate(pU,vS.size());

@@ -1,0 +1,21 @@
+
+
+
+                           ALGORITHMS:  fill
+			   =================
+						   
+This algorithm will fill given container or array
+
+for arrays:  begin(array)   end(arra) return pointers to beginning or past the end array pointers.
+             These pointers work as iterators/
+
+Header:  
+-------
+#include <algorithm>					   
+
+void fill(InputIterator first,InputIterator last,type element);
+
+ int intArrB[10];
+ fill(begin(intArrB),end(intArrB),25);
+
+fill_n(begin(intArrB),sizeof(intArrB)/sizeof(int),-10);

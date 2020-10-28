@@ -1,0 +1,55 @@
+
+                           CPP PTHREAD
+                           ==========
+						   
+
+						   
+        pthread ... posix thread
+		
+	To create a Posix thread
+	------------------------
+	
+	int pthread_create(pthread_t *id,const pthread_attr_t *attr,void *(*exec)(void*),void *arg);
+	
+	id    : Input pointer that will contain the thread identifier on successful return from the function
+	attr  : Input pointer to a structure that provides additional parameters for creating a custom thread
+	        The default is an unbound, non-detached thread with a stack size of 8M and default priority
+	exec  : Input pointer to a global function that is to be executed in the thread of execution
+	arg   : Input pointer to the argument that is to be passed to the function to be executed by the
+	      thread
+	        
+    Example:
+
+        #include <stdio.h>
+	#include <stdlib.h>
+	#include <pthread.h>
+	#include <iostream>
+
+	void *task(void *argument){
+		  char* msg = (char*)argument;
+		  std::cout<<msg<<std::endl;
+	}
+
+	int main(){
+		pthread_t thread1, thread2;
+		int i1,i2;
+		i1 = pthread_create( &thread1, NULL, task, (void*) "thread 1");
+		i2 = pthread_create( &thread2, NULL, task, (void*) "thread 2");
+
+		pthread_join(thread1,NULL);
+		pthread_join(thread2,NULL);
+		return 0;
+
+	}	
+	//
+	// Add linker library:   pthread in Build options/Linker settings
+	// In make file:  -lpthread
+	// Build generated compiler line:  
+	   g++ -Wall -fexceptions -g -std=c++11 -g  
+	      -c /home/dks0285721/Development/cpp/codeblocks/PthreadsA/main.cpp 
+	      -o obj/Debug/main.o 
+		  
+	// Build generated linked line:  
+	   g++  -o bin/Debug/PthreadsA   obj/Debug/main.o   -lpthread
+	//
+      int  pthread_self() // return ID of currently executing thread

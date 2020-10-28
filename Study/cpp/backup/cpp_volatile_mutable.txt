@@ -1,0 +1,74 @@
+
+
+		mutable
+		-------
+
+Suppose we have a const class but we would like to have some members updateable
+Then we use mutable.
+
+----GOOD----
+
+   class aTest{
+
+        public:  int mutable xxx=5; //HERE
+    };
+
+    const aTest at;
+    at.xxx=10;    // OK
+
+
+----BAD----
+
+   class aTest{
+
+        public:  int xxx=5; // No mutable
+    };
+
+    const aTest at;
+    at.xxx=10;   // Error. Now xxx is NOT mutable and cannot be updated
+
+
+------------------------------------------------------------------------------------
+
+
+
+		volatile
+		--------
+
+volatile is a hint to the implementation to avoid aggressive optimization involving the object 
+because the value of the object might be changed by means undetectable by an implementation.[...]
+
+int some_int = 100;
+
+...............
+...............
+...............
+
+while(some_int == 100)
+{
+   //your code
+}
+
+When this program gets compiled, the compiler may optimize this code, 
+if it finds that the program never ever makes any attempt to change the value 
+of some_int, so it may be tempted to optimize the while loop by changing it 
+from while(some_int == 100) to something which is equivalent to while(true) 
+so that the execution could be fast (since the condition in while loop appears to be true always). 
+(if the compiler doesn't optimize it, then it has to fetch the value of some_int 
+and compare it with 100, in each iteration which obviously is a little bit slow.)
+
+
+Fix:
+----
+
+volatile int some_int = 100; //Here
+
+...............
+...............
+...............
+
+while(some_int == 100)
+{
+   //your code
+}
+

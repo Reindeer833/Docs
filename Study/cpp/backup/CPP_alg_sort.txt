@@ -1,0 +1,27 @@
+
+
+
+                           ALGORITHMS:  sort
+						   =================
+						   
+
+Header:  
+-------
+#include <algorithm>
+#include <functional>						   
+
+sort(InputIterator first,InputIterator last,Function fn or lambda);
+
+vector<double> vcd(10);
+.
+.
+.
+
+sort(vcd.begin(),vcd.last(),
+	[](double xx,double yy)->bool
+	{return xx<yy;}
+  );
+
+Here I specified >double xx,double yy< as input parameters because this is
+what is being used by sort from vcd.begin() to vcd.last()
+

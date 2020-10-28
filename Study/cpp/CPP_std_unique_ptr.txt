@@ -1,0 +1,124 @@
+
+
+                           STD::unique_ptr
+			   ===============
+						   
+Smart Pointer
+-------------
+
+std::unique_ptr
+Defined in header <memory> 
+
+unique_ptr<T> // Templated
+
+std::unique_ptr is a smart pointer that owns and manages another object 
+through a pointer and disposes of that object 
+when the unique_ptr goes out of scope. 
+
+unique_ptr<T> owns the object to which it points.
+Only one instance of unique_ptr<T> can point to an object.
+The object to which unique_ptr<T> points is destroyed when
+  this unique_ptr<T> is destroyed
+
+
+  std::unique_ptr<int> aa(nullptr);
+  std::unique_ptr<int> bb(new int);//nOTICE:  <int>  not <int*>
+  std::unique_ptr<int> bar (new int(12));
+  
+  auto uP=make_unique<T>(anObject);//Not pointer to object
+~~~~~~~~~~~~~~~~
+Member Functions
+~~~~~~~~~~~~~~~~					   
+
+Constructors
+------------
+unique_ptr<T>    u1;// Null unique pointer
+unique_ptr<T,D> u2; // Null unique pointer
+                    // using custom deleter
+
+unique_ptr<T,D> u3(d); // Unique pointer
+                       // using custom deleter
+                       // d must be of type D
+
+unique_ptr<T>   u3(u1); // Error:  No copy constructor
+u2 = u1                 // Error: No copy constructor
+
+Example of constructor
+----------------------
+    
+    void deleter(int* xxx){ ... }
+
+    unique_ptr<int,void(*)(int*) >       upd(new int(88),&deleter);
+    unique_ptr<int,decltype(deleter) *>  vpd(new int(89),&deleter);
+
+// A. Custom deleter must take pointer type to internal object
+// B. Second template param to unique_ptr must be a pointer to deleter
+
+I can also use: make_unique<T>
+------------------------------
+   auto uS=make_unique<string>(string("Hello"));
+   cout<<*uS.get()<<endl;
+   
+   make_unique<T> takes object - not pointer - and creates unique pointer to the object
+
+
+Functions
+---------
+
+u = nullptr; // Deletes object to which u pointed and makes u nullptr
+
+inside_object* u.release(); // Makes u null
+             // Release ownership of object it points to
+             // Returns pointer to the object which unique ptr owned
+             
+Example on release
+------------------
+   unique_ptr<int> uI(new int(10));
+   int* iP=uI.release();
+   cout<<*iP<<"  "<<uI.get()<<endl; // Prints:  10  0          
+
+
+
+u.reset(); // Reset with no argument will delete object to which smart pointer points
+
+u.reset(aPointer); // Reset with argument will delete object to which smart pointer points
+                   // and smart pointer will point to aPointer
+
+
+u.reset(nullpointer); // Deletes object and sets u to nullptr
+
+When returning unique_ptr from a function, copy is allowed.
+
+
+Example of move constructor:
+----------------------------
+
+*. h file:
+
+Class Xx{
+    public:
+         Xx(){
+            cout<<endl<<"In Xx default constructor."<<endl;
+         }
+         Xx(Xx&& x){
+            cout<<endl<<"In Xx move constructor."<<endl;
+         };
+         Xx(const Xx& x){
+            cout<<endl<<"In Xx copy constructor."<<endl;
+         };
+         ~Xx(){
+            cout<<endl<<"In Xx destructor."<<endl;
+         }
+};
+
+Usage in *.cpp file:
+
+void testUniquaPtrC(){
+
+     Xx xx;
+    unique_ptr<Xx> abc(new Xx());
+    auto yy = make_unique<Xx>(xx);
+    auto zz=make_unique<Xx>(*std::move(abc));
+}
+
+

@@ -1,0 +1,23 @@
+
+JSP Include Java Script
+-----------------------
+
+My app: zlig
+-------
+
+Java Script file:  /zlig/js/my_js.js
+
+
+<head>
+     <script src="/zlig/js/my_js.js">
+     </script>
+</head>
+
+
+or:
+---
+
+<head>
+    <script src="${pageContext.request.contextPath}/js/my_js.js">
+    </script>
+</head>

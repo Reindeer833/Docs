@@ -1,0 +1,47 @@
+
+			PYTHON CONNECT TO URL
+			=====================
+			
+We have to import urllib.request:
+				#import urllib.request
+				
+We need to have proper Url as a string:  aUrl=' ...  '
+
+To open connection:  aConn=urllib.request.urlopen(aUrl)
+
+If connection succeeded return code will be 200 but it must
+ be converted to a string:  if(str(aConn.getcode() ) == '200'):
+                                 ...all is good
+ (Notice: Call is converted to a string and so is 200  ->  '200')
+
+When connection opened, we can read data using aConn.read() but  
+two precautions are neccessary:
+	1.  Data is coming as bytes and should be converted to string: str( ... )
+	2.  All web page content may be interpreted as on line.  We should read in chunks.
+	    aLine=aConn.read(80)  ... This will read 80 bytes.
+
+We can save content to a file		
+Last thing, we close url connection and file.
+
+    fileOut=open(some_path,'w')
+    LINEL=80
+    aLine=""
+    while(True):
+        aLine=aConn.read(LINEL) # read 80 bytes only
+        fileOut.write(str(line)+'\n') # using str(...)
+        print(str(line) )             # using str(...)
+        if(len(line)<LINEL): # We are done
+            break
+			
+    aConn.close()    # Close connection
+    fileOut.close()  # Close file
+
+
+			
+			
+			
+			
+			
+			http://dining.guckenheimer.com/clients/dickssportinggoods/fss/fss.nsf/content?readform&locID=7W7SC9&loc=Court+Street+Cafe&content=7W7SC9~Court+Street+Cafe~1~restSrvc~Restaurant Services~About Us~1&sl=1
+			
+			http://dining.guckenheimer.com/clients/dickssportinggoods/fss/fss.nsf/MenuContent?openform&content=7W7SC9~court+street+cafe~B~rm~Restaurant%20Menus~Menu~1&locID=7W7SC9&loc=court+street+cafe

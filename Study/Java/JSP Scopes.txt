@@ -1,0 +1,69 @@
+
+
+			JSP SCOPES
+    			==========
+
+page 		(P)
+request		(R)
+session		(S)
+application	(A)
+
+
+Page Scope
+----------
+
+Objects with page scope are accessible only within the page in which they're created. 
+The data is valid only during the processing of the current response; 
+once the response is sent back to the browser, the data is no longer valid. 
+If the request is forwarded to another page or the browser makes another request 
+as a result of a redirect, the data is also lost.
+//Example of JSP Page Scope 
+...........................
+<jsp:useBean id="employee" class="EmployeeBean" scope="page" /> 
+
+
+
+Request Scope
+-------------
+
+Objects with request scope are accessible from pages processing the same request 
+in which they were created. 
+Once the container has processed the request, the data is released. 
+Even if the request is forwarded to another page, the data is still available 
+though not if a redirect is required.
+//Example of JSP Request Scope 
+..............................
+ <jsp:useBean id="employee" class="EmployeeBean" scope="request" /> 
+
+
+
+Session Scope
+-------------
+
+Objects with session scope are accessible from pages processing requests 
+that are in the same session as the one in which they were created. 
+A session is the time users spend using the application, 
+which ends when they close their browser, when they go to another Web site, 
+or when the application designer wants (after a logout, for instance). 
+So, for example, when users log in, their username could be stored in the session 
+and displayed on every page they access. This data lasts until they leave the Web site or log out.
+//Example of JSP Session Scope 
+..............................
+ <jsp:useBean id="employee" class="EmployeeBean" scope="session" /> 
+
+
+
+Application Scope
+-----------------
+Objects with application scope are accessible from JSP pages that reside in the same application. 
+This creates a global object that's available to all pages.
+
+Application scope uses a single namespace, which means, 
+all your pages should be careful not to duplicate the names of application scope objects 
+or change the values when they're likely to be read by another page (this is called thread safety). 
+Application scope variables are typically created and populated when an application starts 
+and then used as read-only for the rest of the application. 
+//Example of JSP Application Scope 
+..................................
+ <jsp:useBean id="employee" class="EmployeeBean" scope="application" /> 
+

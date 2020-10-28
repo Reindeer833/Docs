@@ -1,0 +1,176 @@
+
+                CPP ifstream
+                ============
+
+
+#include <fstream>   // NOT ifstream !!!
+
+Flags describing the requested i/o mode for the file.
+-----------------------------------------------------
+
+member constant	stands for	access
+in *	                input	        File open for reading: the internal stream buffer supports input operations.
+out	                output	        File open for writing: the internal stream buffer supports output operations.
+binary	                binary	        Operations are performed in binary mode rather than text.
+ate	                at end	        The output position starts at the end of the file.
+app	                append	        All output operations happen at the end of the file, appending to its existing contents.
+trunc	                truncate	Any contents that existed in the file before it is open are discarded.
+
+
+Constructors
+------------
+
+ifstream(); //not associated with a file
+ifstream(string& path, ios::in);
+ifstream(const char* path, ios::in);
+ifstream(ifstream& another);
+
+
+Open stream/associate with file
+-------------------------------
+
+
+void open (const   char* filename,  ios_base::openmode mode = ios_base::in);
+void open (const string& filename,  ios_base::openmode mode = ios_base::in);
+
+//  ************************************************************
+//        ****IMPORTANT******
+//  After every read check:  if(myIfstream.good() ){   }
+//  ifstream is inclined to read some garbage at the end of file
+//  ************************************************************
+
+
+Other functions
+----------------
+
+
+bool is_open(); //Returns whether the stream is currently associated to a file.
+
+void close();
+
+
+istream&     getline (char* s, streamsize n );                 //NOT getline(istream, string) !!!!
+istream&     getline (char* s, streamsize n, char delim );
+
+
+int get();
+istream& get (char& c);
+istream& get (char* s, streamsize n);
+istream& get (char* s, streamsize n, char delim);
+
+streamsize gcount() const;   // number of chars read from input stream
+                             // After get (char& c)   returns 1
+
+bool good();     // returns true if no bad bit is set. Actually in ios::good()
+
+
+Checking flags:
+---------------
+void print_state (const std::ios& stream) {
+  std::cout << " good()=" << stream.good();
+  std::cout << " eof()=" << stream.eof();
+  std::cout << " fail()=" << stream.fail();
+  std::cout << " bad()=" << stream.bad();
+}
+
+
+ifstream.read(aBuffer,numberOfReadChars);
+ofstream.write(aBuffer,numberOfToBeWrittenChars);
+
+These two functions are used for binary input/output.
+I have to check on:  ifstream.eof()
+                     ifstream.gcount(); //Number of characters read during last input    
+                     see Example B       
+
+
+Example A
+---------
+
+ifstream aIfs(aPath,ios::in);
+
+    if(!aIfs.good()){
+        cout << "Failed"<<endl;
+        return;
+    }
+    char c=' ';
+    int aCtr=0;
+    while(aIfs.good()){
+        aIfs.get(c);
+        cout<<c;
+        aCtr += aIfs.gcount();
+    }
+    cout<<endl;
+    cout<<"Number of read chars: "<<aCtr;
+    aIfs.close();
+
+
+
+Set position in input stream
+----------------------------
+
+istream& seekg (streampos pos);
+istream& seekg (streamoff off, ios_base::seekdir way);
+
+ios_base::seekdir
+----------------
+value	offset is relative to...
+ios_base::beg	beginning of the stream
+ios_base::cur	current position in the stream
+ios_base::end	end of the stream
+
+
+Get position in input stream
+----------------------------
+std::istream::tellg();
+streampos tellg();
+
+
+
+Example
+-------
+    ifstream aIfs(aPath);
+    if(!aIfs.good()){
+        return;
+    }
+    aIfs.seekg(0,ios_base::end);
+    long aLen=aIfs.tellg();
+    aIfs.close();
+    cout<<"File length: "<<aLen<<endl;
+
+
+
+
+Example B
+---------
+
+void readFileA(const char* aPathIn,const char* aPathOut){
+    ifstream ifA;
+    ifA.open(aPathIn,ios::binary|ios::in);
+    if(!ifA.good()){
+        cout<<"File "<<aPathIn<<" failed to open for input"<<endl;
+        return;
+    }
+    ofstream ofA;
+    ofA.open(aPathOut,ios::out|ios::binary);
+    unsigned int aCounter=0,aLim=512;
+    char* aBuffer = new char[aLim+1];
+    string sT;
+    ifA.read(aBuffer,aLim);
+    int charsRead=0;
+    while(true){
+        charsRead=ifA.gcount();
+        aCounter += charsRead;
+        ofA.write(aBuffer,charsRead);
+        ifA.read(aBuffer,aLim);
+        if(ifA.eof()){
+            charsRead=ifA.gcount();
+            aCounter += charsRead;
+            break;
+        }
+    }
+    ofA.write(aBuffer,charsRead);
+    cout<<endl<<"Read count: "<<aCounter<<endl;
+    ifA.close();
+    ofA.close();
+}
+

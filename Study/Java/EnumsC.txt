@@ -1,0 +1,56 @@
+
+
+
+                            enum
+                            ====
+
+enum is a subclass java.lang.Enum
+   as such it cannot extend any other class
+
+
+
+Constant specific class body  
+---------------------------- 
+
+We use it to overide function defined in enum class.
+It can be different for each each enum constant.
+If the function in enum class is abstract, then 
+all constants MUST override the function.
+
+
+
+Example
+-------
+
+import static java.lang.System.out;
+
+public class EnumsA {
+	
+	protected enum colors {RED,
+		                   GREEN{//constant specific class body start
+						public String genColor(){//overridden class function
+							return "Grass green";
+		                        }
+	                       },   //constant specific class body end
+		                   BLUE{
+						public String genColor(){//overridden class function
+							return "Actually violet";
+						}
+			
+		                  };
+	    String genColor(){//class function
+	    	return "Genuine color";
+	    }
+	};//end of colors
+	
+	public static void main(String [] args){
+		new EnumsA().testing();
+	}
+	private void testing(){
+		colors mc = colors.BLUE;
+		out.println("mc is instance of colors: "+ (mc instanceof colors) ); 
+		for(colors cl:colors.values()){
+			out.printf("The real color of %-17s:\t%s%n",cl.toString(),cl.genColor());
+		}
+	}	
+}

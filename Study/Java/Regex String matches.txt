@@ -1,0 +1,35 @@
+
+
+
+                            matches
+                            =======
+
+
+
+public boolean matches(String regex);
+
+Very important:  regex MUST match THE WHOLE String!!!! Not only group of chars in a String!!!
+
+The same as:  Pattern.matches(String regex,String input);
+
+matches(nnn) may throw PatternSyntaxException
+
+
+If we use:   public boolean find( )
+
+                     OR
+
+             public boolean find(int start)
+
+
+
+The function find( ) will return true if subsequence of original sequence has been matched
+
+
+
+
+
+
+
+
+                            

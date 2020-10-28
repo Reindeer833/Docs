@@ -1,0 +1,70 @@
+
+			SORT
+
+#include <algorithm>  
+
+Sorts the elements in the range [first,last) into ascending order.
+
+Default sort
+---------------
+			----
+template <class RandomAccessIterator>
+  void sort (RandomAccessIterator first, RandomAccessIterator last);
+
+Customized sort
+---------------
+
+template <class RandomAccessIterator, class Compare>
+  void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+
+
+comp .... This can either be a function pointer or a function object, which includes lambdas.
+          Binary function/functor.
+          It must return a value convertible to bool.
+
+
+Default:    The elements are compared using operator< for the default version.
+
+Customized: The elements are compared using comp for customized sort
+
+The function sort returns void
+
+
+#include <iostream>
+#include <algorithm> // THIS ONE!!
+#include <vector>
+#include <string>
+
+using namespace std;
+
+    vector<string> vst;
+    vst.push_back("k");
+    vst.push_back("u");
+    vst.push_back("1");
+    vst.push_back("k");
+    vst.push_back("k");
+    vst.push_back("K");
+
+    sort(vst.begin(),vst.end(),
+        [](int x,int y)->bool{
+            return x<y;
+        }
+    );
+
+I could also:
+
+    	bool myfunction (int i,int j) { return (i<j); }
+
+	struct myclass {
+	  bool operator() (int i,int j) { return (i<j);}
+	} myobject;
+
+
+    	 std::vector<int> myvector =  {32,71,12,45,26,80,53,33};
+
+	sort(myvector.begin(),myvector.end(),myfunction);
+     OR:
+	std::sort (myvector.begin(), myvector.end(), myobject); 
+       
+
+

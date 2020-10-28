@@ -1,0 +1,92 @@
+
+                           TEMPLATES WITH NON-TYPES
+                           ========================
+
+When creating template with non-type it means I use some existing type.
+Non types allowed:  int, pointer, reference
+NOT:  float, double, string, ...
+If I create default for non-type or declare template with non-type
+I cannot change value of non-type in a function.  It is a compile time constant.
+template <class T,int aSize=20>
+class Abc{
+	aSize=555;// WRONG!!!
+}
+
+						   
+In *.h file - declaration:
+--------------------------
+template <class T,int aSize=20>
+class Abc{
+
+    public:
+     Abc(T& t);
+     T& operator [](int );
+
+    private:
+         vector<T> vcT;
+
+};
+
+// In *.h file declaration of Abc uses templates but does not
+// have template brackets after class name
+//
+// Second member in brackets, equivalence with first one:
+// class <-> int
+// T     <-> aSize
+// =20 no equivalence, default for non-type value
+
+typeid can be used for templates too.
+-------------------------------------
+
+        Xxx<int> xint;
+        Xxx<double> xdble;
+        
+        typeid(xint) == typeid(Xxx<int> )//this will retun true
+        typeid(xint) == typeid(xdble )   //this will retun false (different templates)
+        
+
+
+In *.cpp file - definition:
+---------------------------
+
+ template <class T,int aSize>
+    OverlBrackOp<T,aSize>::OverlBrackOp(T& t){
+        for(int ix=0;ix< aSize;++ix){
+            vcT.push_back(t); //first time here, I cannot go by index
+        }
+    };
+
+    template <class T,int aSize>
+    T& OverlBrackOp<T,aSize>::operator[](int ix){
+        if(ix<0 || ix > aSize-1){
+            cout<<" Index of of range: "<<ix<<endl;
+            throw " Index of of range";
+        }else{
+            return vcT[ix];
+        }
+    }
+
+template <class T,int aSize>
+OverlBrackOp<T,aSize>::OverlBrackOp(T& t)
+
+// brackets after keyword template but no default value
+// brackets after function name, bare type and non-type name: <T,aSize>
+
+
+
+In *.cpp file - usage:
+----------------------
+
+double xxD=17;
+    OverlBrackOp<double,10> aObo(xxD);
+    for(int ix=0;ix<10;++ix){
+        cout<<aObo[ix]<<endl;
+    }
+//    aObo[18]=73; // Exception!!!
+       aObo[8]=73; // OK, member in pos 8 has value 73
+     cout<<"---------------------------"<<endl;
+    for(int ix=0;ix<10;++ix){
+        cout<<aObo[ix]<<endl;
+    }
+
+

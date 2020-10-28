@@ -1,0 +1,31 @@
+
+		PYTHON FROMATTING
+		=================
+
+A_STRING( {formatting_symbol},{formatting_symbol},{formatting_symbol}...).format(string_to_be_formatted,string_to_be_formatted,string_to_be_formatted...)	
+
+
+Empty placeholders: {}
+~~~~~~~~~~~~~~~~~~~~~~
+
+aText= 'We have {} chickens and a {}.'.format(49,'rooster')
+print(  aText   )
+Prints:  We have  49 chickens and a rooster
+
+ aText= 'We have {:>3} chickens and a {:>7}'.format(49,'rooster')
+ print(  aText   )
+ Prints:  We have  49 chickens and a rooster
+ 
+ 
+ Numbered placeholders: {0}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ aText= 'We have {0:>3} chickens and a {1:>7}.'.format(49,'rooster')
+ print(  aText   )
+ Prints:  We have  49 chickens and a rooster
+ 
+ 
+Named placeholders: {aName}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+aText='My name is {aName} and I am {anAge:^8} years old'.format(aName='John',anAge=49)
+print(  aText   )
+ Prints: My name is John and I am    49    years old

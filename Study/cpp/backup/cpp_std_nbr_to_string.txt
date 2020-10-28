@@ -1,0 +1,37 @@
+
+			std::to_string
+			===============
+
+Overloaded for any numerical type
+--------------------------------
+
+#include <string>
+
+string std::to_string(whatever_numerical_type)
+
+
+
+
+
+
+string to number:
+-----------------
+stoul  stoull:  	converts a string to an unsigned integer 
+
+stoi stol stoll  : 	converts a string to a signed integer 
+
+stof stod stold: 	converts a string to a floating point value 
+
+atoi(string):           converts to int ONLY!
+
+
+Examples
+--------
+int a = 10;
+char *intStr = itoa(a);
+string str = string(intStr);
+//
+int a = 10;
+stringstream ss;
+ss << a;
+string str = ss.str();

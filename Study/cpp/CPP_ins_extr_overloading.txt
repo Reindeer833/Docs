@@ -1,0 +1,110 @@
+
+
+
+                           inserters-extractors overloading
+                           ===============================
+						   
+
+
+Overloading these operators has always this form:
+-------------------------------------------------
+
+Inserters:
+ostream& operator << (ostream &left,class_type  right);
+ostream& operator << (ostream &left,class_type& right);
+
+
+
+Extractors:
+istream& operator >> (istream &left,class_type  right);
+istream& operator >> (istream &left,class_type& right);
+
+Return type:     Always stream reference
+First parameter: Always stream reference
+
+Second parameter: object, reference, pointer
+
+I can overload inserters/extractor as a standalone function
+or as a friend function in a class.
+
+
+Inserter example:
+~~~~~~~~~~~~~~~~~
+*.h file:
+---------
+#include <iostream>
+
+using namespace std;
+
+class Extt;
+class Insr;
+
+ostream& operator<<(ostream& lE,Extt& rO);
+istream& operator>>(istream& lI,Insr& rO);
+
+class Insr{
+    friend ostream& operator<<(ostream& lO,Insr& right);
+    public:
+     Insr(string inP){
+        mB=inP;
+    }
+    private:
+        string mB;
+
+};
+
+class Extr{
+    friend istream& operator>>(istream& lI,Extr& rO);
+    public:
+     Extr(string stR){
+        mB=stR;
+     }
+     void displ(){
+        cout<<mB<<endl;
+     }
+     private:
+        string mB;
+
+};
+
+void testExtractorsA();
+void testInstertersA();
+
+
+
+
+
+*.cpp file:
+-----------
+#include "ExtractorsInserters.h"
+
+
+ostream& operator<<(ostream& lO,Insr& right){
+    return lO<<right.mB;
+}
+
+istream& operator>>(istream& lI,Extr& rO){
+    return lI>>rO.mB;
+}
+int main()
+{
+    cout << "Hello world!" << endl<< endl;
+    testExtractorsA();
+    testInstertersA();
+
+    return 0;
+}
+
+void testExtractorsA(){
+    Extr extr("Hello Extractor!");
+    cin>>extr;
+    extr.displ();
+
+}
+
+void testInstertersA(){
+    Insr inS("Hello C++!");
+    cout<<inS<<endl;
+
+}
+

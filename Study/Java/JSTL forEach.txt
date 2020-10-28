@@ -1,0 +1,73 @@
+
+		JSTL forEach
+		============
+
+
+<c:forEach items="${dogs}" var="item_In_List" > 
+
+................................................
+
+
+ArrayList<Dog> myList = new  ArrayList<Dog>();
+
+request.setAttribute("dogs",myList);
+
+
+In this case each item in the list is object, instance of Dog.
+Say Dog has a name and a master.
+
+I can retrieve Dog's name and master:  ${item_In_List.name}
+                                       ${item_In_List.master}
+
+Essentially var is object of template type:  ArrayList<Abc>
+Here it would be Abc type object
+
+Important:  var is NOT and index.  It is already Object!!
+
+-----------------------------------------------------------------------------------
+
+If I want index:  <c:forEach items="${dogs}" var="item_In_List" varStatus="idx"> 
+
+I can retrive count:  ${idx.count}  This will give me count, not index, of object
+being accessed
+
+idx is object of type LoopTagStatus
+
+-----------------------------------------------------------------------------------
+
+Arrays
+------
+
+<c:forEach items="${dogs}" var="item_In_List" varStatus="idx">
+Here items is an array:  dogs Dog[]
+
+For arrays, similarly, if I have array of type Abc[] then var is object of Abc type.
+ ${idx.count} will assume values: 1,2,3 ...   NOT: 0  !!!
+
+-----------------------------------------------------------------------------------
+
+Sets
+----
+
+<c:forEach items="${dogs}" var="item_In_List" varStatus="idx">
+Here items is a Set<Dog>:  dogs
+
+For sets, similarly, if I have set of type Set<Abc> then var is object of Abc type.
+ ${idx.count} will assume values: 1,2,3 ...   NOT: 0  !!!
+
+-----------------------------------------------------------------------------------
+
+Maps
+----
+
+<c:forEach items="${dogs}" var="a_dog" varStatus="idx">
+Here items is a Map<String,Dog>:  dogs
+
+For Maps if I have map of type Map<K,V> then var is object of Map.Entry<K,V> type.
+
+I will get concrete values:  ${a_dog.key}   ${a_dog.value}
+
+
+-----------------------------------------------------------------------------------
+
+

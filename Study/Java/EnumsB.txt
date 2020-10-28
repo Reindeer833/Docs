@@ -1,0 +1,25 @@
+
+
+
+                            enum
+                            ====
+
+enum is a subclass java.lang.Enum
+   as such it cannot extend any other class
+
+
+constructor of enum:  
+--------------------
+                            
+The constructor for an enum type must be package-private or private access. 
+It automatically creates the constants that are defined at the beginning of the enum body. 
+We cannot invoke an enum constructor yourself. Only via enum constants.
+
+
+Type
+----
+
+
+enum colors {RED,GREEN,BLUE}
+
+print(colors.BLACK  instanceof colors);   //will return true

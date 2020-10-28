@@ -1,0 +1,59 @@
+
+                CPP FORMATTING WITH MANIPULATORS
+                ================================
+
+
+Precision:
+----------
+cout.precision(10);
+
+Width:
+------
+cout.width(12);
+
+Fill char:
+----------
+cout.fill('#');
+
+
+MANIPULATORS
+------------
+
+#include <iomanip>
+
+boolalpha
+*noboolalpha
+
+showbase
+*noshowbase
+
+scientific    // displays floating point numbers in scientific notation
+defaultfloat  // resets floats to decimal notation
+
+showpoint     // always displays floating point for decimal numbers
+*noshowpoint
+
+showpos       // for positive numbers show plus sign
+*noshowpos
+
+uppercase     //  0X123
+*nouppercase  //  0x123
+
+hex
+oct
+left         //add fill chrs to right of the value
+right        //add fill chrs to left  of the value
+*dec
+
+hexfloat     // displays floats in hexadecimal notation
+
+flush        // flushes ostream buffer
+
+endl         //insert newline then flush ostream buffer
+
+
+*skipws         // for input:  will skip white spaces
+   cin>>skipws
+*noskipws       // for input:  will not skip white spaces
+   cin>>noskipws
+

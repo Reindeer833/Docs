@@ -1,0 +1,198 @@
+
+
+                           STD::allocator
+                           ==============
+						   
+
+
+Templated class: allocator<T> 
+-----------------------------
+std::allocator is used when you want to separate allocation and do construction in two steps.
+It will construct raw / unconstrued memory without calling constructor.
+Allocater uses template:  std::allocator<T>
+
+Allocated memory may be initialized/constructed later
+
+Suppose I have class Tm and following statements:
+
+ Tm tm[3];             // Tm constructor will be called 3 times
+
+ Tm* aPtm = new Tm[3]; // Tm constructor will be called 3 times
+
+This may not be what we want to happen. 
+We may want to have uninitialized memory
+
+
+Example:
+~~~~~~~~
+
+    #include <memory>
+
+    std::allocator<Tm> aTm;         // constructor will not be called
+    auto aPam = aTm.allocate(3);    // constructor will not be called
+    new (aPam)   Tm(11);            // constructor will be called
+    new (aPam+1) Tm(12);            // constructor will be called
+    new (aPam+2) Tm(13);            // constructor will be called
+ 
+     aPam->~Tm();                   // destructor will be called
+    (aPam+1)->~Tm();                // destructor will be called
+    (aPam+2)->~Tm();                // destructor will be called
+
+    aTm.deallocate(aPam,3);         // allocated memory will be released
+
+
+
+Example:
+~~~~~~~~
+
+#include <memory>
+
+ std::allocator<int> aL;   // default allocator for ints
+ int* a = aL.allocate(1);  // space for one int
+ aL.construct(a, 7);       // construct the int
+ std::cout << a[0] << '\n';
+ aL.deallocate(a, 1);      // deallocate space for one int
+
+
+~~~~~~~~~~~~~~~~
+Member Functions
+~~~~~~~~~~~~~~~~					   
+
+Constructors
+------------
+allocator<AClass> myAllocator; 
+start_pointer=myAllocator.allocate(5);
+myAllocator.construct(&start_pointer[2],arg1,arg2, ...);// constructor arguments - DEPRECATED
+myAllocator.destroy(start_pointer + 3);//for all 5                               - DEPRECATED
+myAllocator.deallocate(start_pointer,5);
+
+
+myAllocator.allocate(5);
+// Used for allocation of memory.
+
+unitialized_copy(begin_source_iter,end_source_iter,starting_dest_pointer);
+// Copy values into assign memory
+
+myAllocator.deallocate(starting_dest_pointer,number_of_elements)
+// Used for deallocation of memory.
+
+					 
+int* arr = myAllocator.allocate(5); 
+// Will allocate array of 5 integers
+// Notice that ARRAY is constructed!!!
+// Even when we have ()  and NOT []
+ 
+ 
+string* str = myAllocator.allocate(3); 
+//------------------------------------
+// Allocates space for three strings 
+// Notice that ARRAY is constructed!!!
+// Even when we have ()  and NOT []
+
+
+myAllocator.deallocate(str, 3);
+//------------------------------------
+// Deallocate space for 3 strings 
+     
+
+allocator will create array-like memory division // !!!ARRAY!!!
+which is accessible by index.
+
+// construct, destroy  deprecated in C++ 20
+
+
+Four  steps
+-----------
+
+1. Create allocator:    std::allocator<string> myAlloc;
+2. Allocate memory:     auto rP=myAlloc.allocate(3);
+3. Fill in memory:      uninitialized_copy(begin(cS),end(cS),rP );// For array begin iterator is pointer to array
+                        //Important:  resulting pointer point 1 past last assigned memory.
+4. Destroy objects in chunks of memory:  myValloc.destroy(pointer_to_memory_chunk);
+5. Dealocate memory:      myAlloc.deallocate(rP,3)
+
+
+
+Examples:
+---------
+
+#include <memory>   //for unitialized_copy
+
+A)  string array
+~~~~~~~~~~~~~~~~
+    string cS[3]={"Hello C++!","Test!","The third one"};
+    std::allocator<string> myAlloc;
+    auto rP=myAlloc.allocate(3);
+    uninitialized_copy(begin(cS),end(cS),rP );
+    cout<<rP[0]<<endl;
+    cout<<rP[1]<<endl;
+    cout<<rP[2]<<endl;
+    myAlloc.deallocate(rP,3);
+
+B)  int array
+~~~~~~~~~~~~~
+    const int arR[3]={1,2,3};
+    std::allocator<int> aCh;
+    auto intPtr=aCh.allocate(3);
+    uninitialized_copy(begin(arR),end(arR),intPtr ) ;
+    cout<<intPtr[0]<<endl;
+    cout<<intPtr[1]<<endl;
+    cout<<intPtr[2]<<endl;
+    aCh.deallocate(intPtr,3);
+
+
+C)  vector<string>
+~~~~~~~~~~~~~~~~~~
+    vector<string> vS(5,string("Hello!") );
+    auto myValloc=vS.get_allocator();
+    auto vP=myValloc.allocate(vS.size());
+    std::uninitialized_copy(vS.begin(),vS.end(),vP );
+    for(int ix=0;ix<5;++ix){
+        cout<<vP[ix]<<endl;
+    }
+    myValloc.deallocate(vP,5);
+
+
+Destroying memory
+~~~~~~~~~~~~~~~~~
+    auto vQ=vP+5;
+    while(--vQ != vP){
+        myValloc.destroy(vQ);
+    }
+    myValloc.deallocate(vP,5);
+
+--------------------------------------------------------------
+
+Example: vector::get_allocator
+-------
+#include <iostream>
+#include <vector>
+
+int main ()
+{
+  std::vector<int> myvector;
+  int * p;
+  unsigned int i;
+
+  // allocate an array with space for 5 elements using vector's allocator:
+  p = myvector.get_allocator().allocate(5);
+
+  // construct values in-place on the array:
+  for (i=0; i<5; i++) myvector.get_allocator().construct(&p[i],i);
+//  construct(pointer_to_object_to_be constructed,arg1,arg2,...) arguments for constructor.  May be zero of them
+//  construct ... constructor is called
+
+  std::cout << "The allocated array contains:";
+  for (i=0; i<5; i++) std::cout << ' ' << p[i];
+  std::cout << '\n';
+
+  // destroy and deallocate:
+  for (i=0; i<5; i++) myvector.get_allocator().destroy(&p[i]);
+  myvector.get_allocator().deallocate(p,5);
+
+  return 0;
+}
+
+	
+Edit & Run
+

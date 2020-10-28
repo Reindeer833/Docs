@@ -1,0 +1,48 @@
+                       EL Basics Dot
+                       =============
+
+${aName}   In order to use EL, aName MUST be set as an attribute.
+--------                         
+In servlet:  request.setAttribute("aName","John Doe");
+             getServletContext().setAttribute("aName","John Doe");
+             getSession(true).setAttribute("aName","John Doe");
+
+${aAttribute.aName}   
+-------------------
+
+This is the same as ${aAttribute['aName']}
+
+aAttribute MUST be an attribute in a scope:  map, bean
+
+'aName'  getAName for a bean
+'aName'  key in a map
+
+So unless aName is attribute in a scope, ALWAYS use:   'aName'  
+   Even when it is a get method on a bean
+
+Accessing Map:
+--------------
+Servlet:        Map<String,String> nameId = new HashMap<String,String>();
+                request.getSession().setAttribute("nameId",nameId);
+		nameId.put("1","John Doe");
+
+Jsp:            Name from Map: ${sessionScope['nameId']["1"]
+
+Explanation:    By putting nameId Map into sessionScope under name 'nameId' I populated
+                sessionScope Map with key-value pair.  
+                sessionScope['nameId']      ... retrieves Map
+                sessionScope['nameId']["1"] ... retrieves value by key "1"
+
+
+Rule:    I could have used sessionScope.nameId["1"]  
+-----    BUT:  Once I use first [] no other dot operators are allowed
+         nothing like a['b'].c  !!!NOT!!!
+         Only brackets can follow
+
+Rule:    request.setAttribute("aTime",new Date().toString());
+-----    Time A:${requestScope.aTime  }
+         Time B:${requestScope['aTime'] }
+
+IF I PUT ATTRIBUTE INTO A SCOPE UNDER A NAME
+            THEN
+I HAVE TO RETRIEVE IT UNDER THE SAME NAME

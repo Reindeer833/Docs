@@ -1,0 +1,72 @@
+
+                           STD REGEX
+						   ==========
+						   
+Header:  
+-------
+#include <regex>
+
+
+SMR
+---
+String
+Match
+Regex
+
+
+Three main objects to have:
+---------------------------
+std::string  ...  string to search
+~~~~~~~~~~~
+
+std::smatch ... essentially matcher.  Will contained match info
+~~~~~~~~~~~     (not smatcher.  smatch or cmatch)
+
+
+std::regex  ... will perform search
+~~~~~~~~~~~
+(std::regex rgx("\\b\\w+\\b"[,flags]);  //performs word search
+                                //returns int/true is search succeeded
+                                // flags. in basic_regex.  icase
+
+
+function to use for match:  
+--------------------------
+std::regex_search(aString,a_matcher,aRegex)   //SMR
+~~~~~~~~~~~~~~~~~
+
+Construct to progress:
+----------------------
+a_matcher.prefix().str(); // will return string right before match
+a_matcher.suffix().str(); // will return next part of matcher right after matched string
+a_matcher.str(); // The matched string  The same as a_matcher[0]
+
+my_string.begin() + a_matcher.prefix().str().length() ... points to first match char
+my_string.begin() + a_matcher.prefix().str().length()+1 ... points after first matched char.
+                                                            good place to resume search.
+															
+
+a_matcher.ready() ... if search was performed
+a_matcher[0] ... results of search															
+a_matcher[1] ... first matched group
+a_matcher[2] ... second matched group
+. . . 
+a_matcher.size() ... number of matches, total one plus groups
+      returns zero if no match
+a_matcher.empty() ... no match	  
+a_matcher.position(n) ... distance of n match from the start of sequence
+
+
+while(std::regex_search(some_string,a_matcher,a_regex){
+	for(auto xx:a_matcher){
+		cout<<xx<<endl;
+	}
+	some_string=a_matcher.suffix().str();
+}
+
+while(std::regex_search(some_string,a_matcher,a_regex){
+	for(auto xx:a_matcher){
+		cout<<xx<<endl;
+	}
+	some_string=std::string(some_string.cbegin()+a_matcher.prefix().str().length()+1);
+}

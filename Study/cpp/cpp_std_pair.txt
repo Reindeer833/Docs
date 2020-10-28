@@ -1,0 +1,37 @@
+
+			std::pair
+			=========
+
+template <class T1, class T2> struct pair;
+
+Pair of values
+This class couples together a pair of values, which may be of different types (T1 and T2). 
+The individual values can be accessed through its public members first and second.
+
+Notice:  first   second are data not functions !!!
+
+std::pair<T1,T2> myPair;
+myPair=std::make_pair(T1&&,T2&&);
+
+std::pair<int,int> iiP;
+
+
+myMap.insert(myPair); //Not:  add
+
+Example:
+~~~~~~~~
+
+   std::pair<int,int> iiP;
+    map<int,int> iiM;
+    for(int ix=0;ix < 5;++ix){
+        iiP=make_pair(ix,ix*ix);
+        iiM.insert(iiP);
+    }
+    for(pair<int,int> rnnP : iiM){
+        cout<<rnnP.first<<"   "<<rnnP.second<<endl;
+
+    }
+
+
+
+

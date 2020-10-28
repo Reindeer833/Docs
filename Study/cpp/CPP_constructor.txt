@@ -1,0 +1,120 @@
+
+                CPP CONSTRUCTOR
+                ===============
+In CPP constructor is used to initialize class members
+Constructor can NOT be virtual
+Constructor can NOT be static
+Constructor does NOT have return type
+
+
+Default constructor:  
+--------------------
+If I do not specify constructor,
+compiler will generate no parameter constructor for me.
+
+In C++, the compiler automatically generates the default constructor, copy constructor, copy-assignment operator, 
+and destructor for a type if it does not declare its own. 
+
+
+If I specify a constructor, compile will NOT generato constructor for me.
+I stil can do it:
+MyClass{
+	public:
+		MyConstructor = default;
+};
+
+If constructor takes only one param, I can use = when creating class object:
+	MyClass{
+
+		public:
+			MyClass(std::string){...}
+
+	};
+
+In *.cpp file:
+
+    MyClas mc=25; //Will work
+
+
+  
+Calling base class constructor:
+-------------------------------
+
+class Ee : protected Dd{
+    public:
+        Ee(){Dd();}
+};
+
+class Abc{
+	private:
+		Abc(){}
+};
+
+
+class Xyz{
+	public:
+		Xyz(){}
+};
+
+Class with private constructor still can be constructed if there is a static function calling this constructor.
+Class with deleted constructor can NOT be constructed.
+
+
+Cannot be copied
+----------------
+struct noncopyable
+{
+  noncopyable() =default;
+  noncopyable(const noncopyable&) =delete;
+  noncopyable& operator=(const noncopyable&) =delete;
+};
+
+
+
+
+If a copy constructor, copy-assignment operator, move constructor, move-assignment operator, or destructor is explicitly declared, then:
+    No move constructor is automatically generated.
+    No move-assignment operator is automatically generated.
+
+If you create copy constructor make sure that reference is const!!!!
+  Abc(const Abc& abc) {
+        cout<<"Calling copy constructor."<<endl;
+    }
+
+Conversion constructor
+----------------------
+Constructor that converts types of its parameter into a type of the class. 
+Conversion constructor can have only one parameter.
+
+
+class AA{
+    public:
+        AA(string xx){
+            ms=xx;
+        }
+        void dS(){
+            cout<<ms<<endl;
+        }
+        private:
+            string ms;
+
+};
+
+    AA aa=string("Hello C++");
+    aa.dS();
+    // This will display:  Hello C++
+
+
+Explicit constructor
+--------------------
+
+Keyword explicit is used to prevent implicit conversion
+
+void foo(ComplexNumbers cn){};
+
+A)  ComplexNumbers( double r, double i = 0.0) { real = r; img = i; }
+    foo(25); //possible
+
+B)  explicit ComplexNumbers( double r, double i = 0.0) { real = r; img = i; }
+      foo(25); //error, not possible
+

@@ -1,0 +1,66 @@
+
+
+
+                            ARRAY LIST
+                            ==========
+
+
+
+Class ArrayList<E>
+------------------
+
+
+
+Constructors
+------------
+
+
+ArrayList();                          Constructs an empty list with an initial capacity of ten. 
+ArrayList(Collection<? extends E> c)  Constructs a list containing the elements of the specified collection, 
+                                      in the order they are returned by the collection's iterator. 
+ArrayList(int initialCapacity)  
+
+
+
+
+Methods
+-------
+
+boolean add(E e);  Appends to the end
+
+boolean add(int ix, E e);  Inserts at specified pos. Exception if ix > size
+
+E set(int ix, E e);  Replaces at specified pos. Exception if ix > size
+
+
+
+boolean addAll(Collection<? extends E> ); Appends to the end
+boolean addAll(int ix, Collection<? extends E> ); Inserts at specified pos. Exception if ix > size
+
+
+void clear();
+
+boolean isEmpty();
+boolean contains(Object o)
+
+int size();
+
+
+
+boolean remove(Object o);  // NOT: E e
+E       remove(int ix);
+
+
+
+
+Iterator<E>   Iterator();
+
+
+int indexOf(Object o)
+int lastIndexOf(Object o)
+
+
+
+Object [] toArray();
+
+E [] toArray( E [] arr);// aSet.toArray(new E[0]);

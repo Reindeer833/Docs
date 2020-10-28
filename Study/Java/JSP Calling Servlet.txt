@@ -1,0 +1,42 @@
+
+		        JSP Calling Servlet
+                ===================
+
+
+JSP Calling Servlet Using web.xml
+---------------------------------
+
+In jsp:   <form name="f1" action="/ParamsTestC/do.go" method="post">
+Here:     ParamsTestC   is application name
+
+In web.xml:
+
+<servlet>
+  	<servlet-name>InBetween</servlet-name>
+  	<servlet-class>servlets.InBetween</servlet-class>
+</servlet>
+  
+  
+<servlet-mapping>
+  	<servlet-name>InBetween</servlet-name>
+  	<url-pattern>/do.go</url-pattern>
+</servlet-mapping>
+
+
+
+
+JSP Calling Servlet Using annotations
+-------------------------------------
+
+
+In jsp:   <form name="f1" action="/ParamsTestB/do.go" method="post">
+Here:     ParamsTestB   is application name
+
+In servlet class:
+
+@WebServlet(name="InBetween",urlPatterns={"/do.go"})   // <----------------
+public class InBetween extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+  ...
+}
+

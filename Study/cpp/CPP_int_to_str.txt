@@ -1,0 +1,26 @@
+
+
+
+                           STRING TO INT
+                           =============
+
+A
+--
+int a = 10;
+char *intStr = itoa(a);
+string str = string(intStr);
+
+
+
+B
+--
+int a = 10;
+stringstream ss;
+ss << a;
+string str = ss.str();
+						   
+
+C
+---
+
+string s = std::to_string(42);

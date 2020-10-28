@@ -1,0 +1,75 @@
+
+
+
+                           MAP
+                           ===
+
+
+Map<K,V>
+--------
+
+Map can contain only one null as a key and if k1,k2 are two keys in the map, then:   k1 == null?true : k1.equals(k2) == false;
+
+
+Member of the Map
+-----------------
+Map.Entry<K,V>
+
+
+
+Object related methods
+----------------------
+
+boolean containsKey(Object );
+boolean containsValue(Object );
+V       remove(Object key);
+
+
+
+
+Map.Entry
+---------
+
+Set<Map.Entry<K,V> > entrySet();
+
+
+
+Put into Map
+------------
+
+V put(K key,V value);
+void putAll(Map<K,V> mp);
+
+
+
+Remove from Map
+---------------
+
+V remove(Object key);
+void clear();
+
+
+
+Size-like Methods
+-----------------
+
+int size();
+boolean isEmpty();
+
+
+
+Get from Map
+------------
+
+V get(Object key);
+Set<K> keySet();
+Set<Map.Entry<K,V> entrySet();
+Collection<V> values();
+
+
+
+Sets from Map
+-------------
+
+Set<Map.Entry<K,V> > entrySet();
+Set<K> keySet();

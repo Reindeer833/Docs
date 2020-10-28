@@ -1,0 +1,72 @@
+
+
+
+                            enum
+                            ====
+
+enum is a subclass java.lang.Enum
+   as such it cannot extend any other class
+
+
+Notice:  Lowercase >e< in enum
+
+But: Enum members are constants, so the names of an enum type's fields 
+     are in uppercase letters
+
+
+Declaration can be in class or outside the class
+------------------------------------------------
+
+In class:    public enum size {SMALL,MEDIUM,BIG,HUGE};
+Then:        size sm = size.SMALL;
+
+
+
+
+Two public static methods:  
+--------------------------
+
+    enum valueOf(String)
+    size sz = size.valueOf("SMALL);
+
+
+
+    enum [] values();
+    size [] szs = size.values();
+
+
+We can use switch and values are inferred from switch argument:
+---------------------------------------------------------------
+
+size sz = size.SMALL;
+
+switch(sz){
+	case SMALL: // code here //notice:  NOT size.SMALL
+        break;
+
+..............
+
+}
+
+
+
+
+                       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            

@@ -1,0 +1,133 @@
+
+                CPP std::move
+                =============
+
+std::move is used to indicate that an object Xx may be "moved from", 
+i.e. allowing the efficient transfer of resources from Xx to another object.
+
+std::move() gives a hint to the compiler that the programmer doesn’t need this object any more (at least, not in its current state). 
+Consequently, we should not use std::move() on any persistent object we don’t want to modify, 
+and we should not expect the state of any objects that have had std::move() applied to be the same after they are moved!
+
+In particular, std::move produces an xvalue expression that identifies its argument t. 
+It is exactly equivalent to a static_cast to an rvalue reference type. 
+
+
+
+Legal:   int&& xx=27; //27 = right value
+
+After being moved, the object from which we moved
+should allow only destruction or being again assigned to.
+No data should be taken from this object.
+
+Moving constructor should put MoveFrom object into state 
+where only destruction or new assignment are possible.
+
+Aa&& bb= = std::move(someObjectOfType_Aa)
+
+This would be prohibited
+------------------------
+
+   int xx=3;
+   int&& zz=xx;  //error:  xx is left value
+
+
+This would be allowed
+---------------------
+   int ii=25;
+   int&& jj = std::move(ii);
+   
+   
+   
+Example:
+========
+
+
+class Aa{
+    public:
+        Aa(){
+            aSp=new string("In constructor");
+            cout<<"In constructor"<<endl;
+        }
+        Aa(Aa&& other){
+            aSp=other.aSp;
+            other.aSp=nullptr;
+            cout<<"In move constructor"<<endl;
+        }
+        ~Aa(){
+            cout<<"Calling destructor"<<endl;
+           if(aSp){
+                delete aSp;
+           }
+        }
+    private:
+        string* aSp;
+};
+
+
+//   Situation 1
+----------------
+void testMoveB(){
+    Aa aa;
+    Aa&& bb=std::move(aa);
+}
+
+// In this case constructor and destructor will be called once
+
+
+//   Situation 2
+----------------
+void testMoveB(){
+    Aa aa;
+    Aa&& cc(std::move(aa));
+}
+
+// In this case constructor and destructor will be called once
+
+
+
+//   Situation 3
+----------------
+Aa&& dd(aa); // This would generate error bcs dd is a left value
+
+
+
+This is legal:
+--------------
+int* ptrI;
+ptrI=nullptr;
+delete ptrI;
+
+
+Example of move constructor:
+----------------------------
+
+*. h file:
+
+Class Xx{
+    public:
+         Xx(){
+            cout<<endl<<"In Xx default constructor."<<endl;
+         }
+         Xx(Xx&& x){
+            cout<<endl<<"In Xx move constructor."<<endl;
+         };
+         Xx(const Xx& x){
+            cout<<endl<<"In Xx copy constructor."<<endl;
+         };
+         ~Xx(){
+            cout<<endl<<"In Xx destructor."<<endl;
+         }
+};
+
+Usage in *.cpp file:
+
+void testUniquaPtrC(){
+
+     Xx xx;
+    unique_ptr<Xx> abc(new Xx());
+    auto yy = make_unique<Xx>(xx);
+    auto zz=make_unique<Xx>(*std::move(abc));
+}
+
+

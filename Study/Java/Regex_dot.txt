@@ -1,0 +1,17 @@
+
+
+
+                            regex - dot
+                            ===========
+
+
+
+
+The regular expression . matches any character except a line terminator unless the DOTALL flag is specified. 
+
+If I want to match real dot I have to use:  "  \\.  "
+
+Example:  Pattern pr = Pattern.compile(".\\.\\.\\.",Pattern.DOTALL);
+--------  ( This will match: some_char... )
+
+                            

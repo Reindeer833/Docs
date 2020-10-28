@@ -1,0 +1,40 @@
+                
+			JSP Directives
+		        ==============
+		
+  
+
+
+
+The page directive:
+-------------------
+
+<@%page  import="java.util.Map"    %>
+
+Other attributes:  
+.................
+contentType
+isELIgnored
+isErrorPage
+errorPage
+
+
+
+
+
+
+The include directive:
+----------------------
+
+<@%include file="../common/jsp/header.jsp"    %>
+
+
+
+
+
+
+
+The taglib directive:
+---------------------
+
+<@%taglib tagdir="/WEB-INF/tags/numer"  prefix="nr"   %>

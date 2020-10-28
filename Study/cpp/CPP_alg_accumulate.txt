@@ -1,0 +1,43 @@
+
+
+
+                           ALGORITHMS:  accumulate
+			   =======================
+						   
+This algorithm will accumuale=add from first iterator to before last iterator int its last parameter and
+returns result;
+
+for arrays:  begin(array)   end(array) return pointers to beginning or past the end array pointers.
+             These pointers work as iterators/
+
+Header:  
+-------
+#include <algorithm>					   
+#include <numeric>	
+
+Example:
+~~~~~~~~
+T t accumulate(InputIterator first,InputIterator last,type element);
+
+    string useIt="Hello C++!";
+    string getIt=accumulate(useIt.cbegin(),useIt.cend(),string(""));
+    cout<<getIt<<endl;
+
+// Last argument must NOT be a constant like 0 or ""
+// double(0) as a last argument would do
+// string("") as a last argument would do
+
+
+Example:
+~~~~~~~~
+T t accumulate(InputIterator first,InputIterator last,type startElement,binary_function);
+
+vector<string> vstR={"Hello","C++","World!"};
+    string aStart="A sign: ";
+    string aRes=accumulate(vstR.begin(),vstR.end(),aStart,
+        [](string anAccum,string running)->string{
+            return anAccum +" "+running;
+        }
+
+    );
+    cout<<aRes<<endl;

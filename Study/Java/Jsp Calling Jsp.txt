@@ -1,0 +1,40 @@
+
+		JSP CALLING JSP
+		===============
+
+Calling jsp is superdirectory of directory:  jsps
+Called jsp is in:  jsps/TestJspA.jsp
+
+
+From calling Jsp: 
+.................
+
+// Using <url-pattern> name WITHOUT slash
+
+   <form id="idx_form" name="idx_form" action="Test_XXX" method="put" >
+
+
+
+// Using path relative to calling jsp:   
+
+<form id="idx_form" name="idx_form" action="./jsps/TestJspA.jsp" method="put" >
+<form id="idx_form" name="idx_form" action="jsps/TestJspA.jsp" method="put" >
+
+
+
+Called Jsp configured in web.xml
+................................
+
+    <servlet>
+        <servlet-name>Test_A</servlet-name>
+        <jsp-file>/jsps/TestJspA.jsp</jsp-file>
+    </servlet>
+.
+.
+.
+    <servlet-mapping>
+        <servlet-name>Test_A</servlet-name>
+        <url-pattern>/Test_XXX</url-pattern>  
+    </servlet-mapping>
+
+//Notice:  In calling Jsp there IS slash before Test_XXX

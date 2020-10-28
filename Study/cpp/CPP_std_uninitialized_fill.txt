@@ -1,0 +1,23 @@
+
+
+                           STD::uninitialized_fill
+			   =======================
+						   
+#include <memory>
+
+void uninitialized_fill(iter_begin,iter_end,value_not_iterator);
+
+uninitialized_fill copies from range <begin, end) to begin_2
+begin_2 must point to memory big enough to contain (iter_end - iter_begin) elements
+Returned value:  void
+
+
+
+Example:
+~~~~~~~~
+
+    Uu uu;  //Uu class declared in header file
+    std::allocator<Uu> mA;
+    auto mP=mA.allocate(3);
+    uninitialized_fill(mP,mP+3,uu);
+    mA.deallocate(mP,3);

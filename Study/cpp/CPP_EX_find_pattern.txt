@@ -1,0 +1,24 @@
+
+                                                  FIND PATTERN
+                                                  ============
+
+#include <iostream>
+#include <ctype.h>     // if we test regardless of case
+#include <string.h>    // for strlen
+
+
+void testPattern(char cr){
+    static int rnnIx=0;
+    static int maxSize=strlen(pPtrn)-1;
+
+    if(cr == pPtrn[rnnIx]){
+        if(rnnIx == maxSize){
+            cout<<"Pattern found"<<endl;
+            rnnIx=0;
+        }else{
+            ++rnnIx;
+        }
+    }else{
+        rnnIx=0;
+    }
+}

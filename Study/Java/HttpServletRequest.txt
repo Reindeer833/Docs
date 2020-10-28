@@ -1,0 +1,58 @@
+
+
+			HttpServletRequest
+			==================
+
+
+
+
+Parameters:
+-----------
+
+String      getParameter(String nm);
+String []   getParameterValues();
+
+Enumeration getParameterNames();
+
+Map<String,String>  getParameterMap();
+
+
+
+
+Attributes:
+-----------
+
+Object       getAttribute(String );
+Enumeration  getAttributeNames();
+void         setAttribute(String nm, Object attr);
+void         removeAttribute(String nm);
+
+
+
+
+Headers:
+--------
+
+String       getHeader(String nm);
+Enumeration  getHeaderNames();
+long         getDateHeader();
+int          getIntHeader();
+
+Enumeration  getHeaders();
+
+
+
+
+Session:
+--------
+
+HttpSession  getSession();
+HttpSession  getSession(boolean create);
+
+
+
+
+Context:
+--------
+
+ServletContext getServletContext();

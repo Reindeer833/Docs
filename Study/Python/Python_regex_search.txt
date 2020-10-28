@@ -1,0 +1,70 @@
+
+		PYTHON REGEX SEARCH
+		====================
+
+	
+1.   Imports
+     -------
+     import re   # for regex
+     import sys  # for main
+     import os   # to open file
+
+
+2.  Compile a pattern for efficient processing:
+    -------------------------------------------
+    
+pattern=re.compile('some_regular_expression')
+
+3.  Then use for search
+    -------------------
+result=pattern.findall('TP Tutorialspoint TP')
+print result  // a list
+
+
+
+Functions
+=========
+
+re.findall()  # this function returns a list containing all matches.
+
+re.search()   # aMatcher = re.search('pattern-regex', some_txt_string) 
+              # this function searches the string for a match, and returns a Match object if there is a match.
+              # If there is more than one match, only the first occurrence of the match will be returned
+              # If these is no match it will return None   !!! ALWAYS CHECK ON None !!!
+              # txt = "The rain in Spain"
+              # x = re.search("^The.*Spain$", txt) 
+              
+re.split()     # aList=re.split(pattern,string)           
+
+
+
+Match object
+============
+
+match.span() # returns (a,b)  a inclusive b exclusive
+------------
+txt = "Start the rain in Spain"
+x = re.search(r"\bS\w+", txt)
+print(x.span())   # prints (0,5)
+
+match.group() # returns the whole match
+------------  
+txt = "The rain in Spain"
+x = re.search(r"\bS\w+", txt)
+print(x.group())  # prints Spain
+
+
+
+match.group(k) # returns the k-th matched group  gropu(0) the same as grroup()
+--------------  
+txt = "The rain in Spain"
+x = re.search(r"\b(S\w+(n))", txt)
+print(x.group(2))  # prints n
+
+
+match.start()   match.end()
+---------------------------
+match.start()  # index of start of first match
+match.end()    # index past end of first match
+
+

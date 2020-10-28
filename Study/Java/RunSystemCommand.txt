@@ -1,0 +1,28 @@
+
+
+
+                    RUN SYSTEM COMMAND
+                    ==================
+
+
+ private void runSystemCommand() throws Exception{
+        Process process = null;
+        try{            
+            ProcessBuilder pb = new ProcessBuilder(shellCommand);
+            pb.redirectErrorStream(true);
+            appLog.logEntry("Started running:",shellCommand);
+            process = pb.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null){
+                appLog.logEntry(line);
+                System.out.println(line);
+           }
+            process.waitFor();
+            reader.close();
+            appLog.logEntry("Finished running:",shellCommand);
+        }catch(Exception e){
+            appLog.logEntry("Exception in RunShellScript:runSystemCommand()", e.getMessage());
+            throw new Exception(e.getMessage());
+        }
+    }

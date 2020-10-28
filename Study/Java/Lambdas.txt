@@ -1,0 +1,116 @@
+
+
+
+                            LAMBDAS
+                            =======
+
+
+
+Functional interface can contain one and only one abstract function
+
+
+@FunctionalInterface 
+interface Fit{
+
+	int fitMeth(int inb, string str);
+}
+
+Functional interaces are used in lambdas
+
+To use lambdas I have to have three elements:
+
+1.  Functional interface -- Provides reference but no implementation
+2.  Function taking this interface and parameters as arguments -- calls into this interface its only methd
+                                                               -- but no implementation
+3.  Call int function into point 2. with implemented logic
+
+
+1. and 2. : Know name of the method but no details 
+3:  Knows implementation but no names
+    Do not nuse any reference to 1. or 2.
+    Only args and implementation
+
+
+------------------------------------------------------------------------------------------
+
+Example:
+-------
+
+
+public class Xyz {
+
+    public static void main(String[] args) {
+
+        int xxx=10;
+        int yyy=20;
+        new Xyz().testLambdaA(10,20,(xx,yy)-> xx*xx-yy*yy);          // 3. implementation
+        new Xyz().testLambdaA(10,20,(xx,yy)->{return xx*xx+yy*yy;});
+    }
+    
+    
+    private void testLambdaA(int xx,int yy,Abc abc){                 // 2. function
+        System.out.println(abc.someOp(xx, yy));
+        
+    }
+}
+
+@FunctionalInterface                                               // 1. interface
+interface Abc{
+    abstract int someOp(int aa,int bb);
+};
+
+@FunctionalInterface
+interface Abc{
+    abstract int someOp(int aa,int bb);
+};
+
+
+
+------------------------------------------------------------------------------------------
+
+
+
+Lambda syntax:
+
+
+(list of arguments,comma separated)
+
+-> separating arrow:
+
+
+{ logical expression terminated be ; }
+new StringBuilderA().testLambdaC((xx,yy)->System.out.println(xx+yy*yy), "The square is: ", 5);
+        new StringBuilderA().testLambdaC((xx,yy)->{System.out.println(xx+yy*yy);}, "The square is: ", 5);
+
+
+(int xx,string str) -> {str += xx*xx; return str;}
+
+
+Rules can be relaxed:
+
+A) I do not need to specify types:  int, string...  But if I specify one I have to specify all
+B) If statement is one only, I can leave out braces. Then no return and semicolon are needed
+   (xx,yy)->xx*yy
+   But if braces are present semicolon must be present
+   If semicolon is present, braces must be present
+C) If called method does NOT take arguments then I still have to supply empty parenthese: ()->statement
+   Example:   new Thread(()->System.out.println("I am Thread!") ).start();
+
+
+----------------------------------------------------------------------------------------------
+Golden rule:
+-----------
+When specifying lambda expession in calling function (3.) this is exactly the expression
+I would fit into body of function of implemented interface
+----------------------------------------------------------------------------------------------
+   
+-----------------------------------------------------------------------------------------------
+
+Example of lamba with no return:
+
+    new StringBuilderA().testLambdaC((xx,yy)->System.out.println(xx+yy*yy), "The square is: ", 5);
+    new StringBuilderA().testLambdaC((xx,yy)->{System.out.println(xx+yy*yy);}, "The square is: ", 5);
+
+
+
+

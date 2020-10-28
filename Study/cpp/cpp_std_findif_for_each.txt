@@ -1,0 +1,49 @@
+
+			FIND IF
+			------
+
+#include <iostream>
+#include <algorithm> // THIS ONE!!
+#include <vector>
+#include <string>
+
+using namespace std;
+
+    vector<string> vst;
+    vst.push_back("k");
+    vst.push_back("u");
+    vst.push_back("1");
+    vst.push_back("k");
+    vst.push_back("k");
+    vst.push_back("K");
+    vst.push_back("rrrrrrrrrrrrrr");
+    std::vector<string>::iterator itr=vst.begin(),jtr=itr;
+
+    auto fitr=find_if(vst.begin(),vst.end(),
+        [](string vx)->bool{
+            vx=="k";
+        }
+    );
+    
+
+NOTICE:
+1. find_if(vst.begin(),vst.end(), ....
+   //Only start and end range present
+   // in the first two args, no iterator declarations
+
+2. auto fitr=find_if(...
+   //This algoritm returns pointer to element  satisfying condition in lambda
+
+3.       [](string vx)->bool{
+            vx=="k";
+        }
+    );
+  //  In this lambda I specify:
+  //  variable to use:  string   vector template
+  //  return type for lambda:  Must be bool
+  // This condition is:  vx == "k". searching for first "k"
+  
+4. cout <<"Fount:  "<<*fitr<<endl;
+   // Iterator is a pointer, we have to dereference to display
+  
+

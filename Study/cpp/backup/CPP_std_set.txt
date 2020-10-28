@@ -1,0 +1,56 @@
+
+
+                           STD::set
+			   ===========
+						   
+Set is associative container
+----------------------------
+
+Sets are containers that store unique elements following a specific order.
+
+In a set, the value of an element also identifies it (the value is itself the key, of type T), and each value must be unique. The value of the elements in a set cannot be modified once in the container (the elements are always const), but they can be inserted or removed from the container.
+				   
+
+Constructors
+------------
+template < class T,                        // set::key_type/value_type
+           class Compare = less<T>,        // set::key_compare/value_compare
+           class Alloc = allocator<T>      // set::allocator_type
+           > class set;     
+
+
+
+~~~~~~~~~~
+Iterators
+~~~~~~~~~~
+
+set::begin
+set::end
+set::cbegin
+set::cend
+set::count
+set::crbegin
+set::crend
+
+
+~~~~~~~~~~~~~~~~~
+Member functions
+~~~~~~~~~~~~~~~~~
+
+iterator find(value_type& vt);	//Returns set.end() if not found
+
+iterator  erase (const_iterator position);
+size_type erase (const value_type& val);
+iterator  erase (const_iterator first, const_iterator last);
+
+
+void insert (InputIterator first, InputIterator last);
+pair<iterator,bool> insert (const value_type& val);
+pair<iterator,bool> insert (value_type&& val);
+
+
+bool empty(); //true if empty
+
+size_type size() ; //number of elements in container
+
+

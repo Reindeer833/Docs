@@ -1,0 +1,47 @@
+
+
+
+				EXCEPTION TRACE TO STRING
+				=========================
+
+
+
+
+
+Throwable:   public void printStackTrace(PrintWriter s)
+----------
+
+
+PrintWriter prints formatted representations of objects to a text-output stream
+-----------
+
+PrintWriter can print to File, OutputStream, Writer
+   depending on constructor, say:  PrintWriter(File file)      PrintWriter(Writer wr);
+
+
+StringWriter collects its output in a buffer
+------------
+I can get this buffer:  public StringBuffer getBuffer()
+
+
+
+
+Joining all these features
+--------------------------
+
+
+
+StringWriter stw = new StringWriter();
+PrintWriter  pwr = new PrintWriter(stw);
+Throwable:   printStackTrace(pwr);
+
+
+Now I have exception stack trace in StringWriter stw.
+
+
+
+
+
+
+
+

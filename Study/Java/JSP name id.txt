@@ -1,0 +1,10 @@
+                
+				JSP Name ID
+		        ===========
+		
+  <input id="usr_id" name="usr_name" type="text" class="text_box">
+
+  id="usr_id"      This is used by Java Script in call: getElementById
+( id MUST be unique on Jsp page)
+
+  name="usr_name"    This is used by servlet:  String name = req.getParameter("usr_name");
