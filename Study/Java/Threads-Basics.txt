@@ -1,0 +1,49 @@
+
+			Thread - Basics
+			===============
+			
+We can create threads in two ways.
+
+1)  Extending class Thread
+--------------------------
+
+MyClass extends Thread{
+
+        public static void main(string args[]){
+        	new MyClass().start();
+        
+        }
+
+	public void run(){
+	
+	
+	}
+
+}
+
+
+2)  Implementing interface Runnable
+-----------------------------------
+
+MyClass implements Runnable(){
+	 public static void main(string args[]){
+	        MyClass mC  = new MyClass();
+        	new Thread(mC).start();
+        
+        }
+
+	public void run(){	
+	
+	}
+
+}
+
+
+Thread States
+-------------
+
+1.  New
+2.  Runnable
+3.  Running
+4.  Blocked/Waiting
+5.  Dead

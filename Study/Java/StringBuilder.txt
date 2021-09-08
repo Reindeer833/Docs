@@ -21,7 +21,7 @@ Methods
 -------
 
 StringBuilder.append(everything);
-StringBuilder.delete(int start,int end);
+StringBuilder.delete(int start_incl,int end_excl);
 StringBuilder.deleteCharAt(int xPos);
 
 StringBuilder.insert(int offset,everything);
