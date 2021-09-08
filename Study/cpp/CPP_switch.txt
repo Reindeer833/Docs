@@ -63,7 +63,7 @@ Example
         case RED:   std::cout << "red\n"; break;
         case GREEN: std::cout << "green\n"; break;
         case BLUE:  std::cout << "blue\n"; break;
-         default: cout<<"No such color"<<endl;break;
+        default: cout<<"No such color"<<endl;break;
     }
     
     

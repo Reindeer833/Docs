@@ -1,0 +1,51 @@
+
+
+
+                           Difference between abort  exit
+                           ==============================
+						   
+abort():       Sends a SIGABRT signal. Does not call any destructors
+               Exits with error return code
+
+exit(int ):    Calls destructors of global and static classes. Evene function static.
+               Does not call destructors of automatic classes
+               Calls function:  atexit(my_exit_handler)
+               
+
+
+Example:
+--------               
+#include <iostream>
+
+using namespace std;
+
+class Aa{
+
+    public:
+        Aa(string aTxt){
+            mTxt=aTxt;
+        }
+        ~Aa(){
+            cout<<"Destructor: "<<mTxt<<endl;
+        }
+    private:
+        string mTxt;
+};
+
+Aa aa("Global");   //destructor called for exit()
+
+void myFoo(){
+    cout<<endl<<"Calling foo"<<endl;  //called for exit()
+
+}
+
+int main()
+{
+    Aa bb("Local");             //destructor NOT called for exit()
+    static Aa cc("Static");     //destructor called for exit()
+    atexit(myFoo);
+    exit(10);
+//    abort();
+    return 0;
+}
+

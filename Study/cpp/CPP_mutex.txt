@@ -1,0 +1,49 @@
+
+
+		MUTEX
+		-----
+
+mutex stands for mutually exclusive.  Only one thread can enter code locked by mutex.
+
+#include <pthread.h> //  Must
+#include <time.h>    //  Useful
+
+
+pthread_mutex_t aLock; // Global mutex, *.h file
+                       // available to all functions
+
+In *.cpp file
+-------------
+
+pthread_mutex_init(&aLock,nullptr); 
+1. Passing pointer
+2. Function has two arguments
+
+
+
+pthread_mutex_lock(&aLock);
+//
+// ....protected code here
+//
+pthread_mutex_unlock(&aLock);
+
+1. Protected code between lock and unlock
+2. Function takes a pointer
+3. Function takes one argument
+
+pthread_mutex_destroy(&aLock);
+1. Last thing to do when all thread finish
+2. Passing pointer
+3. Function has two arguments
+
+
+Useful:
+-------
+
+In *h. file
+-----------
+struct timespec aDelay={1,5000000}; // 1.5 sec
+
+In *.cpp file
+-------------
+nanowait(&aDelay,&aDelay);

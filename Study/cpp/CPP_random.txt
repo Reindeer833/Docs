@@ -1,0 +1,23 @@
+
+
+		RANDOM
+		------
+#include <random>
+#include <functional>
+
+using namespace std;
+
+   random_device rde;
+   mt19937                       mtw(rde());      //use constructor
+   uniform_int_distribution<int> distr(1,80);     //do not forget <int> and interval(1,80)
+   auto rnd = std::bind(distr,mtw);               
+   
+   I can use:  
+   uniform_real_distribution<double> unrd(0,10); //do not forget <double> and interval(0,10)
+   
+   
+   Useful:
+   -------
+   
+   #include <chrono>
+   std::this_thread::sleep_for(std::chrono::milliseconds(rnd()));

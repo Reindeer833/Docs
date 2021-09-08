@@ -5,7 +5,7 @@
 
 set_union:
 ----------
-std::set_union(containerA.begin(),containerA.end(),containerB.begin(),containerB.end(),containerResult.inputIter);
+auto endIter = std::set_union(containerA.begin(),containerA.end(),containerB.begin(),containerB.end(),containerResult.inputIter);
 
 container result will contain elements from containerA 
                       and elements from containerB which are NOT in containerA
@@ -16,7 +16,7 @@ BOTH CONTAINERS MUST BE SORTED!!!
 
 This is applied to any container, not only to sets
 
-The difference between symetric difference and union is, result of union can contain elements fro containerA even if they appear in CoontainerB.
+The difference between symetric difference and union is, result of union can contain elements from containerA even if they appear in CoontainerB.
 
 
 #include <iostream>

@@ -1,0 +1,41 @@
+
+
+
+                           STD TUPLE
+			   =========
+
+A tuple is an object capable to hold a collection of elements of different types.			   
+						   
+Creating tuples:
+----------------
+1. Using make_tuple
+   auto aT = std::make_tuple ("Hello", 2021, "World",'!');  //using make_tuple
+
+2. Direct delaration and assigning values
+   tuple <string,int> aP;
+   get<0>(aP) = "John Doe is: ";
+   get<1>(aP) =55;
+
+3. Direct delaration and immediate supplying values
+    std::tuple<string,int,string> aR("John is ",10," years old.");
+    
+Retrieving values from tuples    
+ std::get<constant_index>(myTuple);  // cannot be int ix;
+
+
+Example
+-------    
+    tuple <string,int> aP;
+    get<0>(aP) = "John Doe is: ";
+    get<1>(aP) =55;
+    cout<<get<0>(aP)<<" "<<get<1>(aP)<<endl;
+
+    auto aT = std::make_tuple ("Hello", 2021, "World",'!');
+    cout<<get<0>(aT)<<" ";
+    cout<<get<1>(aT)<<" ";
+    cout<<get<2>(aT);
+    cout<<get<3>(aT);
+    cout<<endl;
+
+    std::tuple<string,int,string> aR("John is ",10," years old.");
+    cout<<std::get<0>(aR)<<std::get<1>(aR)<<std::get<2>(aR)<<endl;

@@ -1,0 +1,58 @@
+
+
+
+                 EXCEPTIONS:  throwing class
+                 ===========================
+						   
+
+We can throw the whole object as exception.  It can be caught 
+in catch block and processed.
+
+If I have Derived class and Base class and if Base class is in catch block first
+then Base class object is always caught.					   
+In order to catch Derived class object it must be in catch block preceding 
+catch block for Base class.
+
+Header file:
+------------
+class Bc{
+    public:
+        string aMssg="In Base";
+};
+
+
+class Dc:public Bc{
+    public:
+        string aMssg="In Derived";
+};
+
+
+  
+CPP file:
+---------
+
+    Bc bc;
+    Dc dc;
+    Dc dcc;
+    try{
+        throw dc;  //Throwing Derived
+    }catch(Bc ex){
+        cout <<ex.aMssg<<endl;  //Catching Base
+    }catch(Dc ex){
+        cout <<ex.aMssg<<endl;
+    }catch(...){
+        cout <<"Caught unknown exception"<<endl;
+    }
+
+
+
+    try{
+        throw dcc;      //Throwing Derived
+    }catch(Dc ex){     //Catching Derived
+        cout <<ex.aMssg<<endl;
+    }catch(Bc ex){
+        cout <<ex.aMssg<<endl;  //Catching Base
+    }catch(...){
+        cout <<"Caught unknown exception"<<endl;
+    }
+

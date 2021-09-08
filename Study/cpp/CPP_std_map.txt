@@ -11,12 +11,16 @@ Associative Container
 Maps are associative containers that store elements formed by a combination of a key value and a mapped value, 
 following a specific order.
 
-In a map, the key values are used to sort and uniquely identify the elements. The types of key and mapped value are grouped together 
-in member type value_type, a pair type combining both:
+----------------------
+SO MAP STORES PAIRS!!!
+----------------------
+
+In a map, the key values are used to sort and uniquely identify the elements. 
+
 
  typedef pair<const Key, T> value_type; //DO YOU SEE THAT CONST KEY ???
 
-This though is wrong:      map<pair<const int,string> > abc;  //WRONG
+This though is wrong:      map<pair<const int,string> > abc;  //!!!!WRONG!!!!
  
  Maps are implemented as binary search trees.
 
@@ -25,13 +29,16 @@ This though is wrong:      map<pair<const int,string> > abc;  //WRONG
 
 Map constructor has at least two templates.
    
+-------------------------------------------------   
 Map has:   size_type   
 
-key_type     type of K
-mapped_type  type of Mapped type
-value_type   type of pair    (NOT OF VALUE!!!!)
+map::key_type     type of K
+map::mapped_type  type of Mapped type
+map::value_type   type of pair    (NOT OF VALUE!!!!)
 
-allocator_type   //creates memory for pairs
+map::allocator_type   //creates memory for pairs
+
+-------------------------------------------------
 
 
 IMPORTANT
@@ -50,14 +57,25 @@ IMPORTANT
 Member Functions
 ~~~~~~~~~~~~~~~~					   
 
-map::key_type
-map::mapped_type
-
 
 Constructors
 ------------
 std::map<int,int> map;  
+
+//Here I will specify comparator
+// As a template:   bool(*)(string,string)
+// As a parameter to constructor
+
 std::map<string,string,bool (*)(string,string)> aMap(aCompFn);
+
+Or directly
+-----------
+std::map<std::string,int> mymap = {
+                { "alpha", 0 },
+                { "beta", 0 },
+                { "gamma", 0 } };
+
+
 
 insert
 ~~~~~~
@@ -68,6 +86,11 @@ if(aP.second == false){
    ..........
 }
 
+auto aP=myMap.insert(make_pair('a',1) );
+//make_pair is not templated
+
+
+
 insert multiples
 ----------------
 void insert (InputIterator first, InputIterator last);
@@ -77,8 +100,32 @@ void insert (InputIterator first, InputIterator last);
 Checking if key exists
 ----------------------
 an_iterator find (const key_type& k);
-// if(an_iterator != myMap.end){ ... }
+// if(an_iterator != myMap.end){ ... }  // OK, key exists
 
+if(myMap.count(some_key) == 1){  // OK, key exists  Return can be 0 or 1
+}
+
+
+bool empty();
+------------
+size_t myMap.size();
+--------------------
+
+mymap.at(aKey)=aValue;
+----------------------
+(Will throw exeption if key does not exists)
+
+
+myMap[akey]
+-----------
+myValue = myMap[akey];
+If k does not match the key of any element in the container, 
+the function inserts a new element with that key and returns a reference to its mapped value.
+Default constructor is used.
+
+
+
+----------------------
 
 Three erase functions:
 ----------------------
@@ -103,13 +150,6 @@ if(ret.second == false{ ...this element already existed in the map ...}
 // Notice that pair is templated
 I can use:  make_par('a',23);//returns proper pair and make_pair is NOT templated
 
-bool empty();
-------------
-size_t myMap.size();
---------------------
-
-mymap.at(aKey)=aValue;
-----------------------
 
 std::map<char,std::string> mymap;
 mymap['c']="hello";  //throws exeption if key does not exist
@@ -170,4 +210,23 @@ void testMapAllocator(){
           cout<<(allPtr+ix)->first<<"  "<<(allPtr+ix)->second<<endl;
     }
 }
+
+Example of comparator function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+class Abc{
+    public:
+        Abc(long x){
+            mX=x;
+        }
+        long mX;
+
+};
+
+bool aComp(Abc a,Abc b){
+    return a.mX<b.mX;
+}
+
+  map<Abc,long long,bool(*)(Abc,Abc)> mP(&aComp);
+
 

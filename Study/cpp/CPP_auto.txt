@@ -1,0 +1,31 @@
+
+
+
+                           ALGORITHMS:  auto
+			   =================
+						   
+
+
+Usage:
+------
+
+auto foo(int x){
+
+    if(x < 1){
+        return "Hello";
+    }else{
+        return "C++!";
+    }
+
+}
+
+OR:
+
+auto xyz= myFn();
+
+OR:
+
+for(auto myIter = myVect.begin();myIter != myVect.end();++myIter){
+	.....
+}
+

@@ -1,0 +1,62 @@
+
+
+                           STD::map Iterating
+                           ==================
+                           
+
+Constructors
+------------
+std::map<int,int> map;  
+std::map<string,string, bool (*)(string,string)>    aMap(aCompFn);
+
+Because map is a collection of pairs I can iterate in two ways.
+
+
+Iterating
+---------
+
+Let's suppose I have a class Abc containg some member mX;
+
+
+    map<Abc,long, bool(*)(Abc,Abc)> mP(&aComp);
+    mP.insert({Abc(5),7});
+    mP.insert({Abc(51),37});
+    mP.insert({Abc(55),17});
+    mP.insert({Abc(8),7});
+    
+
+Iteration using pairs
+~~~~~~~~~~~~~~~~~~~~~  
+    for(std::pair<const Abc, long > pr: mP){   //do you see that const in pair?
+        cout<<pr.first.mX<<"   "<<pr.second<<endl;
+    }
+
+//  OR
+
+ for(auto pr: mP){
+        cout<<pr.first.mX<<"   "<<pr.second<<endl;
+    }
+                           
+Notice that pair is concerned about key and value but not about comparator function
+
+
+Iteration using iterators
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   for(std::map<Abc,long >::iterator iTr=mP.begin();iTr != mP.end();++iTr){
+        cout<<iTr->first.mX<<"  "<<iTr->second<<endl;
+    }
+    
+   for(std::map<Abc,long , bool(*)(Abc,Abc)>::iterator iTr=mP.begin();iTr != mP.end();++iTr){//comparator present
+        cout<<iTr->first.mX<<"  "<<iTr->second<<endl;
+
+    }
+    
+//  OR    
+
+   for(auto iTr=mP.begin();iTr != mP.end();++iTr){
+        cout<<iTr->first.mX<<"  "<<iTr->second<<endl;
+
+    }
+Notice that iterator is concerned about key and value but not about comparator function
+

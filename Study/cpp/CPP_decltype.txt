@@ -8,6 +8,16 @@ We want to use type of variable deduced from expression or another variable
 
     int xxx;
     decltype(xxx) ppp; //ppp is now integer
+    
+    Remember:  It must be expression NOT type
+    
+    decltype(int) yyy;  //   BAD
+    
+    
+    
+    int xxx;
+    decltype(xxx)  yyy;   //good
+    decltype(3*5)  zzz;   //good
 
 
 

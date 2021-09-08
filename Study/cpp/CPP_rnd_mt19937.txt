@@ -4,7 +4,7 @@
                            Random Number Generator mt19937
 			   ===============================
 						   
-
+**** A Mersenne Twister pseudo-random generator of 32-bit numbers with a state size of 19937 bits   ****
 
 Header:  
 -------
@@ -30,9 +30,9 @@ Example:
 	   
 void testGen(){
     random_device rde;
-    mt19937                       mtw(rde());
-    uniform_int_distribution<int> distr(0,10);
-    uniform_real_distribution<double> urd(0.,1.);
+    mt19937                       mtw(rde());      //use constructor
+    uniform_int_distribution<int> distr(0,10);     //do not forget interval
+    uniform_real_distribution<double> urd(0.,1.);  //do not forget interval
 
 //  I could:  auto rnd = std::bind(urd,mtw);
 //            ------------------------------
