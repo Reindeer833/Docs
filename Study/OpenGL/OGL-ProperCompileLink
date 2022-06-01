@@ -1,0 +1,15 @@
+-------------- Build: Debug in MyOpenGL_A (compiler: GNU GCC Compiler)---------------
+
+g++ -Wall -fexceptions -g -std=gnu++17  -c /home/petr/Development/cpp/cblocks/MyOpenGL_A/main.cpp -o obj/Debug/main.o
+g++  -o bin/Debug/MyOpenGL_A obj/Debug/main.o   -lGL -lX11 -lglut -lGLU
+Output file is bin/Debug/MyOpenGL_A with size 37.87 KB
+Process terminated with status 0 (0 minute(s), 1 second(s))
+0 error(s), 0 warning(s) (0 minute(s), 1 second(s))
+ 
+
+-------------- Run: Debug in MyOpenGL_A (compiler: GNU GCC Compiler)---------------
+
+Checking for existence: /home/petr/Development/cpp/cblocks/MyOpenGL_A/bin/Debug/MyOpenGL_A
+Set variable: LD_LIBRARY_PATH=.:
+Executing: xterm -T MyOpenGL_A -e /usr/bin/cb_console_runner LD_LIBRARY_PATH=:. /home/petr/Development/cpp/cblocks/MyOpenGL_A/bin/Debug/MyOpenGL_A  (in /home/petr/Development/cpp/cblocks/MyOpenGL_A/.)
+Process terminated with status 0 (0 minute(s), 6 second(s))
