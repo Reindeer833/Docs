@@ -1,0 +1,33 @@
+                          compile on a command line
+                          =========================
+
+To compile file main.cpp
+------------------------
+
+ g++ -Wall -fexceptions -g -std=c++11 -g
+              -c /home/dks0285721/Development/cpp/codeblocks/PthreadsA/main.cpp
+              -o obj/Debug/main.o
+
+
+To compile resulting object module
+----------------------------------
+g++ obj/Debug/main.o   -o obj/Debug/main.x
+
+
+Linking with additional libraries
+---------------------------------
+-L(path) ... add library path
+-l(name) ... add library name
+
+Say adding pthread library which is in standard path
+----------------------------------------------------
+g++  -o bin/Debug/main.x   obj/Debug/main.o  -lpthread
+
+If the library is not in the standard library path, add the path with -L option:
+--------------------------------------------------------------------------------
+g++ main.cpp -L/my/custom/path/ -lmy_own_lib
+
+More compile flags
+------------------
+-fexceptions
+-std=c++14
