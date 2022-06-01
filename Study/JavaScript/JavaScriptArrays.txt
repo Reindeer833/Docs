@@ -1,0 +1,56 @@
+			JavaScript Arrays
+			------------------
+
+---------------------------------------------------------------------------------------
+
+const cars = new Array();
+const cars = [];
+const cars = ["Saab","Volvo","Jaguar","Ford"];
+
+---------------------------------------------------------------------------------------
+cars.push("Nissan);  // Will add Nissan to the end
+cars.pop();  // Will remove Nissan from the end
+cars.unshift("Toyota");  // Will insert Toyota in the postion 0
+cars.shift();  // Will shift the whole array to the left. Toyota will be out
+cars.length  // ==== 4
+cars[2]; // This is Jaguar
+
+---------------------------------------------------------------------------------------
+
+splice
+======
+cars.splice(1,2);// will remove Volvo and Jaguar
+splice(first_ix, count,new_element_1,new_element_2,new_element_3.   ...   ,new_element_n);
+
+cars.splice(1,0,"Nissan","AlphaRomeo");// Will insert Nissan,AlphaRomeo in position 0 and 1
+
+splice(...) returns deleted elements
+
+
+---------------------------------------------------------------------------------------
+
+
+forEach
+=======
+
+forEach(SomeFunction);
+forEach is a member function of arrays
+This function acts on each elemnet of array
+
+Example forEach:
+~~~~~~~~~~~~~~~~
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+let text = "<ul>";
+fruits.forEach(myFunction);
+text += "</ul>";
+
+function myFunction(value) {
+  text += "<li>" + value + "</li>";
+}
+
+
+---------------------------------------------------------------------------------------
+
+
+

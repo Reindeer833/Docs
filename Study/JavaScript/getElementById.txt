@@ -1,0 +1,12 @@
+			getElementById
+			--------------
+
+document.getElementById("demo").innerHTML = "Some Text";
+
+document.getElementById("demo").innerHTML = some_array
+
+const cars = ["Saab", "Volvo", "BMW"];  
+Will translate to:
+Saab,Volvo,BMW
+
+Here  demo   is element into which we want to insert value(s):  <p id="demo"></p>
