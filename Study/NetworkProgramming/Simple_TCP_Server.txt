@@ -1,0 +1,247 @@
+                                       SIMPLE TCP SERVER
+                                       =================
+                                       
+                                       
+uint32_t htons(a_short)                                       
+-----------------------
+
+
+htons is host-to-network short
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It is swaping bytes NOT bits
+
+This means it works on 16-bit short integers. i.e. 2 bytes.
+
+This function swaps the endianness of a short.
+
+Your number starts out at:
+
+0001 0011 1000 1001 = 5001
+
+When the endianness is changed, it swaps the two bytes:
+
+1000 1001 0001 0011 = 35091
+
+--------------------------------------------------------------------------------------------------
+unsigned long htonl(unsigned long a);  
+-------------------------------------
+
+unsigned long htonl(unsigned long a);   // Berkley sockets
+-------------------------------------
+Host TO Network Long translation. It makes sure the endian of a 32 bit data value is correct (Big endian) for network transport. ntohl -- Network TO Host -- is used by the receiver to ensure that the endian is correct for the receiver's CPU. 
+
+--------------------------------------------------------------------------------------------------
+in_addr_t inet_addr(const char *cp);
+------------------------------------
+
+ The inet_addr() function converts the Internet host address cp from IPv4 numbers-and-dots notation 
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ into binary data in network byte order.  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+ If the input is invalid, INADDR_NONE is
+ returned.  Avoid its use in favor of
+ inet_aton(), inet_pton(3), or getaddrinfo(3), which provide a
+ cleaner way to indicate error return.
+
+in_addr_t ... unsigned long
+--------------------------------------------------------------------------------------------------
+
+int socket(int protocolFamily,int type,int protocol)
+---------------------------------------------------
+
+Program uses this function to ask OS to create socket
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+protocolFamily:  PF_INET  internet protocol family
+
+type     SOCK_STREAM ... reliable transmission, stream socket
+         SOCK_DGRAM  ... best effort,           datagram socket
+         
+protocol end-to-end protocol   for PF_INET we want     IPROTO_TCP
+                               for SOCK_DGRAM we want  IPROTO_UDP
+        we could supply 0 for a default protocol  
+        
+Return type:   negative = failure
+               non-negative = file descriptor, handler
+               This file descriptor is passed to other APIs which use this socket
+               
+               
+
+--------------------------------------------------------------------------------------------------
+int close(int socket_file_handler)
+----------------------------------
+
+Program uses this function to ask OS to close socket and dealocate resources
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After this call socket cannot be used
+
+--------------------------------------------------------------------------------------------------
+
+                Specifying Addresses
+                --------------------
+                
+struct sockaddr
+{
+	unsigned short sa_family;  // address family, say AF_INET
+	char     sa_data[14];      // family specific address information
+};
+sa_data[14] ... blob of bits which we interpret basd on address family
+
+  TCP/IP view of sockaddr
+  ~~~~~~~~~~~~~~~~~~~~~~~
+  struct sockaddr_in
+  {
+  	unsigned short sin_family; //  Internet protocol, AF_INET
+  	unsigned short sin_port;   //  Address port
+  	struct in_addr sin_addr;   //  Internet address (32 bits)
+  	char   sin_zero[8];
+  };	                
+
+struct in_addr
+{
+  unsigned long s_addr;
+};                         
+                       
+sockaddr     |     FAMILY  |                      BLOB(14 bytes)              |
+             |     2 bytes |  2 bytes |    4 bytes        |    8 bytes        |
+sockaddr_in  |     FAMILY  |   PORT   |Internet Address   |    Unused         |      
+               
+               
+               
+sockaddr_in is a view of sockaddr               
+
+--------------------------------------------------------------------------------------------------
+
+int connect(int socket_descriptor,struct sockaddr* foreign_address,unsigned int address length);
+
+connect establishes connection to the server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+socket_descriptor ... created by call to socket
+struct sockaddr* foreign_address  ... supplied as (strict sockaddr*)&object_of sockaddr_in
+length ... sizeof(object_of sockaddr_in) == sizeof(struct sockaddr_in)== sizeof(struct sockaddr)
+
+
+Return type:   If the connection or binding succeeds, zero is returned.  On
+               error, -1 is returned, and errno is set appropriately.
+               
+--------------------------------------------------------------------------------------------------
+
+int send(int socket_descriptor, const void * mssg,unsigned int mssg_length, int flags);
+
+send will send mssg to socket
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+mssg_length ... number of bytes to be sent
+                This number should be the same as returned number.
+                
+Default behavour is to block untill all data was sent.
+Choice of flags can alter this behaviour
+flags = 0 implies default behaviour.
+
+Return type:  Number of bytes sent.  On
+               error, -1 is returned, and errno is set appropriately.
+--------------------------------------------------------------------------------------------------
+int receive(int socket_descriptor, void * mssg,unsigned int buffer_length, int flags);
+
+receive will recive mssg from socket
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+buffer_length ... maximum number of bytes which can be received
+              
+Default behavour is to block untill at least some data is received.
+Choice of flags can alter this behaviour
+flags = 0 implies default behaviour.
+
+Return type:  Number of bytes received.  On
+               error, -1 is returned, and errno is set appropriately.        
+               0 return value indicates end of transmission.       
+               
+--------------------------------------------------------------------------------------------------               
+Note: If I accept N chars into a buffer then positions 0,1,2  ,N-1 are occupied
+      If I want to convert buffer to a C string I have to put '\0' into position N
+      So C string of length N needs N+1 bytes to be stored.
+--------------------------------------------------------------------------------------------------  
+      
+      CODE OF SIMPLE TCP CLIENT
+      =========================      
+
+--------------------------------------------------------------------------------------------------      
+      
+#include <stdio.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#define RCVBUFFERSIZE 32
+
+void dieWithError(char* aMssg);
+
+int main(int argc, char* argv[]){
+    printf("Running Network Client\n");
+    
+    int sock;
+    struct sockaddr_in echoServerAddr;
+    unsigned short     echoSrvPort;
+    char* servIP;
+    char* echoString;
+    char echoBuffer[RCVBUFFERSIZE];
+    ssize_t echoStringLen;
+    ssize_t bytesRcvd,totalBytesRcvd;
+
+    if(argc != 4){
+        fprintf(stderr,"Usage: %s IP port message\n",argv[0]);
+        exit(1);
+    }
+    //
+    servIP      = argv[1];
+    echoString  = argv[2];
+    echoSrvPort = argv[3];
+    echoString  = argv[4];
+    //
+    sock = socket(PF_INET,SOCK_STREAM,IPPROTO_TCP );
+    if(sock < 0){
+        dieWithError("socket() failed\n");
+    }
+    memset(&echoServerAddr,0,sizeof(echoServerAddr));
+    echoServerAddr.sin_family      = AF_INET;
+    echoServerAddr.sin_port        = htons(echoSrvPort);
+    echoServerAddr.sin_addr.s_addr = inet_addr(servIP);
+    int rC=connect(sock,(struct sockaddr*)&echoServerAddr,sizeof(echoServerAddr) );
+    if(rC< 0){
+        dieWithError("connect() failed \n");
+    }
+
+    echoStringLen = strlen(echoString);
+    printf("Client - echo string length: %d\n",echoStringLen);
+    // Send message to the server
+    ssize_t sendLength=send(sock,echoString,echoStringLen,0);
+    if( sendLength < echoStringLen){
+        dieWithError("send() sent different number of bytes than expected \n");
+    }
+    totalBytesRcvd=0;
+    printf("Received: ");
+    while(totalBytesRcvd < echoStringLen){
+        bytesRcvd=recv(sock,echoBuffer,RCVBUFFERSIZE-1,0);
+        if(bytesRcvd <=0){
+            dieWithError("recv() failed or connection closed prematurely");
+        }
+        totalBytesRcvd += bytesRcvd;
+        echoBuffer[bytesRcvd] ='\0';
+        printf(echoBuffer);        
+    }
+    
+    printf("\n");
+    close(sock);
+    return 0;
+}
+   
+
+void dieWithError(char* aMssg){
+    perror(aMssg);
+    exit(1);
+}
