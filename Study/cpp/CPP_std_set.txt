@@ -8,7 +8,13 @@ Set is associative container
 
 Sets are containers that store unique elements following a specific order.
 
-In a set, the value of an element also identifies it (the value is itself the key, of type T), and each value must be unique. The value of the elements in a set cannot be modified once in the container (the elements are always const), but they can be inserted or removed from the container.
+In a set, the value of an element also identifies it (the value is itself the key, of type T), and each value must be unique. 
+The value of the elements in a set cannot be modified once in the container (the elements are always const), 
+but they can be inserted or removed from the container.
+
+
+set<int> val; // defining an empty set
+set<int> val = {6, 10, 5, 1}; // defining a set with values
 				   
 
 Constructors
@@ -19,6 +25,8 @@ template < class T,                        // set::key_type/value_type
            > class set;     
 
 
+std::set<std::string,less<std::string> >    aSet;    // will be sorted in ascending order
+std::set<std::string,greater<std::string> > aSet;    // will be sorted in descending order
 
 ~~~~~~~~~~
 Iterators
