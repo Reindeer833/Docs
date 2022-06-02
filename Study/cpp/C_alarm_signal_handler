@@ -1,0 +1,29 @@
+
+
+                           Signal Alarm Handler:  SIGALRM
+			   ==============================
+						   
+
+By setting system function alarm(unsigned int some_time) I will generate signal after some_time.
+Then signal handler must be defined and registered.
+Then this signal handler will be called when signal is generated.
+
+Declare signal handler
+----------------------
+void signal_alarm_handler(int signum)
+{
+  (void)signum; 
+  printf("Inside handler function\n");
+}
+
+Include headers
+---------------
+#include<unistd.h>
+#include<signal.h>
+ 
+In your program
+---------------- 
+ 
+signal(SIGALRM,signal_alarm_handler); // Register signal handler
+ 
+alarm(2);                             // Scheduled alarm after 2 seconds
