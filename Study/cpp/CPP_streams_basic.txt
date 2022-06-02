@@ -1,0 +1,18 @@
+
+                   Basic example how to use ifstream
+                   =================================
+
+#include <iostream>
+#include <string>
+
+int main ()
+{
+  std::string name;
+
+  std::cout << "Please, enter your full name: ";
+  std::getline (std::cin,name);
+  std::cout << "Hello, " << name << "!\n";
+
+  return 0;
+}
+ // Note:  getline(streeam,string) will accept spaces and does NOT discard the rest of the line
