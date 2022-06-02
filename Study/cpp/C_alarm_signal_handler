@@ -27,3 +27,5 @@ In your program
 signal(SIGALRM,signal_alarm_handler); // Register signal handler
  
 alarm(2);                             // Scheduled alarm after 2 seconds
+
+alarm(0);                             // Discard any pending alarm
