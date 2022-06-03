@@ -1,0 +1,19 @@
+
+
+                           scanf with regex
+			   ================
+						   
+
+#include <stdio.h>
+
+scanf has some limited regex capabilities when using char classes.
+Example:
+--------
+char buffer[128];
+printf("\n\nEnter your wisdom:  ");
+scanf("%127[a-z,A-Z, ,  ,1-9]+s",buffer);
+printf("\nYou've entered: %s  ",buffer);
+
+This will allow you to enter text with spaces.
+But scanf will stop scanning input as soon as you enter a char
+which is not among those in char classes.
