@@ -45,10 +45,43 @@ let text = "<ul>";
 fruits.forEach(myFunction);
 text += "</ul>";
 
-function myFunction(value) {
-  text += "<li>" + value + "</li>";
+function myFunction(item) {
+  text += "<li>" + item + "</li>";
 }
 
+Example forEach:
+~~~~~~~~~~~~~~~~
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Arrays</h1>
+<h2>The forEach() Method</h2>
+
+<p>forEach() calls a function for each element in an array:</p>
+
+<p id="demo"></p>
+
+<script>
+let text = "";
+const fruits = ["apple", "orange", "cherry"];
+fruits.forEach(aFunction);
+
+document.getElementById("demo").innerHTML = text;
+ 
+function aFunction(item,ix,arr) {
+  text += item.toUpperCase() +" in ["+ arr+"]<br>"; 
+}
+</script>
+
+</body>
+</html>
+
+
+Syntax:
+~~~~~~~
+function myFunction(current_element,index);
+return type is undefined
 
 ---------------------------------------------------------------------------------------
 
