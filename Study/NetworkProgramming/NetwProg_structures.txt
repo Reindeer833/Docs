@@ -1,0 +1,19 @@
+			Network Programming Structures
+                        ==============================
+
+
+struct sockaddr: generic type for specifying addresses passed to seckets
+------------------------------------------------------------------------
+
+struct sockaddr
+{
+	unsigned short sa_family; // Address family:  AF_INET
+	char sa_data[14];         // Family specific adderss info
+};
+
+Length of struct sockaddr: 2 + 14 = 16
+
+struct sockaddr is passed to API connect(...)
+
+
+

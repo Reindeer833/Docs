@@ -1,0 +1,31 @@
+			Conversion Functions Used in Network Programming
+                        ================================================
+
+
+Following functions convert values between host and network byte order
+----------------------------------------------------------------------
+
+#include <arpa/inet.h>
+
+Host to network long
+--------------------
+uint32_t htonl(uint32_t hostlong);
+
+Host to network short
+---------------------
+uint16_t htons(uint16_t hostshort);
+
+
+Network to host long
+--------------------
+uint32_t ntohl(uint32_t netlong);
+
+Network to host short
+----------------------
+uint16_t ntohs(uint16_t netshort);
+
+Used types
+----------
+uint16_t   unsigned short which guarantees 16 bits
+uint32_t   unsigned short which guarantees 32 bits
+
