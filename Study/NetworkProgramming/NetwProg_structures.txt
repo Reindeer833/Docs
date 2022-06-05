@@ -2,7 +2,7 @@
                         ==============================
 
 
-struct sockaddr: generic type for specifying addresses passed to seckets
+struct sockaddr: generic type for specifying addresses passed to sockets
 ------------------------------------------------------------------------
 
 struct sockaddr
@@ -11,9 +11,35 @@ struct sockaddr
 	char sa_data[14];         // Family specific adderss info
 };
 
-Length of struct sockaddr: 2 + 14 = 16
+Length of struct sockaddr: 2 + 14 = 16 bytes
 
 struct sockaddr is passed to API connect(...)
 
+
+struct sockaddr_in: different view by memory parting of struct sockaddr
+-----------------------------------------------------------------------
+
+struct sockaddr_in
+{
+	unsigned short   sin_family; // Internet address family 16 bits
+	unsigned short   sin_port;   // Address port            16 bits
+	struct   in_addr sin_addr;   // Internet address        32 bits
+        char     sin_zero[8];        // Unused                   8 bytes
+};
+
+Length of struct sockaddr_in: 2 + 2 + 4 + 8 = 16 bytes
+
+
+struct in_addr:  TCP/IP socket address used in struct sockaddr_in
+-----------------------------------------------------------------
+
+struct in_addr
+{
+	unsigned long   s_addr; // Internet address      32 bits
+};
+
+s_addr is returned by API call:  inet_addr(const char *)
+
+Length of struct in_addr: 4 bytes
 
 
