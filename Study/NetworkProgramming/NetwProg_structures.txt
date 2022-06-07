@@ -16,6 +16,8 @@ Length of struct sockaddr: 2 + 14 = 16 bytes
 struct sockaddr is passed to API connect(...)
 
 
+
+
 struct sockaddr_in: different view by memory parting of struct sockaddr
 -----------------------------------------------------------------------
 
@@ -28,6 +30,17 @@ struct sockaddr_in
 };
 
 Length of struct sockaddr_in: 2 + 2 + 4 + 8 = 16 bytes
+
+
+
+           Comparing structures sockaddr and sockaddr_in         
+           ---------------------------------------------
+sockaddr     |     FAMILY  |                      BLOB(14 bytes)              |
+             |     2 bytes |  2 bytes |    4 bytes        |    8 bytes        |
+sockaddr_in  |     FAMILY  |   PORT   |Internet Address   |    Unused         |     
+
+
+
 
 
 struct in_addr:  TCP/IP socket address used in struct sockaddr_in
