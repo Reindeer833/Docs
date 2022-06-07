@@ -1,0 +1,29 @@
+
+			API send call
+                        =============
+
+
+
+       ssize_t send(int sockfd, const void *buff, size_t len, int flags);
+       ------------------------------------------------------------------
+
+       #include <sys/socket.h>
+
+       The system calls send(), sendto(), and sendmsg() are used to
+       transmit a message to another socket.
+       sockfd   file descriptor
+       buff     message to send
+       addrlen  specifies the size of buff  == strlen() meaning without '\0' char
+
+       return value
+       ~~~~~~~~~~~~
+       On success, these calls return the number of bytes sent.  On
+       error, -1 is returned, and errno is set to indicate the error.
+
+
+       Example:
+       ~~~~~~~~
+       if(send(socket_fd,stringBuffer,lengthOfStringBuffer) != lengthOfStringBuffer)
+       {
+         // error processing
+       }
