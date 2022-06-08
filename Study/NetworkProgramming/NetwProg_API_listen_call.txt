@@ -1,0 +1,50 @@
+
+			API listen call
+                        ===============
+
+
+
+       #include <sys/socket.h>
+       int listen(int sockfd, int queue_limit);
+       ----------------------------------------
+
+       The listen() function applies only to stream sockets. It indicates a readiness to accept client connection requests 
+       and creates a connection request queue of length backlog to queue incoming connection requests. 
+       Once full, additional connection requests are rejected.
+       It transforms an active socket into a passive socket. Once called, 
+       socket can never be used as an active socket to initiate connection requests. 
+       Calling listen() is the third of four steps that a server performs to accept a connection. 
+       It is called after allocating a stream socket with socket()
+       and after binding a name to socket with bind(). 
+       It must be called before calling accept().
+
+       The socket that has been bound to a port and marked as listening is NEVER used for sending and receiving.
+       Instead it is used as a wy of getting new sockets one for each client connection. 
+       The server then uses new sockets to send and receive.
+       The server gets a socket for an incoming client connection by calling accept.
+
+       sockfd       file descriptor
+       queue_limit  it specifies upper limit on number of incomming connections that can be waiting any time.
+
+       return value
+       ~~~~~~~~~~~~
+       On success, zero is returned.  On error, -1 is returned, and
+       errno is set to indicate the error.
+
+       Example:
+       ~~~~~~~~
+       Call to listen() API:
+       ---------------------
+       if (listen(server_fd, 3) < 0) 
+       {
+          perror("listen");
+          exit(EXIT_FAILURE);
+       }
+
+       Followed by accept() API call:
+       ------------------------------
+       if ((new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen)) < 0) 
+       {
+          perror("accept");
+          exit(EXIT_FAILURE);
+       }

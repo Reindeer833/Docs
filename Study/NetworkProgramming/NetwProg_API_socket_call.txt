@@ -11,7 +11,7 @@
        
        #include <sys/socket.h>
 
-       int socket(int domain, int type, int protocol);
+       int socket_descr socket(int domain, int type, int protocol);
        
        domain = Adress family
        ~~~~~~~~~~~~~~~~~~~~~~
@@ -51,4 +51,4 @@
        int sock_tcp = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
 
-   
+       to close socket open with socket call:   close(socket_descr); 

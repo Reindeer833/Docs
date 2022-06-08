@@ -1,0 +1,43 @@
+
+			API bind call
+                        =============
+
+
+
+       #include <sys/socket.h>
+       int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+       ---------------------------------------------------------------------
+
+       When a socket is created with socket(2), it exists in a name
+       space (address family) but has no address assigned to it.  bind()
+       assigns the address specified by addr to the socket referred to
+       by the file descriptor sockfd.  addrlen specifies the size, in
+       bytes, of the address structure pointed to by addr.
+       Traditionally, this operation is called “assigning a name to a
+       socket”.
+
+       It is normally necessary to assign a local address using bind()
+       before a SOCK_STREAM socket may receive connections 
+
+       sockfd   file descriptor
+       addr     pointer to instance of struct sockaddr 
+       addrlen  length of struct sockaddr
+
+       return value
+       ~~~~~~~~~~~~
+       On success, zero is returned.  On error, -1 is returned, and
+       errno is set to indicate the error.
+
+       Example:
+       ~~~~~~~~
+       struct sockaddr_in address;
+
+       address.sin_family = AF_INET;
+       address.sin_addr.s_addr = INADDR_ANY;
+       address.sin_port = htons(PORT);
+
+       if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) < 0) 
+       {
+         perror("bind failed");
+         exit(EXIT_FAILURE);
+       }
