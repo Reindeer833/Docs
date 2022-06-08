@@ -1,0 +1,71 @@
+
+			API recv call
+                        =============
+
+
+
+       #include <sys/socket.h>
+       ssize_t recv(int sockfd, void *buf, size_t len, int flags);
+       -----------------------------------------------------------
+
+       Read(...) does not contain flags
+       #define _OE_SOCKETS
+       #include <unistd.h>
+
+       ssize_t read(int sockfd, void *buf, size_t len, int flags);
+       -----------------------------------------------------------
+
+
+       The recv(), recvfrom(), and recvmsg() calls are used to receive
+       messages from a socket.
+       All three calls return the length of the message on successful
+       completion.  
+       If a message is too long to fit in the supplied
+       buffer, excess bytes may be discarded depending on the type of
+       socket the message is received from.
+
+       If no messages are available at the socket, the receive calls
+       wait for a message to arrive, unless the socket is nonblocking
+       (see fcntl(2)), in which case the value -1 is returned and errno
+       is set to EAGAIN or EWOULDBLOCK. 
+
+       sockfd   file descriptor
+       buff     message receiveid
+       addrlen  specifies the size of buff  == strlen() meaning without '\0' char
+       flags    we set  them to 0
+
+       return value
+       ~~~~~~~~~~~~
+       If successful, recv() returns the length of the message or datagram in bytes. 
+       The value 0 indicates the connection is closed.
+       In case of error, -1 is returned, and errno is set to indicate the error.
+
+       *** The recv() and send() functions do not guarantee to send/recv all data  ***
+       ***         We have to impement or own handler to send/recv in loop         ***
+
+       Example:
+       ~~~~~~~~
+       if(recv(socket_fd,stringBuffer,lengthOfStringBuffer-1,0)  <0 )
+       {
+         // error processing
+       }
+
+//     In a loop
+//     ---------
+       while( (len = recv( fdescr, buffer, MAX_LINE-1, 0 ) ) > 0 )
+       {
+           printf("%d bytes read.\n", len); // To confirm receive to user.
+           buffer[len] = '\0';
+           strcat(input, buffer);
+       }
+       if( len < 0 )
+       {
+           printf("Read error.");
+       }
+
+       Example for read()
+       ~~~~~~~~~~~~~~~~~~
+       while ((ret = read(fd, buf, sizeof(buf)-1)) > 0) {
+           buf[ret] = 0x00;
+           printf("block read: \n<%s>\n", buf);
+       }

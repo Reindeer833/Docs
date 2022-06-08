@@ -20,6 +20,9 @@
        On success, these calls return the number of bytes sent.  On
        error, -1 is returned, and errno is set to indicate the error.
 
+       *** The recv() and send() functions do not guarantee to send/recv all data  ***
+       ***         We have to impement or own handler to send/recv in loop         ***
+
 
        Example:
        ~~~~~~~~
@@ -27,3 +30,21 @@
        {
          // error processing
        }
+
+
+//     In a loop
+//     ---------
+       bool send_all(int socket, void *buffer, size_t length)
+       {
+          char *ptr = (char*) buffer;
+          while (length > 0)
+          {
+             int i = send(socket, ptr, length);
+             if (i < 1) return false;
+             ptr += i;
+             length -= i;
+          }
+          return true;
+       }
+
+
