@@ -1,0 +1,70 @@
+
+			API accept call
+                        ===============
+
+
+
+       #include <sys/socket.h>
+       int accept(int sockfd, struct sockaddr *restrict addr, socklen_t *restrict addrlen);
+       ------------------------------------------------------------------------------------
+
+       accept() is a blocking function
+
+       The accept() system call is used with connection-based socket
+       types (SOCK_STREAM, SOCK_SEQPACKET).  It extracts the first
+       connection request on the queue of pending connections for the
+       listening socket, sockfd, creates a new connected socket, and
+       returns a new file descriptor referring to that socket.  The
+       newly created socket is not in the listening state.  The original
+       socket sockfd is unaffected by this call.
+
+       The argument sockfd is a socket that has been created with
+       socket(), bound to a local address with bind(), and is
+       listening for connections after a listen().
+
+       The argument addr is a pointer to a sockaddr structure.  This
+       structure is filled in with the address of the peer socket, as
+       known to the communications layer.  The exact format of the
+       address returned addr is determined by the socket's address
+       family (see socket(2) and the respective protocol man pages).
+       When addr is NULL, nothing is filled in; in this case, addrlen is
+       not used, and should also be NULL.
+
+       The addrlen argument is a value-result argument: the caller must
+       initialize it to contain the size (in bytes) of the structure
+       pointed to by addr; on return it will contain the actual size of
+       the peer address.
+
+       sockfd                 file descriptor of socket upon which we called listen()
+       struct sockaddr* addr  pointer to struct sockaddr declared in calling pgm 
+       addrlen                we should supply length but will be updated by real length of the peer address
+
+       return value
+       ~~~~~~~~~~~~
+       On success, descriptor of new socket is returned.  On error, -1 is returned, and
+       errno is set to indicate the error.
+
+       Example:
+       ~~~~~~~~
+       Call to  accept():
+       ------------------
+       if ((new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen)) < 0) 
+       {
+          perror("accept");
+          exit(EXIT_FAILURE);
+       }
+       Preceded by call to listen() API:
+       ---------------------------------
+       if (listen(server_fd, 3) < 0) 
+       {
+          perror("listen");
+          exit(EXIT_FAILURE);
+       }
+
+       Followed by accept() API call:
+       ------------------------------
+       if ((new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen)) < 0) 
+       {
+          perror("accept");
+          exit(EXIT_FAILURE);
+       }
