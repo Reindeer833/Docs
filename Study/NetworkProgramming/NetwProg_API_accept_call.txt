@@ -41,8 +41,11 @@
 
        return value
        ~~~~~~~~~~~~
-       On success, descriptor of new socket is returned.  On error, -1 is returned, and
-       errno is set to indicate the error.
+       On success, descriptor of new socket is returned.  
+               ---------------------------------------------------------
+               *** This new socket now can be used to recv and send. ***
+               ---------------------------------------------------------
+       On error, -1 is returned, and errno is set to indicate the error.
 
        Example:
        ~~~~~~~~
