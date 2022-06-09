@@ -1,0 +1,9 @@
+
+			Sequence of Client Calls
+                        ========================
+
+
+1.   socket(...)      --  will return socket descriptor on success
+2.   connect(...)     --  establishes connection to the server
+3.   send(...)        --  sends message to the server
+3.   recv(...)        --  receives message from the server

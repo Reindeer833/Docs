@@ -19,6 +19,8 @@
        It is normally necessary to assign a local address using bind()
        before a SOCK_STREAM socket may receive connections 
 
+       bind() will fail if some other socket is bound to the used port.
+
        sockfd   file descriptor
        addr     pointer to instance of struct sockaddr 
        addrlen  length of struct sockaddr

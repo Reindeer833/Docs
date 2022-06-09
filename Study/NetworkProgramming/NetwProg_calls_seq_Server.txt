@@ -1,0 +1,15 @@
+
+			Sequence of Server Calls
+                        ========================
+
+
+1.   socket(...)      --  will return socket descriptor on success
+2.   bind(...)        --  bind to the local address and to a port
+                          bind() will fail if the port is already bound
+3.   listen(...)      --  set the socket so it will listen for incoming connections
+                          Before the call to listen any incoming connection request 
+                          to the socket address will be rejected.
+4.   accept(...)      --  wait for a client to connect. Blocking.
+
+Now use socket handle returned from accept(...) to recv(...) message from client 
+                                             or to send(...) messages to client
