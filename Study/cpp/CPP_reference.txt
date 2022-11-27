@@ -36,5 +36,13 @@ int& foo(){
 foo() = 25; //correct
 
 						   
+Reference to reference
+----------------------
+
+This is allowed:
+
+int   xx = 25;
+int&  yy = xx;
+int&  zz = yy;
 
 
