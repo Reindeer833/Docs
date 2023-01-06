@@ -30,6 +30,28 @@ This though is wrong:      map<pair<const int,string> > abc;  //!!!!WRONG!!!!
 Map constructor has at least two templates.
    
 -------------------------------------------------   
+***   Iterator is a pointer!   ***
+auto iM = someMap.cbegin();
+iM is a pointer to a pair
+
+To access values of a pair:
+iM->first
+iM-second
+
+
+Surprise:
+~~~~~~~~~
+    auto lf = [](pair<string,int> pr)->void{
+        cout << pr.second<<"\t\t"<<pr.first<<endl;
+    };
+    for_each(my_map.cbegin(),my_map.cend(),lf);
+
+Here cbegin()   cend()  return iterators and iterators are pointers to pair
+but lambda will take directly pairs
+^                     ^
+|                     |
+*** REMEMBER THIS!  ***
+-------------------------------------------------   
 Map has:   size_type   
 
 map::key_type     type of K
@@ -99,9 +121,17 @@ void insert (InputIterator first, InputIterator last);
 
 Checking if key exists
 ----------------------
-an_iterator find (const key_type& k);
-// if(an_iterator != myMap.end() ){ ... }  // OK, key exists 
+auto an_iterator myMap.find (const key_type& k);
+// If key exists I will get iterator which is pointer to the pair containing the key
+
+ if(an_iterator != myMap.end() ){ ... }  // OK, key exists 
                                            // end() ... function
+
+If key exists:  myValue = an_iterator->second;
+
+
+
+
 
 if(myMap.count(some_key) == 1){  // OK, key exists  Return can be 0 or 1
 }
@@ -155,13 +185,6 @@ I can use:  make_par('a',23);//returns proper pair and make_pair is NOT template
 std::map<char,std::string> mymap;
 mymap['c']="hello";  //throws exeption if key does not exist
 ----------------------------------
-
-
-iterator find (const key_type& k);
-----------------------------------
-It will return iterator to the the element with key
-or, if this key does not exist, map.end();
-
 
 
 allocator_type get_allocator();
