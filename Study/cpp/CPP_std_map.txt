@@ -100,7 +100,8 @@ void insert (InputIterator first, InputIterator last);
 Checking if key exists
 ----------------------
 an_iterator find (const key_type& k);
-// if(an_iterator != myMap.end){ ... }  // OK, key exists
+// if(an_iterator != myMap.end() ){ ... }  // OK, key exists 
+                                           // end() ... function
 
 if(myMap.count(some_key) == 1){  // OK, key exists  Return can be 0 or 1
 }
