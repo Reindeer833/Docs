@@ -1,0 +1,36 @@
+			Network Programming Structures New
+                        ==================================
+
+
+struct addressinfo: host name lookup, service name lookup
+---------------------------------------------------------
+
+struct addrinfo
+{
+	int          	    ai_flags;
+	int          	    ai_family;
+	int                 ai_socktype;
+	int                 ai_protocol;
+	size_t              ai_addrlen;
+	struct sockaddr*    ai_addr;
+	char*               ai_canonname;
+
+        struct addrinfo*    ai_next;
+};
+
+ai_flags:      AI_PASSIVE, AI_CANNONNAME
+
+ai_family:     Valid values for this field include
+               AF_INET and AF_INET6.  The value AF_UNSPEC indicates that
+               getaddrinfo() should return socket addresses for any
+               address family (either IPv4 or IPv6,
+
+ai_socktype:   preferred socket type, for
+               example SOCK_STREAM or SOCK_DGRAM
+
+ai_protocol:  specifies the protocol for the returned socket
+              addresses.  Specifying 0 in this field indicates that
+              socket addresses with any protocol can be returned by
+              getaddrinfo(). 
+
+Important:  memset addrinfo to 0 before filling in and using.
