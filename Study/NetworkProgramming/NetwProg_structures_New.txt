@@ -34,3 +34,16 @@ ai_protocol:  specifies the protocol for the returned socket
               getaddrinfo(). 
 
 Important:  memset addrinfo to 0 before filling in and using.
+
+
+
+struct sockaddr: socket address information
+-------------------------------------------
+
+struct sockaddr
+{
+	unsigned short sa_family;
+        char           sa_data[14];
+
+}
+
