@@ -1,0 +1,31 @@
+
+		PYTHON REGEX POSITIVE LOOK AHEAD SEARCH
+		=======================================
+
+	
+Imports
+-------
+import re   # for regex
+
+----------------------------
+Positive look ahead:   (?=)
+----------------------------
+
+Positive look ahead creates non-capturing group
+
+Example:
+-------
+    
+aText = "Hello Wonderful World!"
+aPatternTxt = "\w*[uU]\w*(?=\s+\w*[oO]\w*\W)"
+
+#This pattern will match words containing u or U and these words must be followed by at least one space and word containing o or O
+
+aPattern = re.compile(aPatternTxt)
+res = aPattern.findall(aText)
+
+for txt in res:
+     print(txt)    
+	
+Printed:  Wonderful
+-------------------	
