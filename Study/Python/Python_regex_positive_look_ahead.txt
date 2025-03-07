@@ -19,7 +19,7 @@ Example:
 aText = "Hello Wonderful World!"
 aPatternTxt = "\w*[uU]\w*(?=\s+\w*[oO]\w*\W)"
 
-#This pattern will match words containing u or U and these words must be followed by at least one space and word containing o or O
+#This pattern will match words containing u or U and these words must be followed by at least one space and a word containing o or O
 
 aPattern = re.compile(aPatternTxt)
 res = aPattern.findall(aText)
