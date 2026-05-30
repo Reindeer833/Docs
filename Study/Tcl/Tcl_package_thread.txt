@@ -1,0 +1,24 @@
+		Tcl Package Thread
+		------------------
+
+In program:  You must first import the extension: package require Thread
+
+In Fedora first install:
+Runtime Package: sudo dnf install tcl-thread
+  (You'll see:  (Installing tcl-thread-0:2.8.8-9.f)
+Development Headers: sudo dnf install tcl-thread-devel
+  (You'll see:  Installing tcl-thread-devel-0:2.8)
+
+Check auto_path in tclsh:  puts $auto_path.
+
+
+export TCLLIBPATH="/usr/lib64/tcl8.6/ /usr/share/tcl8.6/"
+
+
+Find where tcl-thread  is located: rpm -ql tcl-thread
+  usr/lib64/tcl/thread2.8.8
+  /usr/lib64/tcl/thread2.8.8/libthread2.8.8.so
+
+
+load /usr/lib64/tcl/thread2.8.8/libthread2.8.8.so  Thread
+

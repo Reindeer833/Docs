@@ -1,0 +1,14 @@
+		Fedora Cheat Sheat
+		==================
+
+Set minimize and maximize buttons on browser:
+    gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+
+To set or change the root password on Linux Fedora, use your current user's administrator privileges: 
+    sudo passwd root
+
+Set library path:
+    export LD_LIBRARY_PATH=/opt/some/path/libs:$LD_LIBRARY_PATH
+
+Locate library:
+    locate libmkl_core.so
