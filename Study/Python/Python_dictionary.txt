@@ -6,7 +6,20 @@
 Constructor:
 ------------
 myDt={1:'aaa',2:'bbb',3:'ccc',4:'ddd'}    # Using curlies
-myDt = dict()     # explicit constructor
+myDt = dict()     # explicit constructor Creates dictionary, NOT set
+dictA = {  # Using curlies
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+thisdict = dict(name = "John", age = 36, country = "Norway")
+
+
+Accessing elements
+------------------
+print(dictA["brand"])
+
 
 
 Check if key in dict

@@ -1,0 +1,24 @@
+
+
+Example:
+--------
+
+import json
+def dictToJson():
+    myDict=dict()
+    myDict={
+        1:"Hello",
+        "car":"Jaguar",
+        "gas":"Expensive",
+        "Hello":1
+    }
+    myJson = json.dumps(myDict)
+    print(myJson)
+
+if __name__ == '__main__':
+    dictToJson()
+
+
+Output:
+------
+{"1": "Hello", "car": "Jaguar", "gas": "Expensive", "Hello": 1}

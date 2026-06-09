@@ -9,6 +9,8 @@ are different
 
 Constructors
 ************	
+ lista = ["abc", 34, True, 40, "male"]
+ myList = list(("apple", "banana", "cherry")) # note the double round-brackets
  abc=list()
  abc=[]
  abc=[True]*10
