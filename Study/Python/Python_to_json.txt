@@ -22,3 +22,19 @@ if __name__ == '__main__':
 Output:
 ------
 {"1": "Hello", "car": "Jaguar", "gas": "Expensive", "Hello": 1}
+
+
+
+Example:
+--------
+ myCats={
+        "cats":[
+            {"name":"Vicious","color":"Red","age":3},
+            {"name":"Docile", "color": "Black", "age": 7}
+        ]
+    }
+print(myCats["cats"][0]["color"])
+
+Output:
+------
+Red
