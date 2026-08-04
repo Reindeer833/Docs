@@ -55,7 +55,7 @@ print(x.group())  # prints Spain
 
 
 
-match.group(k) # returns the k-th matched group  gropu(0) the same as grroup()
+match.group(k) # returns the k-th matched group  gropu(0) the same as group()
 --------------  
 txt = "The rain in Spain"
 x = re.search(r"\b(S\w+(n))", txt)
